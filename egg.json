@@ -1,0 +1,14 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.6/src/schema.json",
+  "name": "nameable",
+  "entry": "mod.ts",
+  "description": "Cross-check whether it can be used as a package name or domain name",
+  "homepage": "https://github.com/TomokiMiyauci/nameable#readme",
+  "version": "0.0.0",
+  "files": ["README.md", "LICENSE", "*.ts"],
+  "ignore": [".git"],
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": false,
+  "check": true
+}
