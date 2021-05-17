@@ -72,6 +72,31 @@ const config = [
       banner,
     },
   },
+  {
+    input: "node/cli.ts",
+    external: ["cross-fetch"],
+    plugins: [
+      rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      replace(replaceOption),
+      ts({
+        browserslist: false,
+        tsconfig: (resolvedConfig) => ({
+          ...resolvedConfig,
+          declaration: false,
+          declarationMap: false,
+        }),
+      }),
+      nodeResolve(),
+      terser(),
+    ],
+
+    output: {
+      file: "dist/cli.js",
+      format: "cjs",
+      sourcemap: true,
+      banner,
+    },
+  },
 ];
 
 export default config;

@@ -2,6 +2,9 @@
   "name": "@miyauci/nameable",
   "description": "Cross-check whether it can be used as a package name or domain name",
   "version": "1.0.0-beta.2",
+  "bin": {
+    "nameable": "dist/cli.js"
+  },
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.es.d.ts",

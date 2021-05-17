@@ -1,6 +1,7 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 export {
   and,
+  first,
   has,
   ifElse,
   isBoolean,
