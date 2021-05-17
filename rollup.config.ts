@@ -3,6 +3,7 @@ import ts from "rollup-plugin-ts";
 import { resolve } from "path";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
+import shebang from "rollup-plugin-add-shebang";
 import { main, module } from "./package.json";
 const baseDir = resolve(__dirname);
 const inputFilePath = resolve(baseDir, "mod.ts");
@@ -88,6 +89,7 @@ const config = [
       }),
       nodeResolve(),
       terser(),
+      shebang(),
     ],
 
     output: {
