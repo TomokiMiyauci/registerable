@@ -1,6 +1,10 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { query } from "./deno_land.ts";
+import { simpleCompare } from "./deno_land.ts";
 import { assertEquals } from "../dev_deps.ts";
-Deno.test("query", async () => {
-  assertEquals(await query("fonction"), ["deno.land", false]);
+Deno.test("simpleCompare", async () => {
+  assertEquals(await simpleCompare("fonction"), false);
+  assertEquals(
+    await simpleCompare("fonctionxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+    true,
+  );
 });
