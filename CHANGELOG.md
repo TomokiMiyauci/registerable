@@ -1,3 +1,8 @@
+# [v1.0.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-05-17)
+
+## ✨ New Features
+- [`474f247`](https://github.com/TomokiMiyauci/nameable/commit/474f247)   Add cli scripts
+
 # [v1.0.0-beta.2](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-05-17)
 
 ## ✨ New Features
