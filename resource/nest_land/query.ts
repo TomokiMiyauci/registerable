@@ -1,7 +1,7 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 
-import { NEST_LAND_BASE_URL } from "../constants.ts";
-import { map, N } from "../deps.ts";
+import { NEST_LAND_BASE_URL } from "./constants/registry.ts";
+import { map, N } from "../../deps.ts";
 
 type Response = {
   body: {
