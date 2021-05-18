@@ -1,12 +1,11 @@
-import { DENO_LAND, NEST_LAND, NPM } from "./registry.ts";
-import { query } from "../request/deno_land.ts";
-import { query as queryNestLand } from "../request/nest_land.ts";
-import { query as queryNpm } from "../request/npm.ts";
+import { checkNestLand, NEST_LAND } from "../resource/nest_land/main.ts";
+import { checkNpm, NPM } from "../resource/npm/main.ts";
+import { checkDenoLand, DENO_LAND } from "../resource/deno_land/main.ts";
 
 const QUERY_MAP = {
-  [DENO_LAND]: query,
-  [NEST_LAND]: queryNestLand,
-  [NPM]: queryNpm,
+  [DENO_LAND]: checkDenoLand,
+  [NEST_LAND]: checkNestLand,
+  [NPM]: checkNpm,
 };
 
 export { QUERY_MAP };

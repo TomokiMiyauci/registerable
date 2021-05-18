@@ -1,6 +1,8 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 import { keys } from "../deps.ts";
-import { DENO_LAND, NEST_LAND, NPM } from "./registry.ts";
+import { NPM } from "../resource/npm/main.ts";
+import { NEST_LAND } from "../resource/nest_land/main.ts";
+import { DENO_LAND } from "../resource/deno_land/main.ts";
 export const DENO = "deno";
 export const NODE = "node";
 
