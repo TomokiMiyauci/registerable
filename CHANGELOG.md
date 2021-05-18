@@ -1,3 +1,8 @@
+# [v1.0.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2021-05-18)
+
+## ✨ New Features
+- [`974b527`](https://github.com/TomokiMiyauci/nameable/commit/974b527)   Add validation for CLI
+
 # [v1.0.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-05-17)
 
 ## ✨ New Features
