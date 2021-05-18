@@ -1,6 +1,6 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { DENO_LAND_BASE_URL } from "../constants.ts";
-import { and, isBoolean, N, NN, or, props } from "../deps.ts";
+import { DENO_LAND_BASE_URL } from "./constants/registry.ts";
+import { and, isBoolean, N, NN, or, props } from "../../deps.ts";
 
 type Response = {
   success: boolean;
