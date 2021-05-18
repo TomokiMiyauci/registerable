@@ -46,8 +46,17 @@ const checkName = async (
   const resultAll = await Promise.all(
     (query as any[]).map((fn) => fn(name)),
   );
-  const { result } = summarize(resultAll);
+  const { result, errors, hasError } = summarize(resultAll);
+
+  logger("Results:");
+
   logger(outputFormat(json, result));
+  if (hasError) {
+    console.log("\nErrors:");
+    errors.forEach(([registry, message]) => {
+      logger(`${registry}: `, message);
+    });
+  }
 };
 
 const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>

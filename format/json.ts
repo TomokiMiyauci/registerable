@@ -1,18 +1,19 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { entries, ifElse, isBoolean, length, N } from "../deps.ts";
+import { entries, ifElse, isBoolean, isString, length, NN } from "../deps.ts";
 const json = (val: (readonly ["deno.land", boolean])[]) =>
   val.reduce((acc, [registry, isAvailable]) => {
     return { ...acc, [registry]: isAvailable };
   }, {} as Record<"deno.land", boolean>);
 
-const summarize = (val: (readonly [string, boolean | Error])[]): {
+const summarize = (val: (readonly [string, boolean | string])[]): {
   result: Record<string, boolean>;
   hasError: boolean;
-  errors: [string, Error][];
+  errors: [string, string][];
 } => {
-  const errors = val.filter(([_, result]) =>
-    N(isBoolean(result))
-  ) as ([string, Error])[];
+  const errors = val.filter(([_, result]) => isString(result)) as [
+    string,
+    string,
+  ][];
 
   const result = val.map((
     [registry, result],
@@ -23,7 +24,7 @@ const summarize = (val: (readonly [string, boolean | Error])[]): {
 
   return {
     result: json(result),
-    hasError: N(length(errors)),
+    hasError: NN(length(errors)),
     errors,
   };
 };
