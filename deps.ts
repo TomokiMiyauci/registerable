@@ -1,11 +1,16 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 export {
   and,
+  entries,
   first,
+  flattenDeep,
   has,
   ifElse,
+  isArray,
   isBoolean,
+  isString,
   isUndefined,
+  keys,
   length,
   map,
   N,

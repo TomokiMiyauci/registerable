@@ -1,4 +1,5 @@
-import { ifElse, isBoolean, length, N } from "../deps.ts";
+// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+import { entries, ifElse, isBoolean, length, N } from "../deps.ts";
 const json = (val: (readonly ["deno.land", boolean])[]) =>
   val.reduce((acc, [registry, isAvailable]) => {
     return { ...acc, [registry]: isAvailable };
@@ -27,4 +28,15 @@ const summarize = (val: (readonly [string, boolean | Error])[]): {
   };
 };
 
-export { json, summarize };
+const outputFormat = (isJSON: boolean, val: Record<PropertyKey, boolean>) =>
+  ifElse(
+    isJSON,
+    val,
+    () =>
+      entries(val).reduce((acc, [registry, result]) => {
+        return `${acc}
+${registry}: ${result}`;
+      }, ""),
+  );
+
+export { json, outputFormat, summarize };
