@@ -1,3 +1,17 @@
+# v1.0.0 (2021-05-19)
+
+## ✨ New Features
+- [`3e4a92d`](https://github.com/TomokiMiyauci/nameable/commit/3e4a92d)   Add basic request feature to npm, deno.land and nest.land 
+- [`1bb5d23`](https://github.com/TomokiMiyauci/nameable/commit/1bb5d23)   Add logger and accept arguments 
+- [`474f247`](https://github.com/TomokiMiyauci/nameable/commit/474f247)   Add cli scripts 
+- [`974b527`](https://github.com/TomokiMiyauci/nameable/commit/974b527)   Add validation for CLI 
+- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name 
+- [`151f6ea`](https://github.com/TomokiMiyauci/nameable/commit/151f6ea)   Add error log output feature 
+- [`c6b14ec`](https://github.com/TomokiMiyauci/nameable/commit/c6b14ec)   Add validation for deno land module name 
+
+## 🐛 Bug Fixes
+- [`0b5936f`](https://github.com/TomokiMiyauci/nameable/commit/0b5936f)   Not use cross-fetch
+
 # [v1.0.0-beta.7](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-05-19)
 
 ## 🐛 Bug Fixes
