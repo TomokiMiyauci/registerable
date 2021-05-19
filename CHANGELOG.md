@@ -1,3 +1,8 @@
+# [v1.0.0-beta.7](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-05-19)
+
+## 🐛 Bug Fixes
+- [`0b5936f`](https://github.com/TomokiMiyauci/nameable/commit/0b5936f)   Not use cross-fetch
+
 # [v1.0.0-beta.6](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-05-19)
 
 ## ✨ New Features
