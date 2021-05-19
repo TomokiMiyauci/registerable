@@ -6,11 +6,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+import { checkName } from '@miyauci/nameable'
 
 export default defineComponent({
   name: 'App',
   components: {
     HelloWorld
+  },
+
+  setup() {
+    checkName('fonction').then((r) => console.log(r))
   }
 })
 </script>
