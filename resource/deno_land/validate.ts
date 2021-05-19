@@ -1,10 +1,11 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { AnyFn, ifElse, isLength0, isString, N, pipe } from "../../deps.ts";
+import { ifElse, isLength0, isString, N } from "../../deps.ts";
 import {
   gtLength,
   INVALID_LENGTH_0,
   INVALID_NOT_STRING,
   INVALID_TRIMABLE,
+  inversion,
   isTrimable,
   ltLength,
 } from "../shared/mod.ts";
@@ -19,10 +20,7 @@ const gt40 = gtLength(40);
 const lt3 = ltLength(3);
 const isRegularLetter = (val: string) => RegularLetter.test(val);
 
-const inversion = <T extends AnyFn>(fn: T) =>
-  (...val: Parameters<T>) => N(fn(val));
-
-const table = [[isLength0, INVALID_LENGTH_0], [inversion(lt3), ""], [
+const table = [[isLength0, INVALID_LENGTH_0], [
   isTrimable,
   INVALID_TRIMABLE,
 ], [
