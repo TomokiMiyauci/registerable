@@ -117,3 +117,5 @@ dist
 
 temp
 docs/api/*
+
+.vercel
