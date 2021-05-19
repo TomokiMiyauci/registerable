@@ -1,3 +1,9 @@
+# [v1.0.0-beta.5](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-05-18)
+
+## ✨ New Features
+- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name 
+- [`151f6ea`](https://github.com/TomokiMiyauci/nameable/commit/151f6ea)   Add error log output feature
+
 # [v1.0.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2021-05-18)
 
 ## ✨ New Features
