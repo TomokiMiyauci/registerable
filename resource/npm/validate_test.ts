@@ -2,22 +2,22 @@ import {
   gt214,
   hasSpecialCharacter,
   isBlacklistName,
-  isLength0,
   isLowerCase,
-  isTrimable,
   validateNpm,
 } from "./validate.ts";
 import { assertEquals } from "../../dev_deps.ts";
 import {
   INVALID_BLACKLIST,
-  INVALID_LENGTH_0,
   INVALID_LETTER_CASE,
-  INVALID_NOT_STRING,
   INVALID_SPACIAL_CHAR,
   INVALID_START_WITH_,
   INVALID_START_WITH_DOT,
-  INVALID_TRIMABLE,
 } from "./constants/message.ts";
+import {
+  INVALID_LENGTH_0,
+  INVALID_NOT_STRING,
+  INVALID_TRIMABLE,
+} from "../shared/mod.ts";
 const lengthOf = (val: number): string => new Array(val).fill("a").join("");
 
 const emptyString = "";
@@ -45,17 +45,6 @@ Deno.test("gt214", () => {
 
   table.forEach(([val, expected]) => {
     assertEquals(gt214(val), expected, `gt214(${val}) -> ${expected}`);
-  });
-});
-
-Deno.test("isLength0", () => {
-  const table: [string, boolean][] = [[emptyString, true], ["a", false], [
-    string213,
-    false,
-  ]];
-
-  table.forEach(([val, expected]) => {
-    assertEquals(isLength0(val), expected, `isLength0(${val}) -> ${expected}`);
   });
 });
 
@@ -128,24 +117,6 @@ Deno.test("hasSpecialCharacter", () => {
       hasSpecialCharacter(val),
       expected,
       `hasSpecialCharacter(${val}) -> ${expected}`,
-    );
-  });
-});
-
-Deno.test("isTrimable", () => {
-  const table: [string, boolean][] = [
-    [emptyString, false],
-    ["hello", false],
-    [" hello", true],
-    ["hello ", true],
-    [" hello ", true],
-  ];
-
-  table.forEach(([val, expected]) => {
-    assertEquals(
-      isTrimable(val),
-      expected,
-      `isTrimable(${val}) -> ${expected}`,
     );
   });
 });
