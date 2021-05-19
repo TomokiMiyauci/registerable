@@ -30,7 +30,7 @@ const config = [
   {
     input: inputFilePath,
     plugins: [
-      rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      // rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
         transpiler: "babel",
@@ -51,13 +51,11 @@ const config = [
       name: "Nameable",
       banner,
     },
-    external: ["cross-fetch"],
   },
   {
     input: inputFilePath,
-    external: ["cross-fetch"],
     plugins: [
-      rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      // rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
         transpiler: "babel",
