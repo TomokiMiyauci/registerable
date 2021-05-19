@@ -1,3 +1,8 @@
+# [v1.0.0-beta.6](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-05-19)
+
+## ✨ New Features
+- [`c6b14ec`](https://github.com/TomokiMiyauci/nameable/commit/c6b14ec)   Add validation for deno land module name
+
 # [v1.0.0-beta.5](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-05-18)
 
 ## ✨ New Features
