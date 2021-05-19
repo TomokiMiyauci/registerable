@@ -11,17 +11,21 @@ export {
   isArray,
   isBoolean,
   isFunction,
+  isLength0,
   isString,
   isUndefined,
   keys,
   length,
+  lt,
   map,
   N,
   NN,
   or,
+  pipe,
   props,
   startsWith,
   trim,
-} from "https://deno.land/x/fonction@v1.7.0/mod.ts";
+  tryCatch,
+} from "https://deno.land/x/fonction@v1.8.0-beta.3/mod.ts";
 
-export type { AnyFn } from "https://deno.land/x/fonction@v1.7.0/mod.ts";
+export type { AnyFn } from "https://deno.land/x/fonction@v1.8.0-beta.3/mod.ts";

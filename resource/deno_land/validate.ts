@@ -1,5 +1,5 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { ifElse, isLength0, isString, N } from "../../deps.ts";
+import { ifElse, isLength0, isString } from "../../deps.ts";
 import {
   gtLength,
   INVALID_LENGTH_0,

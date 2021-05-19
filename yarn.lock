@@ -2732,10 +2732,10 @@ findup-sync@^4.0.0:
     micromatch "^4.0.2"
     resolve-dir "^1.0.1"
 
-fonction@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/fonction/-/fonction-1.7.0.tgz#bdb22b057ab9f62c2a780f9cf84fb04a465262b5"
-  integrity sha512-4Nhx2twBidrZD9QRH5r6pJkrsxI/qf6Kp4KfwgwxOonzIPLNKl1zsjAQELAsQujrxDLQWfWWzt7qmqnjhUkpAg==
+fonction@^1.8.0-beta.3:
+  version "1.8.0-beta.3"
+  resolved "https://registry.yarnpkg.com/fonction/-/fonction-1.8.0-beta.3.tgz#bc9a06a53e2f7b299b692b8a6c3d41a10cead0b3"
+  integrity sha512-uYYAYIp3Hc7Saxy2F8Ub6J+AdfGrDHxqWFUnZ79Fm0+wbGAJ2NeJX/eSjul1hilmZoVBzMgjcK8dQDED6zP/xA==
 
 forever-agent@~0.6.1:
   version "0.6.1"
