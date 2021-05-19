@@ -113,7 +113,7 @@ jobs:
           deno-version: v1.9.x
 
       - name: Test
-        run: deno test --unstable --coverage=coverage
+        run: deno test -A --unstable --coverage=coverage
 
       - name: Generate coverage report
         run: deno --unstable coverage ./coverage --lcov > coverage.lcov
