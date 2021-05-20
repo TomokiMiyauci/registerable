@@ -6,3 +6,4 @@ export const INVALID_SILENT_ARGS = "Invalid args: silent";
 export const INVALID_JSON_ARGS = "Invalid args: json";
 export const INVALID_LANGUAGE_ARGS = "Invalid args: language";
 export const INVALID_LANGUAGE_MEMBERS = "Invalid language:";
+export const INVALID_ARGS_MEMBER = "Invalid query member";
