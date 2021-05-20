@@ -1,3 +1,9 @@
+# [v1.1.0-beta.1](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0...v1.1.0-beta.1) (2021-05-20)
+
+## ✨ New Features
+- [`c71deaf`](https://github.com/TomokiMiyauci/nameable/commit/c71deaf)  (api) Add query parameter validation 
+- [`b9ee9b6`](https://github.com/TomokiMiyauci/nameable/commit/b9ee9b6)  (api) Add validator and parser
+
 # v1.0.0 (2021-05-19)
 
 ## ✨ New Features
