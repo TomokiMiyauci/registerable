@@ -1,0 +1,12 @@
+/*
+!api
+!website
+!*.ts
+!validate
+!utils
+!resource
+!node
+!log
+!format
+!constants
+!**/*.ts
