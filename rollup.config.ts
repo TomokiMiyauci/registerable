@@ -44,6 +44,8 @@ const config = [
       terser(),
     ],
 
+    external: ["cross-fetch"],
+
     output: {
       file: main,
       format: "umd",
@@ -55,7 +57,7 @@ const config = [
   {
     input: inputFilePath,
     plugins: [
-      // rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
         transpiler: "babel",
@@ -63,6 +65,8 @@ const config = [
       nodeResolve(),
       terser(),
     ],
+
+    external: ["cross-fetch"],
 
     output: {
       file: module,
