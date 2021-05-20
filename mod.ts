@@ -7,7 +7,8 @@ import { LANGUAGE_MAP, LANGUAGES } from "./constants/language.ts";
 import { flattenDeep } from "./deps.ts";
 import { duplicate } from "./utils/duplicate.ts";
 import { QUERY_MAP } from "./constants/query.ts";
-import { NN } from "./deps.ts";
+import { ifElse, NN } from "./deps.ts";
+import { client } from "./api/client.ts";
 
 type Option = {
   silent: boolean;
@@ -16,25 +17,39 @@ type Option = {
   languages: typeof LANGUAGES;
 };
 
-const defaultOption: Option = {
+type Mode = {
+  mode: "server" | "universal";
+};
+
+const defaultOption: Option & Mode = {
+  mode: "server",
   silent: false,
   json: false,
   registry: [],
   languages: ["typescript", "javascript"],
 };
 
-const checkName = async (
+interface ApiResponse {
+  result: Record<string, boolean>;
+  errors: [string, string][];
+  hasError: boolean;
+}
+
+const query2Direct = async (
+  queries: any[],
   name: string,
-  option?: Partial<
-    Option
-  >,
-) => {
+): Promise<ApiResponse> => {
+  const resultAll = await Promise.all((queries as any[]).map((fn) => fn(name)));
+  return summarize(resultAll);
+};
+
+const checkName = async (name: string, option?: Partial<Option & Mode>) => {
   const {
+    mode = defaultOption.mode,
     silent = defaultOption.silent,
     json = defaultOption.json,
     languages = defaultOption.languages,
-  } = option ||
-    defaultOption;
+  } = option || defaultOption;
 
   const lang = pickKeys(LANGUAGE_MAP, languages);
   const registry = pickKeys(RUNTIME_MAP, lang);
@@ -43,10 +58,11 @@ const checkName = async (
   const logger = loggerFactory(silent);
   logger(`Check name: ${name}\n`);
 
-  const resultAll = await Promise.all(
-    (query as any[]).map((fn) => fn(name)),
+  const { result, errors, hasError } = await ifElse(
+    mode === "server",
+    async () => await query2Direct(query, name),
+    async () => await client(name, option as Option),
   );
-  const { result, errors, hasError } = summarize(resultAll);
 
   logger("Results:");
 
@@ -57,9 +73,16 @@ const checkName = async (
       logger(`${registry}: `, message);
     });
   }
+  return {
+    name,
+    result,
+    errors,
+    hasError,
+  };
 };
 
 const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
   duplicate(flattenDeep(val.map((key) => map[key as any])));
 
 export { checkName };
+export type { ApiResponse, Option };
