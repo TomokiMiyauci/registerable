@@ -1,32 +1,48 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <header class="shadow p-2">Nameable</header>
+
+  <div class="text-center m-3">
+    <span>
+      <input
+        v-model="search"
+        placeholder="Search"
+        class="
+          rounded-full
+          shadow
+          py-2
+          px-4
+          focus:ring-2
+          outline-none
+          ring-fuchsia-300
+        "
+      />
+      <button @click="onClick">hoge</button>
+    </span>
+
+    {{ search }}
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-import { checkName } from '@miyauci/nameable'
+<script setup lang="ts">
+import { onBeforeMount, ref } from 'vue'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  },
+type Option = {
+  mode: "server" | "universal";
+  json: boolean;
+  registry: [];
+  languages: ["typescript", "javascript"];
+};
 
-  setup() {
-    checkName('fonction').then((r) => console.log(r))
-  }
-})
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+
+const search = ref<string>('')
+
+const onClick = () => {
+
 }
-</style>
+
+const query = () => {
+  fetch('')
+}
+</script>
