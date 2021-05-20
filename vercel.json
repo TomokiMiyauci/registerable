@@ -2,6 +2,11 @@
   "version": 2,
   "builds": [
     {
+      "src": "website/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
       "src": "/api/check_name.ts",
       "use": "vercel-deno@0.7.12"
     }
@@ -10,6 +15,10 @@
     {
       "src": "/check-name",
       "dest": "api/check_name.ts"
+    },
+    {
+      "src": "/",
+      "dest": "website"
     }
   ]
 }
