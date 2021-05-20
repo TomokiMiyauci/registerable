@@ -1,5 +1,15 @@
 {
-  "functions": {
-    "api/**/*.ts": { "runtime": "vercel-deno@0.7.12" }
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "/api/check_name.ts",
+      "use": "vercel-deno@0.7.12"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/check-name",
+      "dest": "api/check_name.ts"
+    }
+  ]
 }
