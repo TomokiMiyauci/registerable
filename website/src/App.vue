@@ -97,9 +97,22 @@
             />
             <span class="px-3">{{ registry }}</span>
           </td>
-          <td class="text-center">
-            <mdi-check-circle v-if="is" class="text-green-500 align-middle" />
-            <mdi-close-circle v-else class="text-red-500 align-middle" />
+          <td class="text-left">
+            <template v-if="is">
+              <mdi-check-circle class="text-green-500 align-middle" />
+              The name is available
+            </template>
+            <template v-else>
+              <mdi-close-circle class="text-red-500 align-middle" />
+              The name is not available
+            </template>
+
+            <template v-if="has(registry, state.error)">
+              <p>
+                <mdi-information class="align-middle" />
+                {{ state.error[registry] }}
+              </p>
+            </template>
           </td>
         </tr>
       </table>
@@ -110,6 +123,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { checkName } from '@miyauci/nameable'
+import { has } from 'fonction'
 
 type Option = {
   mode: 'server' | 'universal'
@@ -119,9 +133,14 @@ type Option = {
 }
 
 const search = ref<string>('')
-const state = reactive<{ name: string; result: Record<string, boolean> }>({
+const state = reactive<{
+  name: string
+  result: Record<string, boolean>
+  error: Record<string, string>
+}>({
   name: '',
-  result: {}
+  result: {},
+  error: {}
 })
 
 const onClick = async () => {
@@ -132,15 +151,20 @@ const onClick = async () => {
 
   state.name = name
   state.result = result
+  if (hasError) {
+    state.error = errors.reduce(
+      (acc, [registry, msg]) => ({
+        ...acc,
+        [registry]: msg
+      }),
+      {}
+    )
+  }
 
   console.log(result)
 }
 
 const registryPair = computed(() => Object.entries(state.result))
-
-const query = () => {
-  fetch('')
-}
 </script>
 
 <style>
