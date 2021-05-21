@@ -7,4 +7,7 @@ const gtLength = (val: number) =>
 const ltLength = (val: number) =>
   pipe(length, (length: number) => lt(length, val));
 
-export { gtLength, ltLength };
+const includeFactory = (array: string[]) =>
+  (val: string): boolean => array.includes(val);
+
+export { gtLength, includeFactory, ltLength };
