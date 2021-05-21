@@ -1,7 +1,7 @@
 {
   "name": "@miyauci/nameable",
   "description": "Cross-check whether it can be used as a package name or domain name",
-  "version": "1.1.0-beta.1",
+  "version": "1.1.0-beta.2",
   "bin": {
     "nameable": "dist/cli.js"
   },
