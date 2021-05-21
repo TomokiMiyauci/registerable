@@ -5,6 +5,7 @@ import {
   isFunction,
   isLength0,
   isString,
+  not,
   startsWith,
 } from "../../deps.ts";
 import { gtLength } from "../shared/composite.ts";
@@ -22,7 +23,6 @@ import {
   INVALID_LENGTH_0,
   INVALID_NOT_STRING,
   INVALID_TRIMABLE,
-  inversion,
   isTrimable,
 } from "../shared/mod.ts";
 
@@ -47,7 +47,7 @@ const table = [
     isStartWith_,
     INVALID_START_WITH_,
   ],
-  [inversion(isLowerCase), INVALID_LETTER_CASE],
+  [not(isLowerCase), INVALID_LETTER_CASE],
   [hasSpecialCharacter, INVALID_SPACIAL_CHAR],
   [isBlacklistName, (val: string) => `${val} ${INVALID_BLACKLIST}`],
 ] as const;

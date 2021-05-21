@@ -1,6 +1,5 @@
-import { AnyFn, N } from "../deps.ts";
+import { AnyFn, N, not } from "../deps.ts";
 import { INVALID_ARGS_MEMBER } from "../constants/message.ts";
-import { inversion } from "../resource/shared/utils.ts";
 const NAME = "name";
 const queryParameters = [NAME];
 
@@ -17,23 +16,14 @@ const isValidQueryParameter = (searchParams: URLSearchParams): boolean => {
 };
 
 const validateTable = [
-  [
-    inversion(hasNameParameter),
-    "name parameter is necessary",
-  ],
-  [inversion(isValidQueryParameter), INVALID_ARGS_MEMBER],
+  [not(hasNameParameter), "name parameter is necessary"],
+  [not(isValidQueryParameter), INVALID_ARGS_MEMBER],
 ] as const;
 
 const validate = <
   T extends readonly [
-    readonly [
-      AnyFn<any, boolean>,
-      string,
-    ],
-    readonly [
-      AnyFn<any, boolean>,
-      string,
-    ],
+    readonly [AnyFn<any, boolean>, string],
+    readonly [AnyFn<any, boolean>, string],
   ],
 >(
   table: T,

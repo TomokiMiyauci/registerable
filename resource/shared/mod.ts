@@ -2,4 +2,3 @@
 export * from "./validate.ts";
 export * from "./composite.ts";
 export * from "./message.ts";
-export * from "./utils.ts";
