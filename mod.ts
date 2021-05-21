@@ -4,8 +4,7 @@ import { outputFormat, summarize } from "./format/json.ts";
 import { loggerFactory } from "./log/log.ts";
 import { RUNTIME_MAP } from "./constants/runtime.ts";
 import { LANGUAGE_MAP, LANGUAGES } from "./constants/language.ts";
-import { flattenDeep } from "./deps.ts";
-import { duplicate } from "./utils/duplicate.ts";
+import { flattenDeep, uniq } from "./deps.ts";
 import { QUERY_MAP } from "./constants/query.ts";
 import { ifElse, NN } from "./deps.ts";
 import { client } from "./api/client.ts";
@@ -82,7 +81,7 @@ const checkName = async (name: string, option?: Partial<Option & Mode>) => {
 };
 
 const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
-  duplicate(flattenDeep(val.map((key) => map[key as any])));
+  uniq(flattenDeep(val.map((key) => map[key as any])));
 
 export { checkName };
 export type { ApiResponse, Option };

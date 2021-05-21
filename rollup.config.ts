@@ -12,8 +12,8 @@ const banner =
 
 const replaceOption = {
   ".ts": "",
-  "https://deno.land/x/fonction@v1.8.0-beta.3/mod": "fonction",
-  preventAssignment: true,
+  "https://deno.land/x/fonction@v1.8.0-beta.5/mod": "fonction",
+  preventAssignment: true
 };
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
@@ -22,7 +22,7 @@ const rollupPluginPreserveFetch = (preserve, target) => ({
     if (mod.includes("node_modules")) return;
     const formattedCode = code.includes(target) ? `${preserve}${code}` : code;
     return { code: formattedCode, map: null };
-  },
+  }
 });
 
 const nodeFetch = `import fetch from 'cross-fetch'\n`;
@@ -35,13 +35,13 @@ const config = [
       ts({
         transpiler: "babel",
         browserslist: ["defaults", "node 6", "supports es6-module"],
-        tsconfig: (resolvedConfig) => ({
+        tsconfig: resolvedConfig => ({
           ...resolvedConfig,
-          declaration: false,
-        }),
+          declaration: false
+        })
       }),
       nodeResolve(),
-      terser(),
+      terser()
     ],
 
     external: ["cross-fetch"],
@@ -51,8 +51,8 @@ const config = [
       format: "umd",
       sourcemap: true,
       name: "Nameable",
-      banner,
-    },
+      banner
+    }
   },
   {
     input: inputFilePath,
@@ -60,10 +60,10 @@ const config = [
       rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
-        transpiler: "babel",
+        transpiler: "babel"
       }),
       nodeResolve(),
-      terser(),
+      terser()
     ],
 
     external: ["cross-fetch"],
@@ -72,8 +72,8 @@ const config = [
       file: module,
       format: "es",
       sourcemap: true,
-      banner,
-    },
+      banner
+    }
   },
   {
     input: "node/cli.ts",
@@ -83,24 +83,24 @@ const config = [
       replace(replaceOption),
       ts({
         browserslist: false,
-        tsconfig: (resolvedConfig) => ({
+        tsconfig: resolvedConfig => ({
           ...resolvedConfig,
           declaration: false,
-          declarationMap: false,
-        }),
+          declarationMap: false
+        })
       }),
       nodeResolve(),
       terser(),
-      shebang(),
+      shebang()
     ],
 
     output: {
       file: "dist/cli.js",
       format: "cjs",
       sourcemap: true,
-      banner,
-    },
-  },
+      banner
+    }
+  }
 ];
 
 export default config;
