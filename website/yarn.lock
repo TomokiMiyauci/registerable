@@ -378,6 +378,11 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
+fonction@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/fonction/-/fonction-1.7.0.tgz#bdb22b057ab9f62c2a780f9cf84fb04a465262b5"
+  integrity sha512-4Nhx2twBidrZD9QRH5r6pJkrsxI/qf6Kp4KfwgwxOonzIPLNKl1zsjAQELAsQujrxDLQWfWWzt7qmqnjhUkpAg==
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
