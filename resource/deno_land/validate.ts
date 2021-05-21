@@ -1,23 +1,19 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 import { ifElse, isLength0, isString, not } from "../../deps.ts";
 import {
-  gtLength,
+  gt40,
+  INVALID_GREATER_THEN_40,
   INVALID_LENGTH_0,
   INVALID_NOT_STRING,
+  INVALID_SPECIAL_LETTER,
   INVALID_TRIMABLE,
+  isRegularLetter,
   isTrimable,
   ltLength,
 } from "../shared/mod.ts";
-import {
-  INVALID_GREATER_THEN_40,
-  INVALID_LESS_THEN_3,
-  INVALID_SPECIAL_LETTER,
-} from "./constants/message.ts";
-const RegularLetter = /^[a-z\d_]+$/;
+import { INVALID_LESS_THEN_3 } from "./constants/message.ts";
 
-const gt40 = gtLength(40);
 const lt3 = ltLength(3);
-const isRegularLetter = (val: string) => RegularLetter.test(val);
 
 const table = [
   [isLength0, INVALID_LENGTH_0],
@@ -42,4 +38,4 @@ const validateDenoLand = (val: unknown): string | undefined =>
     INVALID_NOT_STRING,
   );
 
-export { gt40, isRegularLetter, lt3, validateDenoLand };
+export { isRegularLetter, lt3, validateDenoLand };

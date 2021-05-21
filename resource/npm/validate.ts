@@ -8,7 +8,7 @@ import {
   not,
   startsWith,
 } from "../../deps.ts";
-import { gtLength } from "../shared/composite.ts";
+import { gtLength, includeFactory } from "../shared/composite.ts";
 
 const SPECIAL_CHARACTERS = /[~'!()*]/;
 const BLACKLIST = ["node_modules", "favicon.ico"];
@@ -31,7 +31,7 @@ const isLowerCase = (val: string): boolean => val.toLowerCase() === val;
 const isStartWithDot = startsWith(".");
 const isStartWith_ = startsWith("_");
 const hasSpecialCharacter = (val: string) => SPECIAL_CHARACTERS.test(val);
-const isBlacklistName = (val: string) => BLACKLIST.includes(val);
+const isBlacklistName = includeFactory(BLACKLIST);
 
 const table = [
   [
