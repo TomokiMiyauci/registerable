@@ -1,6 +1,7 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 import {
   AnyFn,
+  gtLength,
   ifElse,
   isFunction,
   isLength0,
@@ -8,7 +9,7 @@ import {
   not,
   startsWith,
 } from "../../deps.ts";
-import { gtLength, includeFactory } from "../shared/composite.ts";
+import { includeFactory } from "../shared/composite.ts";
 
 const SPECIAL_CHARACTERS = /[~'!()*]/;
 const BLACKLIST = ["node_modules", "favicon.ico"];

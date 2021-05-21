@@ -1,6 +1,5 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { trim } from "../../deps.ts";
-import { gtLength } from "./composite.ts";
+import { gtLength, trim } from "../../deps.ts";
 
 const isTrimable = (val: string) => trim(val) !== val;
 const gt40 = gtLength(40);

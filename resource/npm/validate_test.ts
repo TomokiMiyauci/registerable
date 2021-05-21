@@ -1,5 +1,4 @@
 import {
-  gt214,
   hasSpecialCharacter,
   isBlacklistName,
   isLowerCase,
@@ -18,35 +17,8 @@ import {
   INVALID_NOT_STRING,
   INVALID_TRIMABLE,
 } from "../shared/mod.ts";
-const lengthOf = (val: number): string => new Array(val).fill("a").join("");
 
 const emptyString = "";
-const string213 = lengthOf(213);
-const string214 = lengthOf(214);
-const string215 = lengthOf(215);
-
-Deno.test("gt214", () => {
-  const table: [string, boolean][] = [
-    [emptyString, false],
-    [
-      string213,
-      false,
-    ],
-    [
-      string214,
-      false,
-    ],
-    [string215, true],
-    [
-      new Array(1000).fill("a").join(""),
-      true,
-    ],
-  ];
-
-  table.forEach(([val, expected]) => {
-    assertEquals(gt214(val), expected, `gt214(${val}) -> ${expected}`);
-  });
-});
 
 Deno.test("isLowerCase", () => {
   const table: [string, boolean][] = [

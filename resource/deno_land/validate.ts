@@ -1,5 +1,5 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { ifElse, isLength0, isString, not } from "../../deps.ts";
+import { ifElse, isLength0, isString, ltLength, not } from "../../deps.ts";
 import {
   gt40,
   INVALID_GREATER_THEN_40,
@@ -9,7 +9,6 @@ import {
   INVALID_TRIMABLE,
   isRegularLetter,
   isTrimable,
-  ltLength,
 } from "../shared/mod.ts";
 import { INVALID_LESS_THEN_3 } from "./constants/message.ts";
 
