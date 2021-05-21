@@ -1,7 +1,7 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
 
 import { NEST_LAND_BASE_URL } from "./constants/registry.ts";
-import { map, N } from "../../deps.ts";
+import { map, N, tryCatch } from "../../deps.ts";
 
 type Response = {
   body: {
@@ -21,16 +21,13 @@ type Response = {
   }[];
 };
 
-const query = async (search: string) => {
-  try {
+const query = async (name: string): Promise<boolean | Error> =>
+  tryCatch<Promise<boolean>, Error>(async () => {
     const res = await fetch(NEST_LAND_BASE_URL);
     const { body } = await res.json() as Response;
 
-    const isAvailable = N(map(({ name }) => name, body).includes(search));
-    return ["nest.land", isAvailable] as const;
-  } catch {
-    return ["nest.land", false] as const;
-  }
-};
+    const isAvailable = N(map(({ name }) => name, body).includes(name));
+    return isAvailable;
+  });
 
 export { query };
