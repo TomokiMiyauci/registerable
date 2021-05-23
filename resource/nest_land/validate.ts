@@ -1,5 +1,5 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { ifElse, isLength0, isString, ltLength, not } from "../../deps.ts";
+import { failOnTrue, isLength0, isString, ltLength, not } from "../../deps.ts";
 import {
   gt40,
   includeFactory,
@@ -21,6 +21,7 @@ const lt2 = ltLength(2);
 const isReservedName = includeFactory(RESERVED);
 
 const table = [
+  [not(isString), INVALID_NOT_STRING],
   [isLength0, INVALID_LENGTH_0],
   [isTrimable, INVALID_TRIMABLE],
   [lt2, INVALID_LESS_THEN_2],
@@ -30,18 +31,6 @@ const table = [
 ] as const;
 
 const validateNestLand = (val: unknown): string | undefined =>
-  ifElse(
-    isString(val),
-    () => {
-      for (const [fn, message] of table) {
-        if (fn(val as string)) {
-          return message;
-        }
-      }
-
-      return;
-    },
-    INVALID_NOT_STRING,
-  );
+  failOnTrue(table as any)(val as any) as any;
 
 export { isRegularLetter, lt2, validateNestLand };

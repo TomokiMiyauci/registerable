@@ -13,7 +13,7 @@ const banner =
 const replaceOption = {
   ".ts": "",
   "https://deno.land/x/fonction@v1.8.0-beta.5/mod": "fonction",
-  "https://deno.land/x/is_valid@v1.0.0-beta.1/mod": "@miyauci/is-valid",
+  "https://deno.land/x/is_valid@v1.0.0-beta.2/mod": "@miyauci/is-valid",
   preventAssignment: true,
 };
 
