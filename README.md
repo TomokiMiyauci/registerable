@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-Deep comparison between two values to determine if they are equivalent
+Cross-check whether it can be used as a package name or domain name
 </p>
 
 <div align="center">
@@ -16,8 +16,8 @@ Deep comparison between two values to determine if they are equivalent
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/nameable/mod.ts)
 [![deno version](https://img.shields.io/badge/deno-^1.6.0-lightgrey?logo=deno)](https://github.com/denoland/deno)
 ![node support version](https://img.shields.io/badge/node-%5E14.16.0-yellow)
-![bundle size](https://img.shields.io/bundlephobia/min/lauqe)
-![npm download](https://img.shields.io/npm/dw/lauqe?color=blue)
+![bundle size](https://img.shields.io/bundlephobia/min/@miyauci/nameable)
+![npm download](https://img.shields.io/npm/dw/@miyauci/nameable?color=blue)
 
 [![dependencies Status](https://status.david-dm.org/gh/TomokiMiyauci/nameable.svg)](https://david-dm.org/TomokiMiyauci/nameable)
 [![codecov](https://codecov.io/gh/TomokiMiyauci/nameable/branch/main/graph/badge.svg?token=SPAi5Pv2wd)](https://codecov.io/gh/TomokiMiyauci/nameable)
