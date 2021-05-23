@@ -10,6 +10,7 @@ import {
   startsWith,
 } from "../../deps.ts";
 import { includeFactory } from "../shared/composite.ts";
+import { normalize } from "./format.ts";
 
 const SPECIAL_CHARACTERS = /[~'!()*]/;
 const BLACKLIST = ["node_modules", "favicon.ico"];
@@ -33,6 +34,9 @@ const isStartWithDot = startsWith(".");
 const isStartWith_ = startsWith("_");
 const hasSpecialCharacter = (val: string) => SPECIAL_CHARACTERS.test(val);
 const isBlacklistName = includeFactory(BLACKLIST);
+
+const isEqualNormalizedName = (name: string) =>
+  (packageName: string): boolean => normalize(packageName) === name;
 
 const table = [
   [
@@ -73,6 +77,7 @@ export {
   gt214,
   hasSpecialCharacter,
   isBlacklistName,
+  isEqualNormalizedName,
   isLowerCase,
   isTrimable,
   validateNpm,

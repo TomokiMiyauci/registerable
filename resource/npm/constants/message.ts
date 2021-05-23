@@ -8,3 +8,6 @@ export const INVALID_NOT_STRING = "name must be a string";
 export const INVALID_TRIMABLE =
   "name cannot contain leading or trailing spaces";
 export const INVALID_BLACKLIST = "is a core module name";
+
+export const MONIKER_RULES_ERROR =
+  "Moniker rules: A very similar name already exists";

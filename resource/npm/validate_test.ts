@@ -1,9 +1,11 @@
 import {
   hasSpecialCharacter,
   isBlacklistName,
+  isEqualNormalizedName,
   isLowerCase,
   validateNpm,
 } from "./validate.ts";
+import { normalize } from "./format.ts";
 import { assertEquals } from "../../dev_deps.ts";
 import {
   INVALID_BLACKLIST,
@@ -106,6 +108,27 @@ Deno.test("isBlacklistName", () => {
       isBlacklistName(val),
       expected,
       `isBlacklistName(${val}) -> ${expected}`,
+    );
+  });
+});
+
+Deno.test("isEqualNormalizedName", () => {
+  const table: [string, string, boolean][] = [
+    ["", "", true],
+    ["fonction", "fonction", true],
+    ["name-able", "nameable", true],
+    ["nameable", "nameable", true],
+    ["name-able", "n-a-m-e-a-b-l-e", true],
+    ["n.a.m-e..a-b-le", "na.m.e.a.ble", true],
+    ["nameable", "nnamebale", false],
+    ["n-a--m-e-a-b-l_e", "n-a-m_e._a.b.le", true],
+  ];
+
+  table.forEach(([name, packageName, expected]) => {
+    assertEquals(
+      isEqualNormalizedName(normalize(name))(packageName),
+      expected,
+      `isEqualNormalizedName(${name})(${packageName}) -> ${expected}`,
     );
   });
 });
