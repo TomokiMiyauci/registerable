@@ -72,7 +72,7 @@
     "node 14"
   ],
   "dependencies": {
-    "@miyauci/is-valid": "^1.0.0-beta.1",
+    "@miyauci/is-valid": "^1.0.0-beta.2",
     "cross-fetch": "^3.1.4",
     "fonction": "^1.8.0-beta.5"
   },

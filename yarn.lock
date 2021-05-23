@@ -1024,10 +1024,10 @@
   resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-3.3.3.tgz#139a151e98a7e91b43fc2900d0ccf7edb59bea5a"
   integrity sha512-ikDzSgs2SbBtKVXCNfU6GzVACpUuojZS8Vu/VhM1EwtWvtfGJsrRETLbV231ODMvWtfKJThzrsk2Hp88fv9+gA==
 
-"@miyauci/is-valid@^1.0.0-beta.1":
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.1.tgz#516b7fb8d0f0527ad9c5ad6c7919daec8dd79280"
-  integrity sha512-LYwZ24MyOwnO2nIGHuD8pN+NJC+xhaLgfRdOJPS7ENVXylbU+6cafi7Jc50joON9z0X/Wo5BYps2af8ntcsoTA==
+"@miyauci/is-valid@^1.0.0-beta.2":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.2.tgz#d4ffd41127d00e050e99466c771221d7b8cb5d94"
+  integrity sha512-bRJh/qcRnqi2Pxo3pIlIOUedqpUxVayz+4ISwRaMgsMpwJTv9qCRuFU5pVEQbDxZ4CA5fe2lU3QmEGP9VfjuHQ==
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
