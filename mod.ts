@@ -1,5 +1,5 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { outputFormat, summarize } from "./format/json.ts";
+import { summarize } from "./format/json.ts";
 import { loggerFactory, logTableFactory } from "./log/log.ts";
 import { LANGUAGES, QUERY_MAP, REGISTRIES } from "./constants/mod.ts";
 import { entries, flattenDeep, ifElse, NN, uniq } from "./deps.ts";
