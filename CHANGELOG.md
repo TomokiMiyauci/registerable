@@ -1,3 +1,8 @@
+# [v1.1.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2021-05-25)
+
+## 🐛 Bug Fixes
+- [`d54ba22`](https://github.com/TomokiMiyauci/nameable/commit/d54ba22)   Fix log format
+
 # [v1.1.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2021-05-23)
 
 ## ✨ New Features
