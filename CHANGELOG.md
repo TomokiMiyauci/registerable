@@ -1,3 +1,8 @@
+# [v1.1.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2021-05-23)
+
+## ✨ New Features
+- [`316326c`](https://github.com/TomokiMiyauci/nameable/commit/316326c)   Add validation for npm with moniker rules
+
 # [v1.1.0-beta.2](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2021-05-21)
 
 ## ✨ New Features
