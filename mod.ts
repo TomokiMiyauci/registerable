@@ -1,18 +1,14 @@
 // Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-// import { info } from "https://deno.land/std@0.96.0/log/mod.ts";
 import { outputFormat, summarize } from "./format/json.ts";
-import { loggerFactory } from "./log/log.ts";
-import { RUNTIME_MAP } from "./constants/runtime.ts";
-import { LANGUAGE_MAP, LANGUAGES } from "./constants/language.ts";
-import { flattenDeep, uniq } from "./deps.ts";
-import { QUERY_MAP } from "./constants/query.ts";
-import { ifElse, NN } from "./deps.ts";
+import { loggerFactory, logTableFactory } from "./log/log.ts";
+import { LANGUAGES, QUERY_MAP, REGISTRIES } from "./constants/mod.ts";
+import { entries, flattenDeep, ifElse, NN, uniq } from "./deps.ts";
 import { client } from "./api/client.ts";
 
 type Option = {
-  silent: boolean;
+  verbose: boolean;
   json: boolean;
-  registry: [];
+  registry: typeof REGISTRIES[number][];
   languages: typeof LANGUAGES;
 };
 
@@ -22,9 +18,9 @@ type Mode = {
 
 const defaultOption: Option & Mode = {
   mode: "server",
-  silent: false,
+  verbose: false,
   json: false,
-  registry: [],
+  registry: ["deno.land", "next.land", "npm"],
   languages: ["typescript", "javascript"],
 };
 
@@ -45,17 +41,15 @@ const query2Direct = async (
 const checkName = async (name: string, option?: Partial<Option & Mode>) => {
   const {
     mode = defaultOption.mode,
-    silent = defaultOption.silent,
+    verbose = defaultOption.verbose,
     json = defaultOption.json,
-    languages = defaultOption.languages,
+    registry = defaultOption.registry,
   } = option || defaultOption;
 
-  const lang = pickKeys(LANGUAGE_MAP, languages);
-  const registry = pickKeys(RUNTIME_MAP, lang);
+  const consoleLog = loggerFactory(verbose);
+  const consoleTable = logTableFactory(verbose);
+  consoleLog(`🔍️ Check module name: %c${name}\n`, "color: gold");
   const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
-
-  const logger = loggerFactory(silent);
-  logger(`Check name: ${name}\n`);
 
   const { result, errors, hasError } = await ifElse(
     mode === "server",
@@ -63,15 +57,26 @@ const checkName = async (name: string, option?: Partial<Option & Mode>) => {
     async () => await client(name, option as Option),
   );
 
-  logger("Results:");
+  consoleLog("%cResults:", "color: skyblue");
 
-  logger(outputFormat(json, result));
-  if (hasError) {
-    console.log("\nErrors:");
-    errors.forEach(([registry, message]) => {
-      logger(`${registry}: `, message);
-    });
+  const formattedResult = format(!json, result);
+  if (json) {
+    consoleLog(formattedResult);
+  } else {
+    consoleTable(formattedResult);
   }
+
+  if (hasError) {
+    consoleLog("\n%cErrors:", "color: orangered");
+    const formatted = errors.reduce(
+      (acc, [key, value]) => ({ ...acc, [key]: { message: value } }),
+      {},
+    );
+
+    consoleTable(formatted);
+  }
+
+  consoleLog("\n✨ Checking is done.");
   return {
     name,
     result,
@@ -79,6 +84,20 @@ const checkName = async (name: string, option?: Partial<Option & Mode>) => {
     hasError,
   };
 };
+
+const format = (
+  verbose: boolean,
+  result: Record<string, boolean>,
+): Record<string, boolean> =>
+  ifElse(
+    verbose,
+    () =>
+      entries(result).reduce(
+        (acc, [key, value]) => ({ ...acc, [key]: { available: value } }),
+        {},
+      ),
+    result,
+  );
 
 const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
   uniq(flattenDeep(val.map((key) => map[key as any])));

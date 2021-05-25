@@ -4,7 +4,16 @@ const loggerFactory = (isSilent: boolean) =>
   ifElse(
     isSilent,
     () => (..._: any[]) => {},
-    () => (...message: any[]) => console.log(...message),
+    () => (...data: any[]) => console.log(...data),
   );
 
-export { loggerFactory };
+const logTableFactory = (verbose: boolean) =>
+  ifElse(
+    verbose,
+    () => (..._: any[]) => {},
+    () =>
+      (tabularData?: any, properties?: string[] | undefined) =>
+        console.table(tabularData, properties),
+  );
+
+export { loggerFactory, logTableFactory };

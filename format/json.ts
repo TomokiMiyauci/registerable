@@ -34,10 +34,13 @@ const outputFormat = (isJSON: boolean, val: Record<PropertyKey, boolean>) =>
     isJSON,
     val,
     () =>
-      entries(val).reduce((acc, [registry, result]) => {
-        return `${acc}
-${registry}: ${result}`;
-      }, ""),
+      entries(val).reduce(
+        (acc, [registry, result]) =>
+          ifElse(NN(acc), () =>
+            `${acc}
+${registry}: ${result}`, `${registry}: ${result}`),
+        "",
+      ),
   );
 
 export { json, outputFormat, summarize };

@@ -33,9 +33,9 @@ const undefinedOrString = (val: unknown) =>
 
 const notUndefinedOrBoolean = (val: unknown) => N(undefinedOrBoolean(val));
 const cli = () => {
-  const { _, silent, json, language } = parse(Deno.args, {
+  const { _, verbose, json, language } = parse(Deno.args, {
     "alias": {
-      "s": "silent",
+      "v": "verbose",
       "l": "language",
       "j": "json",
     },
@@ -62,7 +62,7 @@ const cli = () => {
     console.log("\n" + HELP_HINT);
     Deno.exit();
   }], [
-    () => notUndefinedOrBoolean(silent),
+    () => notUndefinedOrBoolean(verbose),
     () => {
       error(INVALID_SILENT_ARGS + "\n");
       console.log(USAGE_HEADER);
@@ -108,7 +108,7 @@ const cli = () => {
   });
 
   checkName(name as string, {
-    silent,
+    verbose,
     json,
     languages: ifElse(N(length(languages)), undefined, languages),
   });
