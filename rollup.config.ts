@@ -5,6 +5,8 @@ import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import shebang from "rollup-plugin-add-shebang";
 import { main, module } from "./package.json";
+import json from "@rollup/plugin-json";
+
 const baseDir = resolve(__dirname);
 const inputFilePath = resolve(baseDir, "mod.ts");
 const banner =
@@ -79,9 +81,10 @@ const config = [
   },
   {
     input: "node/cli.ts",
-    external,
+    external: [...external, "yargs"],
 
     plugins: [
+      json(),
       rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
