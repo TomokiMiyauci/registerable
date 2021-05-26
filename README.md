@@ -36,13 +36,16 @@ Check if it can be registered as a module name or domain name
 
 - [:bookmark: Table of Contents](#bookmark-table-of-contents)
 - [:sparkles: Features](#sparkles-features)
-  - [Package name](#package-name)
+  - [Module registry](#module-registry)
 - [:memo: API](#memo-api)
   - [CLI](#cli)
     - [Deno](#deno)
-      - [Example](#example)
+      - [Configuration](#configuration)
+      - [Local](#local)
+      - [Global](#global)
     - [Node.js](#nodejs)
-      - [Example](#example-1)
+      - [Local](#local-1)
+      - [Global](#global-1)
 - [:green_heart: Supports](#green_heart-supports)
   - [ES modules](#es-modules)
   - [UMD](#umd)
@@ -52,17 +55,17 @@ Check if it can be registered as a module name or domain name
 
 ## :sparkles: Features
 
-- :zap: Multi runtime support (`Deno`, `Node.js` and Browsers)
+- :zap: Multi runtime support (`Deno`, `Node.js`)
 - :books: Pure TypeScript and provides type definition
 - :earth_americas: Universal module, providing `ES modules` and `UMD`
 - :package: Optimized, super slim size
 - :page_facing_up: TSDoc-style comments
 
-### Package name
+### Module registry
 
-Deno: `registerable` ([deno.land](https://deno.land/x/registerable), [nest.land](https://nest.land/package/registerable))
-
-Node.js: `registerable` ([npm](https://www.npmjs.com/package/registerable))
+- [deno.land](https://deno.land/x/registerable)
+- [nest.land](https://nest.land/package/registerable)
+- [npm](https://www.npmjs.com/package/registerable)
 
 ## :memo: API
 
@@ -74,9 +77,9 @@ The Cli interface is common to `Deno` and `Node.js`.
 @runtime <name> [Options]
 ```
 
-`@runtime`: How to call it depends on the runtime. See [Deno](./deno) or [Node.js](./node.js) sections.
+`@runtime`: How to call it depends on the runtime. See [Deno](#deno) or [Node.js](#nodejs) sections.
 
-`name`: Check module is registerable or not. <`required`>
+`name`: Check module is registerable or not. `required`
 
 `Options`:  
 **All options are optional**
@@ -91,22 +94,64 @@ The Cli interface is common to `Deno` and `Node.js`.
 
 #### Deno
 
-`@runtime`: `deno run -allow-net https://deno.land/x/registerable/cli.ts`
+`@runtime`: `deno run --allow-net https://deno.land/x/registerable/cli.ts`
 
-##### Example
+##### Configuration
+
+Required permissions:
+
+- --allow-net
+
+##### Local
+
+You can use it directly from the CLI by using `deno run`:
 
 ```bash
-deno run -allow-net https://deno.land/x/registerable/cli.ts <name> [Options]
+deno run --allow-net https://deno.land/x/registerable/cli.ts <name> [Options]
+```
+
+##### Global
+
+You can also install it globally using the following:
+
+```bash
+deno install --allow-net -n registerable https://deno.land/x/registerable/cli.ts
+```
+
+Then, the package is available to run:
+
+```bash
+registerable <name> [Options]
 ```
 
 #### Node.js
 
-`@runtime`: `npx registerable`
+##### Local
 
-##### Example
+You can install locally.
 
 ```bash
-npx registerable <name> [Options]
+yarn add -D registerable
+or
+npm i -D registerable
+```
+
+then,
+
+```bash
+yarn registerable <name> [Options]
+or
+npm run registerable <name> [Options]
+```
+
+##### Global
+
+You can also install it globally using the following:
+
+```bash
+yarn global add registerable
+
+registerable <name> [Options]
 ```
 
 ## :green_heart: Supports
