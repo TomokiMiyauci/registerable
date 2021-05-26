@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { query } from "./query.ts";
 import { assertEquals } from "../../dev_deps.ts";
 Deno.test("query", async () => {

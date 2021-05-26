@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { validateNpm } from "./validate.ts";
 import { query } from "./query.ts";
 import { NPM } from "./constants/registry.ts";

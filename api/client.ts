@@ -1,4 +1,4 @@
-const BASE_URL = "https://nameable-tomoki-miyauci.vercel.app/";
+const BASE_URL = "https://registerable-tomoki-miyauci.vercel.app/";
 import type { ApiResponse, Option } from "../mod.ts";
 
 const client = async (name: string, option?: Partial<Option>) => {

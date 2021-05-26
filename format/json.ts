@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { entries, ifElse, isBoolean, isString, length, NN } from "../deps.ts";
 const json = (val: (readonly ["deno.land", boolean])[]) =>
   val.reduce((acc, [registry, isAvailable]) => {

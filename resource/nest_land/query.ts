@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 
 import { NEST_LAND_BASE_URL } from "./constants/registry.ts";
 import { map, N, tryCatch } from "../../deps.ts";

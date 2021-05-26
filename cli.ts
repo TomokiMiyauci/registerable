@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import yargs from "https://deno.land/x/yargs@v17.0.1-deno/deno.ts";
 import { checkName, defaultOption, Option } from "./mod.ts";
 

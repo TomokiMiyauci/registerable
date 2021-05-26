@@ -3,7 +3,7 @@
     <h1><span class="text-red-600">N</span>ameable</h1>
 
     <a
-      href="https://github.com/TomokiMiyauci/nameable/tree/main"
+      href="https://github.com/TomokiMiyauci/registerable/tree/main"
       target="_blank"
     >
       <logos-github-icon />
@@ -12,7 +12,7 @@
 
   <div class="container mx-auto lg:px-8">
     <section class="px-4 text-center p-5">
-      <h1 class="text-4xl my-3">Nameable</h1>
+      <h1 class="text-4xl my-3">Registerable</h1>
       <p>Check module name</p>
 
       <div class="mt-8 m-1">
@@ -122,7 +122,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import { checkName } from '@miyauci/nameable'
+import { checkName } from 'registerable'
 import { has } from 'fonction'
 
 type Option = {

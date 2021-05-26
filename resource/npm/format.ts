@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 
 const punctuationRegex = /[.\-_]/g;
 const normalize = (val: string): string =>

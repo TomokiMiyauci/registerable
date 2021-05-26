@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { LANGUAGES } from "../constants/language.ts";
 import { N } from "../deps.ts";
 const validateLanguage = (val: unknown[]) =>

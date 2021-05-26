@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { keys } from "../deps.ts";
 import { NPM } from "../resource/npm/main.ts";
 import { NEST_LAND } from "../resource/nest_land/main.ts";

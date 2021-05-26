@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^1.1.345",
-    "@miyauci/nameable": "^1.1.0-beta.1",
+    "registerable": "^1.1.0-beta.1",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
     "fonction": "^1.7.0",

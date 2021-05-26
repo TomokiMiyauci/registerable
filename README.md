@@ -9,19 +9,19 @@ Cross-check whether it can be used as a package name or domain name
 
 <div align="center">
 
-[![test](https://github.com/TomokiMiyauci/nameable/actions/workflows/test.yml/badge.svg)](https://github.com/TomokiMiyauci/nameable/actions/workflows/test.yml)
-[![GitHub release](https://img.shields.io/github/release/TomokiMiyauci/nameable.svg)](https://github.com/TomokiMiyauci/nameable/releases)
-[![deno land](http://img.shields.io/badge/available%20on-deno.land/x-lightgrey.svg?logo=deno&labelColor=black)](https://deno.land/x/nameable)
-[![nest badge](https://nest.land/badge.svg)](https://nest.land/package/nameable)
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/nameable/mod.ts)
+[![test](https://github.com/TomokiMiyauci/registerable/actions/workflows/test.yml/badge.svg)](https://github.com/TomokiMiyauci/registerable/actions/workflows/test.yml)
+[![GitHub release](https://img.shields.io/github/release/TomokiMiyauci/registerable.svg)](https://github.com/TomokiMiyauci/registerable/releases)
+[![deno land](http://img.shields.io/badge/available%20on-deno.land/x-lightgrey.svg?logo=deno&labelColor=black)](https://deno.land/x/registerable)
+[![nest badge](https://nest.land/badge.svg)](https://nest.land/package/registerable)
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/registerable/mod.ts)
 [![deno version](https://img.shields.io/badge/deno-^1.6.0-lightgrey?logo=deno)](https://github.com/denoland/deno)
 ![node support version](https://img.shields.io/badge/node-%5E14.16.0-yellow)
-![bundle size](https://img.shields.io/bundlephobia/min/@miyauci/nameable)
-![npm download](https://img.shields.io/npm/dw/@miyauci/nameable?color=blue)
+![bundle size](https://img.shields.io/bundlephobia/min/registerable)
+![npm download](https://img.shields.io/npm/dw/registerable?color=blue)
 
-[![dependencies Status](https://status.david-dm.org/gh/TomokiMiyauci/nameable.svg)](https://david-dm.org/TomokiMiyauci/nameable)
-[![codecov](https://codecov.io/gh/TomokiMiyauci/nameable/branch/main/graph/badge.svg?token=SPAi5Pv2wd)](https://codecov.io/gh/TomokiMiyauci/nameable)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f43b1c317e11445399d85ce6efc06504)](https://www.codacy.com/gh/TomokiMiyauci/nameable/dashboard?utm_source=github.com&utm_medium=referral&utm_content=TomokiMiyauci/nameable&utm_campaign=Badge_Grade)
+[![dependencies Status](https://status.david-dm.org/gh/TomokiMiyauci/registerable.svg)](https://david-dm.org/TomokiMiyauci/registerable)
+[![codecov](https://codecov.io/gh/TomokiMiyauci/registerable/branch/main/graph/badge.svg?token=SPAi5Pv2wd)](https://codecov.io/gh/TomokiMiyauci/registerable)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f43b1c317e11445399d85ce6efc06504)](https://www.codacy.com/gh/TomokiMiyauci/registerable/dashboard?utm_source=github.com&utm_medium=referral&utm_content=TomokiMiyauci/registerable&utm_campaign=Badge_Grade)
 ![npm type definitions](https://img.shields.io/npm/types/arithmetic4)
 ![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)
 ![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat)
@@ -60,9 +60,9 @@ Cross-check whether it can be used as a package name or domain name
 
 ### Package name
 
-Deno: `nameable` ([deno.land](https://deno.land/x/nameable), [nest.land]())
+Deno: `registerable` ([deno.land](https://deno.land/x/registerable), [nest.land](https://nest.land/package/registerable))
 
-Node.js: `@miyauci/nameable` ([npm](https://www.npmjs.com/package/@miyauci/nameable))
+Node.js: `registerable` ([npm](https://www.npmjs.com/package/registerable))
 
 ## :memo: API
 
@@ -91,22 +91,22 @@ The Cli interface is common to `Deno` and `Node.js`.
 
 #### Deno
 
-`@runtime`: `deno run -allow-net https://deno.land/x/nameable/cli.ts`
+`@runtime`: `deno run -allow-net https://deno.land/x/registerable/cli.ts`
 
 ##### Example
 
 ```bash
-deno run -allow-net https://deno.land/x/nameable/cli.ts <name> [Options]
+deno run -allow-net https://deno.land/x/registerable/cli.ts <name> [Options]
 ```
 
 #### Node.js
 
-`@runtime`: `npx @miyauci/nameable`
+`@runtime`: `npx registerable`
 
 ##### Example
 
 ```bash
-npx @miyauci/nameable <name> [Options]
+npx registerable <name> [Options]
 ```
 
 ## :green_heart: Supports
