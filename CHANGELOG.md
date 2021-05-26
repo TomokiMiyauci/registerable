@@ -1,3 +1,8 @@
+# [v1.1.0-beta.6](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2021-05-26)
+
+## ✨ New Features
+- [`7d45574`](https://github.com/TomokiMiyauci/registerable/commit/7d45574)   Improve CLI interface for Node.js
+
 # [v1.1.0-beta.5](https://github.com/TomokiMiyauci/registerableable/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2021-05-26)
 
 ## ✨ New Features
