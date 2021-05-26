@@ -1,3 +1,18 @@
+# [v1.1.0](https://github.com/TomokiMiyauci/registerable/compare/v1.0.0...v1.1.0) (2021-05-26)
+
+## ✨ New Features
+- [`c71deaf`](https://github.com/TomokiMiyauci/registerable/commit/c71deaf)  (api) Add query parameter validation 
+- [`b9ee9b6`](https://github.com/TomokiMiyauci/registerable/commit/b9ee9b6)  (api) Add validator and parser 
+- [`c5466f8`](https://github.com/TomokiMiyauci/registerable/commit/c5466f8)   Add validation for nest land module name 
+- [`316326c`](https://github.com/TomokiMiyauci/registerable/commit/316326c)   Add validation for npm with moniker rules 
+- [`146702b`](https://github.com/TomokiMiyauci/registerable/commit/146702b)   Improve CLI interface and output logs 
+- [`b568b82`](https://github.com/TomokiMiyauci/registerable/commit/b568b82)   Change JavaScript API 
+- [`7d45574`](https://github.com/TomokiMiyauci/registerable/commit/7d45574)   Improve CLI interface for Node.js 
+
+## 🐛 Bug Fixes
+- [`d54ba22`](https://github.com/TomokiMiyauci/registerable/commit/d54ba22)   Fix log format 
+- [`87bbd43`](https://github.com/TomokiMiyauci/registerable/commit/87bbd43)   Fix npm checking return value
+
 # [v1.1.0-beta.6](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2021-05-26)
 
 ## ✨ New Features
