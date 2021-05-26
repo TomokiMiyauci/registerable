@@ -1,5 +1,6 @@
 import { AnyFn, N, not } from "../deps.ts";
-import { INVALID_ARGS_MEMBER } from "../constants/message.ts";
+
+const INVALID_ARGS_MEMBER = "Invalid query member";
 const NAME = "name";
 const queryParameters = [NAME];
 
