@@ -1,10 +1,10 @@
 <p align="center">
   <img alt="logo image" src="img/logo.png" />
-  <h1 align="center">Namable</h1>
+  <h1 align="center">Registerable</h1>
 </p>
 
 <p align="center">
-Cross-check whether it can be used as a package name or domain name
+Check if it can be registered as a module name or domain name
 </p>
 
 <div align="center">
