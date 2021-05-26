@@ -67,7 +67,7 @@ const checkName = async (name: string, option?: Partial<Option & Mode>) => {
       errorRegistry,
     });
   } else {
-    const formattedResult = format(!json, "available", result);
+    const formattedResult = format(!json, "registerable", result);
     console.table(formattedResult);
     if (hasError) {
       consoleLog("\n%cErrors:", "color: orangered");

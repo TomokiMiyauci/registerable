@@ -3,7 +3,7 @@ import yargs from "https://deno.land/x/yargs@v17.0.1-deno/deno.ts";
 import { checkName, defaultOption, Option } from "./mod.ts";
 
 const y = yargs(Deno.args)
-  .usage("Usage:\n$0 --allow-net <name> [Options]")
+  .usage("Usage:\n  $0 --allow-net <name> [Options]")
   .options({
     json: {
       alias: "j",
@@ -34,7 +34,7 @@ const y = yargs(Deno.args)
   .alias("h", "help")
   .alias("v", "version")
   .version()
-  .demandCommand(1, 1, "You should set <name>", "You should set <name> only");
+  .demandCommand(1, 1, "You must set <name>", "You must set <name> only");
 
 const argv: Option & { _: [string] } = (y as any).argv;
 
