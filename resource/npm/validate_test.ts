@@ -1,10 +1,11 @@
 import {
-  gt214,
   hasSpecialCharacter,
   isBlacklistName,
+  isEqualNormalizedName,
   isLowerCase,
   validateNpm,
 } from "./validate.ts";
+import { normalize } from "./format.ts";
 import { assertEquals } from "../../dev_deps.ts";
 import {
   INVALID_BLACKLIST,
@@ -18,35 +19,8 @@ import {
   INVALID_NOT_STRING,
   INVALID_TRIMABLE,
 } from "../shared/mod.ts";
-const lengthOf = (val: number): string => new Array(val).fill("a").join("");
 
 const emptyString = "";
-const string213 = lengthOf(213);
-const string214 = lengthOf(214);
-const string215 = lengthOf(215);
-
-Deno.test("gt214", () => {
-  const table: [string, boolean][] = [
-    [emptyString, false],
-    [
-      string213,
-      false,
-    ],
-    [
-      string214,
-      false,
-    ],
-    [string215, true],
-    [
-      new Array(1000).fill("a").join(""),
-      true,
-    ],
-  ];
-
-  table.forEach(([val, expected]) => {
-    assertEquals(gt214(val), expected, `gt214(${val}) -> ${expected}`);
-  });
-});
 
 Deno.test("isLowerCase", () => {
   const table: [string, boolean][] = [
@@ -134,6 +108,27 @@ Deno.test("isBlacklistName", () => {
       isBlacklistName(val),
       expected,
       `isBlacklistName(${val}) -> ${expected}`,
+    );
+  });
+});
+
+Deno.test("isEqualNormalizedName", () => {
+  const table: [string, string, boolean][] = [
+    ["", "", true],
+    ["fonction", "fonction", true],
+    ["name-able", "nameable", true],
+    ["nameable", "nameable", true],
+    ["name-able", "n-a-m-e-a-b-l-e", true],
+    ["n.a.m-e..a-b-le", "na.m.e.a.ble", true],
+    ["nameable", "nnamebale", false],
+    ["n-a--m-e-a-b-l_e", "n-a-m_e._a.b.le", true],
+  ];
+
+  table.forEach(([name, packageName, expected]) => {
+    assertEquals(
+      isEqualNormalizedName(normalize(name))(packageName),
+      expected,
+      `isEqualNormalizedName(${name})(${packageName}) -> ${expected}`,
     );
   });
 });

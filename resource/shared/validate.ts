@@ -1,6 +1,10 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-import { trim } from "../../deps.ts";
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
+import { gtLength, trim } from "../../deps.ts";
 
 const isTrimable = (val: string) => trim(val) !== val;
+const gt40 = gtLength(40);
 
-export { isTrimable };
+const RegularLetter = /^[a-z\d_]+$/;
+const isRegularLetter = (val: string) => RegularLetter.test(val);
+
+export { gt40, isRegularLetter, isTrimable };

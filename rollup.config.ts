@@ -5,16 +5,21 @@ import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import shebang from "rollup-plugin-add-shebang";
 import { main, module } from "./package.json";
+import json from "@rollup/plugin-json";
+
 const baseDir = resolve(__dirname);
 const inputFilePath = resolve(baseDir, "mod.ts");
 const banner =
-  "/*! Copyright (c) 2021-present the Nameable authors. All rights reserved. MIT license. */";
+  "/*! Copyright (c) 2021-present the Registerable authors. All rights reserved. MIT license. */";
 
 const replaceOption = {
   ".ts": "",
-  "https://deno.land/x/fonction@v1.8.0-beta.3/mod": "fonction",
+  "https://deno.land/x/fonction@v1.8.0-beta.5/mod": "fonction",
+  "https://deno.land/x/is_valid@v1.0.0-beta.2/mod": "@miyauci/is-valid",
   preventAssignment: true,
 };
+
+const external = ["cross-fetch", "@miyauci/is-valid", "fonction"];
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
   name: "preserve-fetch",
@@ -44,18 +49,19 @@ const config = [
       terser(),
     ],
 
+    external,
+
     output: {
       file: main,
-      format: "umd",
+      format: "cjs",
       sourcemap: true,
-      name: "Nameable",
       banner,
     },
   },
   {
     input: inputFilePath,
     plugins: [
-      // rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
         transpiler: "babel",
@@ -63,6 +69,8 @@ const config = [
       nodeResolve(),
       terser(),
     ],
+
+    external,
 
     output: {
       file: module,
@@ -73,8 +81,10 @@ const config = [
   },
   {
     input: "node/cli.ts",
-    external: ["cross-fetch"],
+    external: [...external, "yargs"],
+
     plugins: [
+      json(),
       rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({

@@ -1,4 +1,4 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { entries, ifElse, isBoolean, isString, length, NN } from "../deps.ts";
 const json = (val: (readonly ["deno.land", boolean])[]) =>
   val.reduce((acc, [registry, isAvailable]) => {
@@ -8,12 +8,19 @@ const json = (val: (readonly ["deno.land", boolean])[]) =>
 const summarize = (val: (readonly [string, boolean | string])[]): {
   result: Record<string, boolean>;
   hasError: boolean;
-  errors: [string, string][];
+  error: Record<string, string>;
+  errorRegistry: string[];
 } => {
-  const errors = val.filter(([_, result]) => isString(result)) as [
+  const errorsTuple = val.filter(([_, result]) => isString(result)) as [
     string,
     string,
   ][];
+  const error = errorsTuple.reduce(
+    (acc, [registry, msg]) => ({ ...acc, [registry]: msg }),
+    {},
+  );
+
+  const errorRegistry = errorsTuple.map(([registry]) => registry);
 
   const result = val.map((
     [registry, result],
@@ -24,8 +31,9 @@ const summarize = (val: (readonly [string, boolean | string])[]): {
 
   return {
     result: json(result),
-    hasError: NN(length(errors)),
-    errors,
+    hasError: NN(length(errorsTuple)),
+    error,
+    errorRegistry,
   };
 };
 
@@ -34,10 +42,13 @@ const outputFormat = (isJSON: boolean, val: Record<PropertyKey, boolean>) =>
     isJSON,
     val,
     () =>
-      entries(val).reduce((acc, [registry, result]) => {
-        return `${acc}
-${registry}: ${result}`;
-      }, ""),
+      entries(val).reduce(
+        (acc, [registry, result]) =>
+          ifElse(NN(acc), () =>
+            `${acc}
+${registry}: ${result}`, `${registry}: ${result}`),
+        "",
+      ),
   );
 
 export { json, outputFormat, summarize };

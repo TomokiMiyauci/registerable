@@ -1,10 +1,19 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { ifElse } from "../deps.ts";
-const loggerFactory = (isSilent: boolean) =>
+const loggerFactory = (verbose: boolean) =>
   ifElse(
-    isSilent,
+    verbose,
+    () => (...data: any[]) => console.log(...data),
     () => (..._: any[]) => {},
-    () => (...message: any[]) => console.log(...message),
   );
 
-export { loggerFactory };
+const logTableFactory = (verbose: boolean) =>
+  ifElse(
+    verbose,
+    () =>
+      (tabularData?: any, properties?: string[] | undefined) =>
+        console.table(tabularData, properties),
+    () => (..._: any[]) => {},
+  );
+
+export { loggerFactory, logTableFactory };

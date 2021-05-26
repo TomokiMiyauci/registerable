@@ -1,65 +1,106 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
-// import { info } from "https://deno.land/std@0.96.0/log/mod.ts";
-import { outputFormat, summarize } from "./format/json.ts";
-import { loggerFactory } from "./log/log.ts";
-import { RUNTIME_MAP } from "./constants/runtime.ts";
-import { LANGUAGE_MAP, LANGUAGES } from "./constants/language.ts";
-import { flattenDeep } from "./deps.ts";
-import { duplicate } from "./utils/duplicate.ts";
-import { QUERY_MAP } from "./constants/query.ts";
-import { NN } from "./deps.ts";
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
+import { summarize } from "./format/json.ts";
+import { loggerFactory, logTableFactory } from "./log/log.ts";
+import { LANGUAGES, QUERY_MAP, REGISTRIES } from "./constants/mod.ts";
+import { entries, flattenDeep, ifElse, NN, uniq } from "./deps.ts";
+import { client } from "./api/client.ts";
 
 type Option = {
-  silent: boolean;
+  verbose: boolean;
   json: boolean;
-  registry: [];
+  registry: typeof REGISTRIES[number][];
   languages: typeof LANGUAGES;
 };
 
-const defaultOption: Option = {
-  silent: false,
-  json: false,
-  registry: [],
+type Mode = {
+  mode: "server" | "universal";
+};
+
+export const defaultOption: Option & Mode = {
+  mode: "server",
+  verbose: false,
+  json: true,
+  registry: ["deno.land", "nest.land", "npm"],
   languages: ["typescript", "javascript"],
 };
 
-const checkName = async (
+interface ApiResponse {
+  result: Record<string, boolean>;
+  error: Record<string, string>;
+  hasError: boolean;
+  errorRegistry: string[];
+}
+
+const query2Direct = async (
+  queries: any[],
   name: string,
-  option?: Partial<
-    Option
-  >,
-) => {
-  const {
-    silent = defaultOption.silent,
-    json = defaultOption.json,
-    languages = defaultOption.languages,
-  } = option ||
-    defaultOption;
-
-  const lang = pickKeys(LANGUAGE_MAP, languages);
-  const registry = pickKeys(RUNTIME_MAP, lang);
-  const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
-
-  const logger = loggerFactory(silent);
-  logger(`Check name: ${name}\n`);
-
-  const resultAll = await Promise.all(
-    (query as any[]).map((fn) => fn(name)),
-  );
-  const { result, errors, hasError } = summarize(resultAll);
-
-  logger("Results:");
-
-  logger(outputFormat(json, result));
-  if (hasError) {
-    console.log("\nErrors:");
-    errors.forEach(([registry, message]) => {
-      logger(`${registry}: `, message);
-    });
-  }
+): Promise<ApiResponse> => {
+  const resultAll = await Promise.all((queries as any[]).map((fn) => fn(name)));
+  return summarize(resultAll);
 };
 
+const checkName = async (name: string, option?: Partial<Option & Mode>) => {
+  const {
+    mode = defaultOption.mode,
+    verbose = defaultOption.verbose,
+    json = defaultOption.json,
+    registry = defaultOption.registry,
+  } = option || defaultOption;
+
+  const consoleLog = loggerFactory(verbose);
+  const consoleTable = logTableFactory(verbose);
+  consoleLog(`🔍️ Check module name: %c${name}\n`, "color: gold");
+  const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
+
+  const { result, error, hasError, errorRegistry } = await ifElse(
+    mode === "server",
+    async () => await query2Direct(query, name),
+    async () => await client(name, option as Option),
+  );
+
+  consoleLog("%cResults:", "color: skyblue");
+  if (json) {
+    console.log({
+      result,
+      error,
+      hasError,
+      errorRegistry,
+    });
+  } else {
+    const formattedResult = format(!json, "registerable", result);
+    console.table(formattedResult);
+    if (hasError) {
+      consoleLog("\n%cErrors:", "color: orangered");
+      consoleTable(format(!json, "message", error));
+    }
+  }
+
+  consoleLog("\n✨ Checking is done.");
+  return {
+    name,
+    result,
+    error,
+    hasError,
+  };
+};
+
+const format = (
+  verbose: boolean,
+  nestKey: string,
+  result: Record<string, unknown>,
+): Record<string, unknown> =>
+  ifElse(
+    verbose,
+    () =>
+      entries(result).reduce(
+        (acc, [key, value]) => ({ ...acc, [key]: { [nestKey]: value } }),
+        {},
+      ),
+    result,
+  );
+
 const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
-  duplicate(flattenDeep(val.map((key) => map[key as any])));
+  uniq(flattenDeep(val.map((key) => map[key as any])));
 
 export { checkName };
+export type { ApiResponse, Option };

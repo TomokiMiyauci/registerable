@@ -1,13 +1,16 @@
-// Copyright 2021-present the Nameable authors. All rights reserved. MIT license.
+// Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import {
   AnyFn,
+  gtLength,
   ifElse,
   isFunction,
   isLength0,
   isString,
+  not,
   startsWith,
 } from "../../deps.ts";
-import { gtLength } from "../shared/composite.ts";
+import { includeFactory } from "../shared/composite.ts";
+import { normalize } from "./format.ts";
 
 const SPECIAL_CHARACTERS = /[~'!()*]/;
 const BLACKLIST = ["node_modules", "favicon.ico"];
@@ -22,7 +25,6 @@ import {
   INVALID_LENGTH_0,
   INVALID_NOT_STRING,
   INVALID_TRIMABLE,
-  inversion,
   isTrimable,
 } from "../shared/mod.ts";
 
@@ -31,7 +33,10 @@ const isLowerCase = (val: string): boolean => val.toLowerCase() === val;
 const isStartWithDot = startsWith(".");
 const isStartWith_ = startsWith("_");
 const hasSpecialCharacter = (val: string) => SPECIAL_CHARACTERS.test(val);
-const isBlacklistName = (val: string) => BLACKLIST.includes(val);
+const isBlacklistName = includeFactory(BLACKLIST);
+
+const isEqualNormalizedName = (name: string) =>
+  (packageName: string): boolean => normalize(packageName) === name;
 
 const table = [
   [
@@ -47,7 +52,7 @@ const table = [
     isStartWith_,
     INVALID_START_WITH_,
   ],
-  [inversion(isLowerCase), INVALID_LETTER_CASE],
+  [not(isLowerCase), INVALID_LETTER_CASE],
   [hasSpecialCharacter, INVALID_SPACIAL_CHAR],
   [isBlacklistName, (val: string) => `${val} ${INVALID_BLACKLIST}`],
 ] as const;
@@ -72,6 +77,7 @@ export {
   gt214,
   hasSpecialCharacter,
   isBlacklistName,
+  isEqualNormalizedName,
   isLowerCase,
   isTrimable,
   validateNpm,
