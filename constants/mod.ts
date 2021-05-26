@@ -4,4 +4,3 @@ export * from "./query.ts";
 export * from "./language.ts";
 export * from "./registry.ts";
 export * from "./runtime.ts";
-export * from "./message.ts";
