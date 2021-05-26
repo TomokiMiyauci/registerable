@@ -32,11 +32,17 @@ Cross-check whether it can be used as a package name or domain name
 
 ---
 
-## Table of Contents
+## :bookmark: Table of Contents
 
-- [Table of Contents](#table-of-contents)
+- [:bookmark: Table of Contents](#bookmark-table-of-contents)
 - [:sparkles: Features](#sparkles-features)
   - [Package name](#package-name)
+- [:memo: API](#memo-api)
+  - [CLI](#cli)
+    - [Deno](#deno)
+      - [Example](#example)
+    - [Node.js](#nodejs)
+      - [Example](#example-1)
 - [:green_heart: Supports](#green_heart-supports)
   - [ES modules](#es-modules)
   - [UMD](#umd)
@@ -57,6 +63,51 @@ Cross-check whether it can be used as a package name or domain name
 Deno: `nameable` ([deno.land](https://deno.land/x/nameable), [nest.land]())
 
 Node.js: `@miyauci/nameable` ([npm](https://www.npmjs.com/package/@miyauci/nameable))
+
+## :memo: API
+
+### CLI
+
+The Cli interface is common to `Deno` and `Node.js`.
+
+```bash
+@runtime <name> [Options]
+```
+
+`@runtime`: How to call it depends on the runtime. See [Deno](./deno) or [Node.js](./node.js) sections.
+
+`name`: Check module is registerable or not. <`required`>
+
+`Options`:  
+**All options are optional**
+
+| flag | desc  | type | default | choice |
+| -----| ------| -----| -----| ---- |
+| `-r`, `--registry` | Query to registry | `array` | [`deno.land`, `nest.land`, `npm`] | `deno.land`, `nest.land`, `npm` |
+| `-j`, `--json` | Display to JSON format| `boolean`| `false` |
+| `--verbose` | Verbose mode | `boolean` | `true` |
+| `-h`, `--help` | Show help | `boolean` |  | |
+| `-v`, `--version` | Show version number |  | |
+
+#### Deno
+
+`@runtime`: `deno run -allow-net https://deno.land/x/nameable/cli.ts`
+
+##### Example
+
+```bash
+deno run -allow-net https://deno.land/x/nameable/cli.ts <name> [Options]
+```
+
+#### Node.js
+
+`@runtime`: `npx @miyauci/nameable`
+
+##### Example
+
+```bash
+npx @miyauci/nameable <name> [Options]
+```
 
 ## :green_heart: Supports
 
