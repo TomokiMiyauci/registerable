@@ -16,18 +16,19 @@ type Mode = {
   mode: "server" | "universal";
 };
 
-const defaultOption: Option & Mode = {
+export const defaultOption: Option & Mode = {
   mode: "server",
   verbose: false,
-  json: false,
-  registry: ["deno.land", "next.land", "npm"],
+  json: true,
+  registry: ["deno.land", "nest.land", "npm"],
   languages: ["typescript", "javascript"],
 };
 
 interface ApiResponse {
   result: Record<string, boolean>;
-  errors: [string, string][];
+  error: Record<string, string>;
   hasError: boolean;
+  errorRegistry: string[];
 }
 
 const query2Direct = async (
@@ -51,49 +52,48 @@ const checkName = async (name: string, option?: Partial<Option & Mode>) => {
   consoleLog(`🔍️ Check module name: %c${name}\n`, "color: gold");
   const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
 
-  const { result, errors, hasError } = await ifElse(
+  const { result, error, hasError, errorRegistry } = await ifElse(
     mode === "server",
     async () => await query2Direct(query, name),
     async () => await client(name, option as Option),
   );
 
   consoleLog("%cResults:", "color: skyblue");
-
-  const formattedResult = format(!json, result);
   if (json) {
-    consoleLog(formattedResult);
+    console.log({
+      result,
+      error,
+      hasError,
+      errorRegistry,
+    });
   } else {
-    consoleTable(formattedResult);
-  }
-
-  if (hasError) {
-    consoleLog("\n%cErrors:", "color: orangered");
-    const formatted = errors.reduce(
-      (acc, [key, value]) => ({ ...acc, [key]: { message: value } }),
-      {},
-    );
-
-    consoleTable(formatted);
+    const formattedResult = format(!json, "available", result);
+    console.table(formattedResult);
+    if (hasError) {
+      consoleLog("\n%cErrors:", "color: orangered");
+      consoleTable(format(!json, "message", error));
+    }
   }
 
   consoleLog("\n✨ Checking is done.");
   return {
     name,
     result,
-    errors,
+    error,
     hasError,
   };
 };
 
 const format = (
   verbose: boolean,
-  result: Record<string, boolean>,
-): Record<string, boolean> =>
+  nestKey: string,
+  result: Record<string, unknown>,
+): Record<string, unknown> =>
   ifElse(
     verbose,
     () =>
       entries(result).reduce(
-        (acc, [key, value]) => ({ ...acc, [key]: { available: value } }),
+        (acc, [key, value]) => ({ ...acc, [key]: { [nestKey]: value } }),
         {},
       ),
     result,
