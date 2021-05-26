@@ -1,3 +1,12 @@
+# [v1.1.0-beta.5](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2021-05-26)
+
+## ✨ New Features
+- [`146702b`](https://github.com/TomokiMiyauci/registerable/commit/146702b)   Improve CLI interface and output logs 
+- [`b568b82`](https://github.com/TomokiMiyauci/registerable/commit/b568b82)   Change JavaScript API 
+
+## 🐛 Bug Fixes
+- [`87bbd43`](https://github.com/TomokiMiyauci/registerable/commit/87bbd43)   Fix npm checking return value
+
 # [v1.1.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2021-05-25)
 
 ## 🐛 Bug Fixes
