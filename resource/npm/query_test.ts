@@ -16,11 +16,16 @@ Deno.test("complexQuery", async () => {
     await complexQuery("n-a.m-e_a.b-l__e"),
     Error(MONIKER_RULES_ERROR),
   );
+  assertEquals(
+    await complexQuery("xxxxxxxxxxxxxxxyyyyyyyyyyyyyzzzzzzzzz"),
+    true,
+  );
 });
 
 Deno.test("query", async () => {
   assertEquals(await query("fonction"), false);
   assertEquals(await query("nameable"), false);
+  assertEquals(await query("xxxxxxxxxxxxxxxyyyyyyyyyyyyyzzzzzzzzz"), true);
   assertEquals(await query("n-a.m-e_a.b-l__e"), Error(MONIKER_RULES_ERROR));
 });
 

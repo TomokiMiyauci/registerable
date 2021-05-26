@@ -76,7 +76,7 @@ const complexQuery = async (search: string): Promise<boolean | Error> => {
   return ifElse(
     matched,
     Error(MONIKER_RULES_ERROR),
-    matched,
+    true,
   );
 };
 
