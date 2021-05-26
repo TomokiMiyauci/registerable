@@ -1,79 +1,115 @@
-# [v1.1.0-beta.5](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2021-05-26)
+# [v1.1.0-beta.5](https://github.com/TomokiMiyauci/registerableable/compare/v1.1.0-beta.4...v1.1.0-beta.5) (2021-05-26)
 
 ## ✨ New Features
-- [`146702b`](https://github.com/TomokiMiyauci/registerable/commit/146702b)   Improve CLI interface and output logs 
-- [`b568b82`](https://github.com/TomokiMiyauci/registerable/commit/b568b82)   Change JavaScript API 
+
+- [`146702b`](https://github.com/TomokiMiyauci/registerableable/commit/146702b)   Improve CLI interface and output logs
+- [`b568b82`](https://github.com/TomokiMiyauci/registerable/commit/b568b82)   Change JavaScript API
+registerable
 
 ## 🐛 Bug Fixes
+
 - [`87bbd43`](https://github.com/TomokiMiyauci/registerable/commit/87bbd43)   Fix npm checking return value
+registerable
 
 # [v1.1.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2021-05-25)
 
+registerable
+
 ## 🐛 Bug Fixes
+
 - [`d54ba22`](https://github.com/TomokiMiyauci/nameable/commit/d54ba22)   Fix log format
+registerable
 
 # [v1.1.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2021-05-23)
 
+registerable
+
 ## ✨ New Features
+
 - [`316326c`](https://github.com/TomokiMiyauci/nameable/commit/316326c)   Add validation for npm with moniker rules
+registerable
 
-# [v1.1.0-beta.2](https://github.com/TomokiMiyauci/nameable/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2021-05-21)
+# [v1.1.0-beta.2](https://github.com/TomokiMiyaregisterableable/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2021-05-21)
 
 ## ✨ New Features
+
 - [`c5466f8`](https://github.com/TomokiMiyauci/nameable/commit/c5466f8)   Add validation for nest land module name
 
-# [v1.1.0-beta.1](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0...v1.1.0-beta.1) (2021-05-20)
+# [v1.1.0-beta.1](https://github.com/TomokiMiyaregisterableable/compare/v1.0.0...v1.1.0-beta.1) (2021-05-20)
+
+registerable
+
+## ✨ New Featuresregisterable
+
+- [`c71deaf`](https://github.com/TomokiMiyauci/registerable/commit/c71deaf)  (api) Add query parameter validation
+- [`b9ee9b6`](https://github.com/TomokiMiyauci/registerable/commit/b9ee9b6)  (api) Add validator and parser
+registerable
+
+# v1.0.0 (2021-05-19)registerable
 
 ## ✨ New Features
-- [`c71deaf`](https://github.com/TomokiMiyauci/nameable/commit/c71deaf)  (api) Add query parameter validation 
-- [`b9ee9b6`](https://github.com/TomokiMiyauci/nameable/commit/b9ee9b6)  (api) Add validator and parser
 
-# v1.0.0 (2021-05-19)
-
-## ✨ New Features
-- [`3e4a92d`](https://github.com/TomokiMiyauci/nameable/commit/3e4a92d)   Add basic request feature to npm, deno.land and nest.land 
-- [`1bb5d23`](https://github.com/TomokiMiyauci/nameable/commit/1bb5d23)   Add logger and accept arguments 
-- [`474f247`](https://github.com/TomokiMiyauci/nameable/commit/474f247)   Add cli scripts 
-- [`974b527`](https://github.com/TomokiMiyauci/nameable/commit/974b527)   Add validation for CLI 
-- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name 
-- [`151f6ea`](https://github.com/TomokiMiyauci/nameable/commit/151f6ea)   Add error log output feature 
-- [`c6b14ec`](https://github.com/TomokiMiyauci/nameable/commit/c6b14ec)   Add validation for deno land module name 
+- [`3e4a92d`](https://github.com/TomokiMiyauci/registerable/commit/3e4a92d)   Add basic request feature to npm, deno.land and nest.land
+- [`1bb5d23`](https://github.com/TomokiMiyauci/nameable/commit/1bb5d23)   Add logger and accept arguments
+- [`474f247`](https://github.com/TomokiMiyauci/nameregisterablemit/474f247)   Add cli scripts
+- [`974b527`](https://github.com/TomokiMiyauci/nameable/commit/974b527)   Add validation for CLI
+- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name
+- [`151f6ea`](https://github.com/TomokiMiyauci/registerable/commit/151f6ea)   Add error log output feature
+- [`c6b14ec`](https://github.com/TomokiMiyauci/nameable/commit/c6b14ec)   Add validation for deno land module name
+registerable
 
 ## 🐛 Bug Fixes
+
 - [`0b5936f`](https://github.com/TomokiMiyauci/nameable/commit/0b5936f)   Not use cross-fetch
+registerable
 
 # [v1.0.0-beta.7](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2021-05-19)
 
+registerable
+
 ## 🐛 Bug Fixes
+
 - [`0b5936f`](https://github.com/TomokiMiyauci/nameable/commit/0b5936f)   Not use cross-fetch
+registerable
 
-# [v1.0.0-beta.6](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-05-19)
+# [v1.0.0-beta.6](https://github.com/TomokiMiyaregisterableable/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2021-05-19)
 
-## ✨ New Features
+## ✨ New Featuresregisterable
+
 - [`c6b14ec`](https://github.com/TomokiMiyauci/nameable/commit/c6b14ec)   Add validation for deno land module name
 
-# [v1.0.0-beta.5](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-05-18)
+# [v1.0.0-beta.5](https://github.com/TomokiMiyaregisterableable/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2021-05-18)
 
-## ✨ New Features
-- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name 
+## ✨ New Featuresregisterable
+
+- [`f853093`](https://github.com/TomokiMiyauci/nameable/commit/f853093)   Add validator for npm module name
 - [`151f6ea`](https://github.com/TomokiMiyauci/nameable/commit/151f6ea)   Add error log output feature
+registerable
 
 # [v1.0.0-beta.4](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2021-05-18)
 
+registerable
+
 ## ✨ New Features
+
 - [`974b527`](https://github.com/TomokiMiyauci/nameable/commit/974b527)   Add validation for CLI
+registerable
 
 # [v1.0.0-beta.3](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-05-17)
 
 ## ✨ New Features
+
 - [`474f247`](https://github.com/TomokiMiyauci/nameable/commit/474f247)   Add cli scripts
+registerable
 
 # [v1.0.0-beta.2](https://github.com/TomokiMiyauci/nameable/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-05-17)
 
 ## ✨ New Features
+
 - [`1bb5d23`](https://github.com/TomokiMiyauci/nameable/commit/1bb5d23)   Add logger and accept arguments
 
 # v1.0.0-beta.1 (2021-05-17)
 
 ## ✨ New Features
+
 - [`3e4a92d`](https://github.com/TomokiMiyauci/nameable/commit/3e4a92d)   Add basic request feature to npm, deno.land and nest.land
