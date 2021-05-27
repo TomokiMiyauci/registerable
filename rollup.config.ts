@@ -8,7 +8,7 @@ import { main, module } from "./package.json";
 import json from "@rollup/plugin-json";
 
 const baseDir = resolve(__dirname);
-const inputFilePath = resolve(baseDir, "mod.ts");
+const inputFilePath = resolve(baseDir, "tmp", "mod.ts");
 const banner =
   "/*! Copyright (c) 2021-present the Registerable authors. All rights reserved. MIT license. */";
 
@@ -80,7 +80,8 @@ const config = [
     },
   },
   {
-    input: "node/cli.ts",
+    input: "tmp/cli/node.ts",
+
     external: [...external, "yargs"],
 
     plugins: [

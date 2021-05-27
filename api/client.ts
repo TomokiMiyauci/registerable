@@ -1,5 +1,5 @@
 const BASE_URL = "https://registerable-tomoki-miyauci.vercel.app/";
-import type { ApiResponse, Option } from "../mod.ts";
+import type { ApiResponse, Option } from "../types/mod.ts";
 
 const client = async (name: string, option?: Partial<Option>) => {
   const url = new URL("check-name", BASE_URL);

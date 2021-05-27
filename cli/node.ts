@@ -1,5 +1,5 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { checkName, defaultOption } from "../mod";
+import { checkNameWithLog, defaultOption } from "./mod";
 
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
@@ -45,7 +45,7 @@ const main = async () => {
     .demandCommand(1, 1, "You must set <name>", "You must set <name> only")
     .argv;
 
-  checkName(String(args._), args);
+  checkNameWithLog(String(args._), args);
 };
 
 main();
