@@ -1,9 +1,9 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { loggerFactory, logTableFactory } from "../log/log.ts";
 import { QUERY_MAP } from "../constants/mod.ts";
-import { entries, flattenDeep, ifElse, NN, uniq } from "../deps.ts";
+import { entries, ifElse, NN } from "../deps.ts";
 import { CommandLine, defaultOption } from "./constants.ts";
-import { query2Direct } from "./_utils.ts";
+import { mapper, query2Direct, uniqFlatten } from "./_utils.ts";
 
 const checkNameWithLog = async (
   name: string,
@@ -18,7 +18,8 @@ const checkNameWithLog = async (
   const consoleLog = loggerFactory(verbose);
   const consoleTable = logTableFactory(verbose);
   consoleLog(`🔍️ Check module name: %c${name}\n`, "color: gold");
-  const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
+
+  const query = uniqFlatten(mapper(QUERY_MAP, registry)).filter((fn) => NN(fn));
 
   const { result, error, hasError, errorRegistry } = await query2Direct(
     query,

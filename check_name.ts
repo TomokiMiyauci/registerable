@@ -25,7 +25,7 @@ const checkName = async <T extends Registry>(
   return await ifElse(
     mode === "server",
     async () => await query2Direct(query, name),
-    async () => await client(name, option as any),
+    async () => await client(name),
   );
 };
 
