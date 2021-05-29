@@ -3,6 +3,9 @@ import { endsWith } from "../dev_deps.ts";
 
 const rewriteMod = (content: string): string =>
   content.replace('import { cliDeno } from "./cli/deno.ts";', "").replace(
+    'import { checkNameWithLog } from "./cli/mod.ts";',
+    "",
+  ).replace(
     `if (import.meta.main) {
   const argv = cliDeno();
   checkNameWithLog(argv._[0], argv);
@@ -35,7 +38,7 @@ await Promise.all(dirs.map(async (dir) => {
   });
 }));
 
-const mains = ["deps.ts", "mod.ts", "package.json"];
+const mains = ["deps.ts", "mod.ts", "check_name.ts", "package.json"];
 
 await Promise.all(mains.map(async (main) => {
   await copy(main, `${TMP_DIR}/${main}`, {

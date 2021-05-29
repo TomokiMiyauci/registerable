@@ -3,6 +3,7 @@ import { LANGUAGES } from "../constants/language.ts";
 import { REGISTRIES } from "../constants/registry.ts";
 
 interface ApiResponse {
+  name: string;
   result: Record<string, boolean>;
   error: Record<string, string>;
   hasError: boolean;
