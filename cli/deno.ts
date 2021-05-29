@@ -11,7 +11,6 @@ const defaultOption: CommandLine = {
   verbose: false,
   json: true,
   registry: ["deno.land", "nest.land", "npm"],
-  languages: ["typescript", "javascript"],
 };
 
 const cliDeno = () => {
