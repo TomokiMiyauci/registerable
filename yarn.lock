@@ -1025,9 +1025,11 @@
   integrity sha512-ikDzSgs2SbBtKVXCNfU6GzVACpUuojZS8Vu/VhM1EwtWvtfGJsrRETLbV231ODMvWtfKJThzrsk2Hp88fv9+gA==
 
 "@miyauci/is-valid@^1.0.0-beta.2":
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.3.tgz#e49e710004406588985ba0479bfd898b63bfbd3f"
-  integrity sha512-XhI7xE8OUFJDH6B2P3y+tjCKNcC0EdjXHjKN8jnBDAiMWOfXdPWLMwDLe6Amo75xeDTUoRIT3eDpdXJdeiB2GA==
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.4.tgz#d7ecc5d90e8a275dfe770957afc9ad37047a6f0a"
+  integrity sha512-sYH7dziDstHSiltJPknt4NmQw/N6GhnLJHr0TfkgQCknfoPkIenfigUKmZQ7yNOGfkPDu4lNTfFf3wZk/NfR1Q==
+  dependencies:
+    fonction "^1.8.0-beta.5"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -3456,9 +3458,9 @@ is-utf8@^0.2.1:
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
 
 is-valid-package-name@^1.0.0-beta.5:
-  version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0-beta.6.tgz#3b77c8a1ba97059da04cffcc75fa030c8bdad847"
-  integrity sha512-gLaINP6tRRy23rg5+vQwpf0Zfc9IqHGF2WsAmfHWz/gR0ZFSJ4lmLb6l33yRpXdUz+iUFXVBxGq43nBKqTxZDA==
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0-beta.7.tgz#0153cfa21164eb83cbb1423c220c7b899dcc89e7"
+  integrity sha512-0x9+WVQBHv9GpmA7hxUAZfZsTTgdwktM0jXp0/3zpDnZ1Re1PxnPonZFSN/JgeUzkfeT040EpJ4qVu+YZ7S1/Q==
   dependencies:
     "@miyauci/is-valid" "^1.0.0-beta.2"
     fonction "^1.8.0-beta.6"
