@@ -16,10 +16,17 @@ const replaceOption = {
   ".ts": "",
   "https://deno.land/x/fonction@v1.8.0-beta.5/mod": "fonction",
   "https://deno.land/x/is_valid@v1.0.0-beta.2/mod": "@miyauci/is-valid",
+  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.6/mod":
+    "is-valid-package-name",
   preventAssignment: true,
 };
 
-const external = ["cross-fetch", "@miyauci/is-valid", "fonction"];
+const external = [
+  "cross-fetch",
+  "@miyauci/is-valid",
+  "fonction",
+  "is_valid_package_name",
+];
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
   name: "preserve-fetch",

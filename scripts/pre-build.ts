@@ -18,11 +18,13 @@ Deno.mkdirSync(TMP_DIR, {
 
 const dirs = [
   "api",
+  "npm",
+  "deno_land",
+  "nest_land",
   "cli",
   "constants",
   "format",
   "log",
-  "resource",
   "types",
   "validate",
 ];

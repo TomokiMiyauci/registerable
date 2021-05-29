@@ -1,16 +1,13 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-export * from "./constants/registry.ts";
 import { query } from "./query.ts";
-import { NEST_LAND } from "./constants/registry.ts";
-import { ifElse, isBoolean, isUndefined } from "../../deps.ts";
-
-import { validateNestLand } from "./validate.ts";
+import { NEST_LAND } from "./_constants.ts";
+import { ifElse, isBoolean, validateNestLand } from "../deps.ts";
 
 const checkNestLand = (val: string) => {
-  const msg = validateNestLand(val);
+  const [result, err] = validateNestLand(val);
 
   return ifElse(
-    isUndefined(msg),
+    result,
     async () => {
       const result = await query(val);
       return [
@@ -22,7 +19,7 @@ const checkNestLand = (val: string) => {
         ),
       ] as const;
     },
-    [NEST_LAND, msg as string] as const,
+    [NEST_LAND, err] as const,
   );
 };
 

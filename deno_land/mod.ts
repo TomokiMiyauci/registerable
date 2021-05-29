@@ -1,14 +1,12 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { query } from "./query.ts";
-import { validateDenoLand } from "./validate.ts";
-import { ifElse, isBoolean, isUndefined } from "../../deps.ts";
-import { DENO_LAND } from "./constants/registry.ts";
-export * from "./constants/registry.ts";
+import { ifElse, isBoolean, validateDenoLand } from "../deps.ts";
+import { DENO_LAND } from "./_constants.ts";
 const checkDenoLand = (val: string) => {
-  const msg = validateDenoLand(val);
+  const [result, err] = validateDenoLand(val);
 
   return ifElse(
-    isUndefined(msg),
+    result,
     async () => {
       const result = await query(val);
       return [
@@ -20,7 +18,7 @@ const checkDenoLand = (val: string) => {
         ),
       ] as const;
     },
-    [DENO_LAND, msg as string] as const,
+    [DENO_LAND, err] as const,
   );
 };
 

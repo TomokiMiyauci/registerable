@@ -1,8 +1,8 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { complexQuery, getPackageList, query, simpleQuery } from "./query.ts";
-import { assertEquals } from "../../dev_deps.ts";
-import { isArray } from "../../deps.ts";
-import { MONIKER_RULES_ERROR } from "./constants/message.ts";
+import { assertEquals } from "../dev_deps.ts";
+import { isArray } from "../deps.ts";
+import { MONIKER_RULES_ERROR } from "./_constants.ts";
 
 Deno.test("simpleQuery", async () => {
   assertEquals(await simpleQuery("fonction"), false);

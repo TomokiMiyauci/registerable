@@ -1,6 +1,6 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { DENO_LAND_BASE_URL } from "./constants/registry.ts";
-import { N, or, props, tryCatch } from "../../deps.ts";
+import { DENO_LAND_BASE_URL } from "./_constants.ts";
+import { N, or, props, tryCatch } from "../deps.ts";
 
 type Response = {
   success: boolean;

@@ -1,6 +1,9 @@
-import { checkNestLand, NEST_LAND } from "../resource/nest_land/main.ts";
-import { checkNpm, NPM } from "../resource/npm/main.ts";
-import { checkDenoLand, DENO_LAND } from "../resource/deno_land/main.ts";
+import { checkNestLand } from "../nest_land/mod.ts";
+import { checkNpm } from "../npm/mod.ts";
+import { NPM } from "../npm/_constants.ts";
+import { checkDenoLand } from "../deno_land/mod.ts";
+import { DENO_LAND } from "../deno_land/_constants.ts";
+import { NEST_LAND } from "../nest_land/_constants.ts";
 
 const QUERY_MAP = {
   [DENO_LAND]: checkDenoLand,

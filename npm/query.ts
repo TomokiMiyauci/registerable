@@ -1,5 +1,9 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { NPM_BASE_URL } from "./constants/registry.ts";
+import {
+  MONIKER_RULES_ERROR,
+  NPM_BASE_URL,
+  NPM_PACKAGE_LIST_BASE_URL,
+} from "./_constants.ts";
 import {
   and,
   has,
@@ -10,7 +14,7 @@ import {
   NN,
   props,
   tryCatch,
-} from "../../deps.ts";
+} from "../deps.ts";
 type Response = {
   name: string;
   "dist-tags": Record<string, string>;
@@ -24,9 +28,7 @@ type Response = {
   _rev: string;
   _id: string;
 } | { "error": "Not found" };
-import { isEqualNormalizedName } from "./validate.ts";
-import { normalize } from "./format.ts";
-import { MONIKER_RULES_ERROR } from "./constants/message.ts";
+import { isEqualNormalizedName, normalize } from "./_utils.ts";
 const simpleQuery = (search: string): Promise<boolean> | Error => {
   const modulesUrl = new URL(search, NPM_BASE_URL);
 
@@ -47,9 +49,6 @@ type ApiResponse = {
   since: number;
   packageNames: string[];
 };
-
-const NPM_PACKAGE_LIST_BASE_URL =
-  "https://raw.githubusercontent.com/bconnorwhite/all-package-names/master/data/all.json";
 
 const getPackageList = () =>
   tryCatch<Promise<string[]>, Error>(async () => {

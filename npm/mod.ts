@@ -1,14 +1,13 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { validateNpm } from "./validate.ts";
 import { query } from "./query.ts";
-import { NPM } from "./constants/registry.ts";
-import { ifElse, isBoolean, isUndefined } from "../../deps.ts";
-export * from "./constants/registry.ts";
+import { NPM } from "./_constants.ts";
+import { ifElse, isBoolean, validateNpm } from "../deps.ts";
+
 const checkNpm = (val: string) => {
-  const msg = validateNpm(val);
+  const [result, err] = validateNpm(val);
 
   return ifElse(
-    isUndefined(msg),
+    result,
     async () => {
       const result = await query(val);
       return [
@@ -20,7 +19,7 @@ const checkNpm = (val: string) => {
         ),
       ] as const;
     },
-    [NPM, msg as string] as const,
+    [NPM, err] as const,
   );
 };
 
