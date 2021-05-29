@@ -1,9 +1,8 @@
 const BASE_URL = "https://nameable-qmfotcl44-tomoki-miyauci.vercel.app/";
-import type { Option, RegisterableResult, Registry } from "../types/mod.ts";
+import type { RegisterableResult, Registry } from "../types/mod.ts";
 
 const client = async <T extends Registry>(
   name: string,
-  option?: Partial<Option>,
 ) => {
   const url = new URL("check-name", BASE_URL);
   url.searchParams.append("name", name);
