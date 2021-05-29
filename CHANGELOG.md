@@ -1,3 +1,8 @@
+# [v1.2.0-beta.2](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2021-05-29)
+
+## 🐛 Bug Fixes
+- [`e0bcfa0`](https://github.com/TomokiMiyauci/registerable/commit/e0bcfa0)   Fix output format
+
 # [v1.2.0-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0...v1.2.0-beta.1) (2021-05-29)
 
 ## ✨ New Features
