@@ -1,3 +1,8 @@
+# [v1.2.0-beta.3](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.2...v1.2.0-beta.3) (2021-05-29)
+
+## 🚑 Critical Hotfixes
+- [`30f198e`](https://github.com/TomokiMiyauci/registerable/commit/30f198e)   Up dependency version
+
 # [v1.2.0-beta.2](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2021-05-29)
 
 ## 🐛 Bug Fixes
