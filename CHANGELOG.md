@@ -1,3 +1,8 @@
+# [v1.2.0-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0...v1.2.0-beta.1) (2021-05-29)
+
+## ✨ New Features
+- [`191f55e`](https://github.com/TomokiMiyauci/registerable/commit/191f55e)   Add JavaScript API and types
+
 # [v1.1.0](https://github.com/TomokiMiyauci/registerable/compare/v1.0.0...v1.1.0) (2021-05-26)
 
 ## ✨ New Features
