@@ -7,7 +7,7 @@ const client = async <T extends Registry>(
   const url = new URL("check-name", BASE_URL);
   url.searchParams.append("name", name);
 
-  const res = await fetch(url);
+  const res = await fetch(url.toString());
   return await res.json() as RegisterableResult<T>;
 };
 
