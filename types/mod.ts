@@ -1,19 +1,21 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { LANGUAGES } from "../constants/language.ts";
 import { REGISTRIES } from "../constants/registry.ts";
 
-interface ApiResponse {
+type Registry = typeof REGISTRIES[number];
+
+interface RegisterableResult<T extends Registry = Registry> {
   name: string;
-  result: Record<string, boolean>;
-  error: Record<string, string>;
+  result: Record<T, boolean>;
+  error: {
+    [k in T]?: string;
+  };
   hasError: boolean;
-  errorRegistry: string[];
+  errorRegistry: T[];
 }
 
-type Option = {
-  registry: typeof REGISTRIES[number][];
-  languages: typeof LANGUAGES;
+type Option<T extends Registry = Registry> = {
+  registry: T[];
   mode: "server" | "universal";
 };
 
-export type { ApiResponse, Option };
+export type { Option, RegisterableResult, Registry };

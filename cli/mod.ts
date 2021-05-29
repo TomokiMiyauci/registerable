@@ -1,17 +1,9 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { summarize } from "../format/json.ts";
 import { loggerFactory, logTableFactory } from "../log/log.ts";
 import { QUERY_MAP } from "../constants/mod.ts";
 import { entries, flattenDeep, ifElse, NN, uniq } from "../deps.ts";
 import { CommandLine, defaultOption } from "./constants.ts";
-import { ApiResponse } from "../types/mod.ts";
-const query2Direct = async (
-  queries: any[],
-  name: string,
-): Promise<ApiResponse> => {
-  const resultAll = await Promise.all((queries as any[]).map((fn) => fn(name)));
-  return { ...summarize(resultAll), name };
-};
+import { query2Direct } from "./_utils.ts";
 
 const checkNameWithLog = async (
   name: string,
@@ -68,7 +60,4 @@ const format = (
     result,
   );
 
-const pickKeys = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
-  uniq(flattenDeep(val.map((key) => map[key as any])));
-
-export { checkNameWithLog, defaultOption, pickKeys, query2Direct };
+export { checkNameWithLog, defaultOption };

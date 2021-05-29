@@ -1,13 +1,15 @@
-const BASE_URL = "https://registerable-tomoki-miyauci.vercel.app/";
-import type { ApiResponse, Option } from "../types/mod.ts";
+const BASE_URL = "https://nameable-qmfotcl44-tomoki-miyauci.vercel.app/";
+import type { Option, RegisterableResult, Registry } from "../types/mod.ts";
 
-const client = async (name: string, option?: Partial<Option>) => {
+const client = async <T extends Registry>(
+  name: string,
+  option?: Partial<Option>,
+) => {
   const url = new URL("check-name", BASE_URL);
-  console.log(option);
   url.searchParams.append("name", name);
 
-  const res = await fetch(url.toString());
-  return await res.json() as ApiResponse;
+  const res = await fetch(url);
+  return await res.json() as RegisterableResult<T>;
 };
 
 export { client };

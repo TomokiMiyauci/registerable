@@ -2,26 +2,25 @@
 import { QUERY_MAP } from "./constants/mod.ts";
 import { ifElse, NN } from "./deps.ts";
 import { client } from "./api/client.ts";
-import { pickKeys, query2Direct } from "./cli/mod.ts";
-import { Option } from "./types/mod.ts";
-import { ApiResponse } from "./types/mod.ts";
+import { mapper, query2Direct, uniqFlatten } from "./cli/_utils.ts";
+import { Option, Registry } from "./types/mod.ts";
+import { RegisterableResult } from "./types/mod.ts";
 
 const defaultOption: Option = {
   mode: "server",
   registry: ["deno.land", "nest.land", "npm"],
-  languages: ["typescript", "javascript"],
 };
 
-const checkName = async (
+const checkName = async <T extends Registry>(
   name: string,
-  option?: Partial<Option>,
-): Promise<ApiResponse> => {
+  option?: Partial<Option<T>>,
+): Promise<RegisterableResult<T>> => {
   const {
     mode = defaultOption.mode,
     registry = defaultOption.registry,
   } = option || defaultOption;
 
-  const query = pickKeys(QUERY_MAP, registry).filter((fn) => NN(fn));
+  const query = uniqFlatten(mapper(QUERY_MAP, registry)).filter((fn) => NN(fn));
 
   return await ifElse(
     mode === "server",

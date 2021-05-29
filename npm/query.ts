@@ -45,7 +45,7 @@ const simpleQuery = (search: string): Promise<boolean> | Error => {
   });
 };
 
-type ApiResponse = {
+type RegisterableResult = {
   since: number;
   packageNames: string[];
 };
@@ -56,7 +56,7 @@ const getPackageList = () =>
       NPM_PACKAGE_LIST_BASE_URL,
     );
 
-    const { packageNames } = await res.json() as ApiResponse;
+    const { packageNames } = await res.json() as RegisterableResult;
     return packageNames;
   });
 
