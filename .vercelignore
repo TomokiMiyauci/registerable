@@ -9,4 +9,10 @@
 !log
 !format
 !constants
+!nest_land
+!npm
+!deno_land
+!cli
+!types
 !**/*.ts
+
