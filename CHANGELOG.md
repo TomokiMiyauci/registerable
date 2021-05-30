@@ -1,3 +1,8 @@
+# [v1.2.0-beta.4](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.3...v1.2.0-beta.4) (2021-05-30)
+
+## ✨ New Features
+- [`68a190a`](https://github.com/TomokiMiyauci/registerable/commit/68a190a)  (api) Add endpoint /check-name
+
 # [v1.2.0-beta.3](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.2...v1.2.0-beta.3) (2021-05-29)
 
 ## 🚑 Critical Hotfixes
