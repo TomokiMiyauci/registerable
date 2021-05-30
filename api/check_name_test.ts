@@ -1,55 +1,110 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { assertEquals } from "../dev_deps.ts";
-
-const BASE_URL = "https://registerable-os5ie232d-tomoki-miyauci.vercel.app/";
+import { RegisterableResult } from "../types/mod.ts";
+import { REGISTRIES } from "../constants/registry.ts";
+const BASE_URL = "https://registerable-pgkzeiwth-tomoki-miyauci.vercel.app/";
 const ENTPOINT = new URL(
   "check-name",
   BASE_URL,
-);
-Deno.test("check-name#no name parameter query", async () => {
-  const res = await fetch(
-    ENTPOINT,
-  );
+).toString();
 
-  assertEquals(res.status, 403);
-  assertEquals(res.ok, false);
-  const result = await res.json();
-  assertEquals(result, {
-    error: "name parameter is necessary",
-  });
-});
+Deno.test("check-name", async () => {
+  const table: [
+    string,
+    number,
+    boolean,
+    RegisterableResult<any> | { error: string },
+  ][] = [
+    [ENTPOINT, 403, false, {
+      error: "Name parameter is necessary",
+    }],
+    [`${ENTPOINT}?name=fonction`, 200, true, {
+      error: {},
+      errorRegistry: [],
+      hasError: false,
+      name: "fonction",
+      result: {
+        "deno.land": false,
+        "nest.land": false,
+        npm: false,
+      },
+    }],
+    [`${ENTPOINT}?name=fonction&hoge=huga`, 403, false, {
+      error: "Invalid query parameter (hoge)",
+    }],
+    [`${ENTPOINT}?name=fonction&hoge=huga&test=test`, 403, false, {
+      error: "Invalid query parameter (hoge, test)",
+    }],
+    [`${ENTPOINT}?hoge=huga&test=test`, 403, false, {
+      error: "Invalid query parameter (hoge, test)",
+    }],
+    [`${ENTPOINT}?name=fonction&registry=nest.land`, 200, true, {
+      error: {},
+      errorRegistry: [],
+      hasError: false,
+      name: "fonction",
+      result: {
+        "nest.land": false,
+      },
+    }],
+    [
+      `${ENTPOINT}?name=fonction&registry=nest.land&registry=deno.land`,
+      200,
+      true,
+      {
+        error: {},
+        errorRegistry: [],
+        hasError: false,
+        name: "fonction",
+        result: {
+          "nest.land": false,
+          "deno.land": false,
+        },
+      },
+    ],
+    [
+      `${ENTPOINT}?name=fonction&registry=hoge.land`,
+      403,
+      false,
+      {
+        error: `Invalid registry member (hoge.land) [valid: ${
+          REGISTRIES.join(", ")
+        }]`,
+      },
+    ],
+    [
+      `${ENTPOINT}?name=fonction&registry=hoge.land&registry=huga.land`,
+      403,
+      false,
+      {
+        error: `Invalid registry member (hoge.land, huga.land) [valid: ${
+          REGISTRIES.join(", ")
+        }]`,
+      },
+    ],
+    [
+      `${ENTPOINT}?name=fonction&registry`,
+      403,
+      false,
+      {
+        error: `Invalid registry member () [valid: ${REGISTRIES.join(", ")}]`,
+      },
+    ],
+    [
+      `${ENTPOINT}?name=fonction&registry=`,
+      403,
+      false,
+      {
+        error: `Invalid registry member () [valid: ${REGISTRIES.join(", ")}]`,
+      },
+    ],
+  ];
 
-Deno.test("check-name?name=fonction", async () => {
-  const url = new URL(ENTPOINT.href);
-  url.searchParams.append("name", "fonction");
-
-  const res = await fetch(url);
-
-  assertEquals(res.status, 200);
-  assertEquals(res.ok, true);
-  const result = await res.json();
-  assertEquals(result, {
-    error: {},
-    errorRegistry: [],
-    hasError: false,
-    name: "fonction",
-    result: {
-      "deno.land": false,
-      "nest.land": false,
-      npm: false,
-    },
-  });
-});
-
-Deno.test("check-name#no name parameter query", async () => {
-  const res = await fetch(
-    ENTPOINT,
-  );
-
-  assertEquals(res.status, 403);
-  assertEquals(res.ok, false);
-  const result = await res.json();
-  assertEquals(result, {
-    error: "name parameter is necessary",
-  });
+  await Promise.all(table.map(async ([url, status, ok, expected]) => {
+    const res = await fetch(url);
+    assertEquals(res.status, status);
+    assertEquals(res.ok, ok);
+    const result = await res.json() as RegisterableResult;
+    assertEquals(result, expected);
+  }));
 });

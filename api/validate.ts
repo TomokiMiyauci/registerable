@@ -1,43 +1,82 @@
-import { AnyFn, N, not } from "../deps.ts";
+import {
+  and,
+  identity,
+  ifElse,
+  isEmpty,
+  isLength0,
+  isString,
+  isUndefined,
+  keys,
+  N,
+  props,
+} from "../deps.ts";
+import { ParsedParameters } from "./parse.ts";
+import { REGISTRIES } from "../constants/registry.ts";
+const getInvalidKeys = (val: ParsedParameters): string[] =>
+  keys(val).filter((key) => N(["name", "registry"].includes(key)));
 
-const INVALID_ARGS_MEMBER = "Invalid query member";
-const NAME = "name";
-const queryParameters = [NAME];
-
-const hasNameParameter = (searchParams: URLSearchParams): boolean =>
-  searchParams.has(NAME);
-
-const isValidQueryParameter = (searchParams: URLSearchParams): boolean => {
-  for (const [key] of searchParams) {
-    if (N(queryParameters.includes(key))) {
-      return false;
-    }
-  }
-  return true;
+const hasInvalidKey = (val: ParsedParameters): [boolean, string] => {
+  const invalidKeys = getInvalidKeys(val);
+  const isTrue = isLength0(invalidKeys);
+  return [
+    isTrue,
+    ifElse(
+      isTrue,
+      "",
+      () => `Invalid query parameter (${invalidKeys.join(", ")})`,
+    ),
+  ];
 };
 
+const validateNoNameKey = (
+  val: unknown,
+): [boolean, string] => {
+  const result = and(isString(val), () => N(isEmpty(val)));
+  return [result, ifElse(result, "", "Name parameter is necessary")];
+};
+
+const validateRegistryMember = (
+  val: undefined | string[],
+): [boolean, string] => {
+  if (isUndefined(val)) return [true, ""];
+  const result = val.filter((v) => N(REGISTRIES.includes(v as any)));
+  const isTrue = isLength0(result);
+  return [
+    isTrue,
+    ifElse(
+      isTrue,
+      "",
+      `Invalid registry member (${result.join(", ")}) [valid: ${
+        REGISTRIES.join(", ")
+      }]`,
+    ),
+  ];
+};
+
+const pick = <T extends string>(key: T) =>
+  (val: ParsedParameters) => props(key, val);
+
 const validateTable = [
-  [not(hasNameParameter), "name parameter is necessary"],
-  [not(isValidQueryParameter), INVALID_ARGS_MEMBER],
+  [identity, hasInvalidKey],
+  [pick("name"), validateNoNameKey],
+  [pick("registry"), validateRegistryMember],
 ] as const;
 
-const validate = <
-  T extends readonly [
-    readonly [AnyFn<any, boolean>, string],
-    readonly [AnyFn<any, boolean>, string],
-  ],
->(
-  table: T,
-) =>
-  <U>(val: U): string | true => {
-    for (const [fn, message] of table) {
-      if (fn(val)) {
-        return message;
-      }
+const validateQueryParameter = (val: ParsedParameters): [boolean, string] => {
+  for (const [adaptor, fn] of validateTable) {
+    const [result, err] = fn(adaptor(val as any));
+    if (N(result)) {
+      return [result, err];
     }
+  }
 
-    return true;
-  };
+  return [true, ""];
+};
 
-const validateQueryParameter = validate(validateTable);
-export { hasNameParameter, isValidQueryParameter, validateQueryParameter };
+export {
+  getInvalidKeys,
+  hasInvalidKey,
+  validateNoNameKey,
+  validateQueryParameter,
+  validateRegistryMember,
+};
