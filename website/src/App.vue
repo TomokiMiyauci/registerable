@@ -144,21 +144,14 @@ const state = reactive<{
 })
 
 const onClick = async () => {
-  const { name, result, hasError, errors } = await checkName(search.value, {
-    mode: 'universal',
-    silent: true
+  const { name, result, hasError, error } = await checkName(search.value, {
+    mode: 'universal'
   })
 
   state.name = name
   state.result = result
   if (hasError) {
-    state.error = errors.reduce(
-      (acc, [registry, msg]) => ({
-        ...acc,
-        [registry]: msg
-      }),
-      {}
-    )
+    state.error = error
   }
 
   console.log(result)

@@ -8,7 +8,7 @@ import { main, module } from "./package.json";
 import json from "@rollup/plugin-json";
 
 const baseDir = resolve(__dirname);
-const inputFilePath = resolve(baseDir, "mod.ts");
+const inputFilePath = resolve(baseDir, "tmp", "mod.ts");
 const banner =
   "/*! Copyright (c) 2021-present the Registerable authors. All rights reserved. MIT license. */";
 
@@ -16,10 +16,17 @@ const replaceOption = {
   ".ts": "",
   "https://deno.land/x/fonction@v1.8.0-beta.5/mod": "fonction",
   "https://deno.land/x/is_valid@v1.0.0-beta.2/mod": "@miyauci/is-valid",
+  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.6/mod":
+    "is-valid-package-name",
   preventAssignment: true,
 };
 
-const external = ["cross-fetch", "@miyauci/is-valid", "fonction"];
+const external = [
+  "cross-fetch",
+  "@miyauci/is-valid",
+  "fonction",
+  "is_valid_package_name",
+];
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
   name: "preserve-fetch",
@@ -80,7 +87,8 @@ const config = [
     },
   },
   {
-    input: "node/cli.ts",
+    input: "tmp/cli/node.ts",
+
     external: [...external, "yargs"],
 
     plugins: [

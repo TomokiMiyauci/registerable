@@ -1,7 +1,7 @@
 {
   "name": "registerable",
-  "description": "Check if it can be registered as a module name or domain name",
-  "version": "1.1.0",
+  "description": "Check if it can be registered as a package name or domain name",
+  "version": "1.2.0-beta.5",
   "bin": {
     "registerable": "dist/cli.js"
   },
@@ -10,8 +10,8 @@
   "types": "dist/index.es.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.cjs.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
     }
   },
   "sideEffects": false,
@@ -19,7 +19,9 @@
   "scripts": {
     "commit": "cz",
     "prepare": "husky install",
-    "build": "rollup -c rollup.config.ts"
+    "build": "yarn pre:build && rollup -c rollup.config.ts && yarn post:build",
+    "pre:build": "deno run -A --unstable scripts/pre-build.ts",
+    "post:build": "deno run -A --unstable scripts/post-build.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
@@ -77,6 +79,7 @@
     "@miyauci/is-valid": "^1.0.0-beta.2",
     "cross-fetch": "^3.1.4",
     "fonction": "^1.8.0-beta.5",
+    "is-valid-package-name": "^1.0.0-beta.5",
     "yargs": "^17.0.1"
   },
   "publishConfig": {
