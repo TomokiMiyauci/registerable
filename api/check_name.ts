@@ -1,6 +1,6 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import { ServerRequest } from "https://deno.land/std@0.97.0/http/server.ts";
-import { checkName } from "../check_name.ts";
+import { registerable } from "../registerable.ts";
 import { N } from "../deps.ts";
 import { parse, toURL } from "./parse.ts";
 import { validateQueryParameter } from "./validate.ts";
@@ -22,7 +22,7 @@ export default async (req: ServerRequest) => {
     });
   }
 
-  const result = await checkName(parsed.name as string, {
+  const result = await registerable(parsed.name as string, {
     registry: parsed.registry as undefined,
   });
 

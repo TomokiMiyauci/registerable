@@ -24,7 +24,7 @@ const defaultOption: Option = {
  * @example
  * ```ts
  * // General usage
- * await checkName('fonction')
+ * await registerable('fonction')
  * // {
  *      result: {
  *        "deno.land": false,
@@ -41,7 +41,7 @@ const defaultOption: Option = {
  * @example
  * ```ts
  * // Filter query registry
- * await checkName('invalid-name', {
+ * await registerable('invalid-name', {
  *  registry: ['deno.land', 'npm']
  * })
  * // {
@@ -58,7 +58,7 @@ const defaultOption: Option = {
  *    };
  * ```
  */
-const checkName = async <T extends Registry>(
+const registerable = async <T extends Registry>(
   name: string,
   option?: Partial<Option<T>>,
 ): Promise<RegisterableResult<T>> => {
@@ -76,4 +76,4 @@ const checkName = async <T extends Registry>(
   );
 };
 
-export { checkName };
+export { registerable };

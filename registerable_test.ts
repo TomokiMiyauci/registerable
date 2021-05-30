@@ -1,10 +1,10 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { checkName } from "./check_name.ts";
+import { registerable } from "./registerable.ts";
 import { assertEquals } from "./dev_deps.ts";
 import { Option } from "./types/mod.ts";
 import { RegisterableResult } from "./types/mod.ts";
 
-Deno.test("checkName", async () => {
+Deno.test("registerable", async () => {
   const table: [
     string,
     Partial<Option>,
@@ -87,9 +87,9 @@ Deno.test("checkName", async () => {
 
   await Promise.all(table.map(async ([name, option, expected]) => {
     assertEquals(
-      await checkName(name, option),
+      await registerable(name, option),
       expected,
-      `checkName(${name}, ${option}) -> ${expected}`,
+      `registerable(${name}, ${option}) -> ${expected}`,
     );
   }));
 });

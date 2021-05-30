@@ -38,7 +38,7 @@ await Promise.all(dirs.map(async (dir) => {
   });
 }));
 
-const mains = ["deps.ts", "mod.ts", "check_name.ts", "package.json"];
+const mains = ["deps.ts", "mod.ts", "registerable.ts", "package.json"];
 
 await Promise.all(mains.map(async (main) => {
   await copy(main, `${TMP_DIR}/${main}`, {
