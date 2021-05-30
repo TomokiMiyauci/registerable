@@ -1,3 +1,8 @@
+# [v1.2.0-beta.5](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.4...v1.2.0-beta.5) (2021-05-30)
+
+## ✨ New Features
+- [`4dfe036`](https://github.com/TomokiMiyauci/registerable/commit/4dfe036)   Add JavaScript API
+
 # [v1.2.0-beta.4](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.3...v1.2.0-beta.4) (2021-05-30)
 
 ## ✨ New Features
