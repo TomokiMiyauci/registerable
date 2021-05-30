@@ -204,7 +204,7 @@ It returns the result of running the `registerable` function on the server and t
 
 You can get the result from the following URL:
 
-`https://nameable.vercel.app/check-name`
+`https://registerable.vercel.app/check-name`
 
 Mode of `universal` queries this URL and gets the same results as `server` mode without CORS errors.
 
