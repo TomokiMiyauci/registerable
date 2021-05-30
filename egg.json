@@ -2,7 +2,7 @@
   "$schema": "https://x.nest.land/eggs@0.3.6/src/schema.json",
   "name": "registerable",
   "entry": "mod.ts",
-  "description": "Check if it can be registered as a module name or domain name",
+  "description": "Check if it can be registered as a package name or domain name",
   "homepage": "https://github.com/TomokiMiyauci/registerable#readme",
   "version": "0.0.0",
   "files": ["README.md", "LICENSE", "*.ts", "CHANGELOG.md", "img/*"],
