@@ -1,13 +1,13 @@
-const BASE_URL = "https://nameable-qmfotcl44-tomoki-miyauci.vercel.app/";
-import type { RegisterableResult, Registry } from "../types/mod.ts";
+import type { Option, RegisterableResult, Registry } from "../types/mod.ts";
+import { stringify } from "./stringify.ts";
 
 const client = async <T extends Registry>(
   name: string,
+  option: Omit<Option, "mode">,
 ) => {
-  const url = new URL("check-name", BASE_URL);
-  url.searchParams.append("name", name);
+  const url = stringify({ name, ...option });
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url);
   return await res.json() as RegisterableResult<T>;
 };
 

@@ -2,7 +2,7 @@
 import { assertEquals } from "../dev_deps.ts";
 import { RegisterableResult } from "../types/mod.ts";
 import { REGISTRIES } from "../constants/registry.ts";
-const BASE_URL = "https://registerable-pgkzeiwth-tomoki-miyauci.vercel.app/";
+const BASE_URL = "https://registerable-cpqkjhmf3-tomoki-miyauci.vercel.app/";
 const ENTPOINT = new URL(
   "check-name",
   BASE_URL,

@@ -11,6 +11,53 @@ const defaultOption: Option = {
   registry: ["deno.land", "nest.land", "npm"],
 };
 
+/**
+ * Ask if the name can be registered in the package registry.
+ *
+ * @param name - Query name
+ * @param option - Query option
+ * @returns Result of registerable or not
+ *
+ * @remark
+ * Never throw an error
+ *
+ * @example
+ * ```ts
+ * // General usage
+ * await checkName('fonction')
+ * // {
+ *      result: {
+ *        "deno.land": false,
+ *        "nest.land": false,
+ *        npm: false,
+ *      },
+ *      hasError: false,
+ *      error: {},
+ *      errorRegistry: [],
+ *      name: "fonction",
+ *    };
+ * ```
+ *
+ * @example
+ * ```ts
+ * // Filter query registry
+ * await checkName('invalid-name', {
+ *  registry: ['deno.land', 'npm']
+ * })
+ * // {
+ *      result: {
+ *        "deno.land": false,
+ *        npm: false,
+ *      },
+ *      hasError: true,
+ *      error: {
+ *        "deno.land": "Name contains only the characters a-z, 0-9 and _"
+ *      },
+ *      errorRegistry: ["deno.land"],
+ *      name: "invalid-name",
+ *    };
+ * ```
+ */
 const checkName = async <T extends Registry>(
   name: string,
   option?: Partial<Option<T>>,
@@ -25,7 +72,7 @@ const checkName = async <T extends Registry>(
   return await ifElse(
     mode === "server",
     async () => await query2Direct(query, name),
-    async () => await client(name),
+    async () => await client(name, { registry }),
   );
 };
 
