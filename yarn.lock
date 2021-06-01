@@ -1025,11 +1025,11 @@
   integrity sha512-ikDzSgs2SbBtKVXCNfU6GzVACpUuojZS8Vu/VhM1EwtWvtfGJsrRETLbV231ODMvWtfKJThzrsk2Hp88fv9+gA==
 
 "@miyauci/is-valid@^1.0.0-beta.2":
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.4.tgz#d7ecc5d90e8a275dfe770957afc9ad37047a6f0a"
-  integrity sha512-sYH7dziDstHSiltJPknt4NmQw/N6GhnLJHr0TfkgQCknfoPkIenfigUKmZQ7yNOGfkPDu4lNTfFf3wZk/NfR1Q==
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.7.tgz#d0c7d5ad86711695fa4c194648fcd41ae9595e27"
+  integrity sha512-snh2Lzh1sJctuCMfBVSOLPN5urz+w9eNsL3V6vJv01NTq4zCom1XWEtwkqJrccsJ7MdwNB0JUaPDluwT5pm9bA==
   dependencies:
-    fonction "^1.8.0-beta.5"
+    fonction "^1.8.0-beta.6"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
