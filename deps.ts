@@ -32,16 +32,16 @@ export {
   trim,
   tryCatch,
   uniq,
-} from "https://deno.land/x/fonction@v1.8.0-beta.5/mod.ts";
+} from "https://deno.land/x/fonction@v1.8.0-beta.7/mod.ts";
 export {
   failOnTrue,
   gtLength,
   ltLength,
-} from "https://deno.land/x/is_valid@v1.0.0-beta.2/mod.ts";
+} from "https://deno.land/x/is_valid@v1.0.0-beta.9/mod.ts";
 export {
   validateDenoLand,
   validateNestLand,
   validateNpm,
-} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.6/mod.ts";
+} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.8/mod.ts";
 
-export type { AnyFn } from "https://deno.land/x/fonction@v1.8.0-beta.5/mod.ts";
+export type { AnyFn } from "https://deno.land/x/fonction@v1.8.0-beta.7/mod.ts";
