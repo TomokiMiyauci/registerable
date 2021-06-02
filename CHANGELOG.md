@@ -1,3 +1,16 @@
+# [v1.2.0](https://github.com/TomokiMiyauci/registerable/compare/v1.1.0...v1.2.0) (2021-05-30)
+
+## ✨ New Features
+- [`191f55e`](https://github.com/TomokiMiyauci/registerable/commit/191f55e)   Add JavaScript API and types 
+- [`68a190a`](https://github.com/TomokiMiyauci/registerable/commit/68a190a)  (api) Add endpoint /check-name 
+- [`4dfe036`](https://github.com/TomokiMiyauci/registerable/commit/4dfe036)   Add JavaScript API 
+
+## 🐛 Bug Fixes
+- [`e0bcfa0`](https://github.com/TomokiMiyauci/registerable/commit/e0bcfa0)   Fix output format 
+
+## 🚑 Critical Hotfixes
+- [`30f198e`](https://github.com/TomokiMiyauci/registerable/commit/30f198e)   Up dependency version
+
 # [v1.2.0-beta.5](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.4...v1.2.0-beta.5) (2021-05-30)
 
 ## ✨ New Features
