@@ -1,3 +1,8 @@
+# [v1.2.1](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0...v1.2.1) (2021-06-02)
+
+## 🐛 Bug Fixes
+- [`b1ac9b7`](https://github.com/TomokiMiyauci/registerable/commit/b1ac9b7)   Pinned dependency version
+
 # [v1.2.1-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0...v1.2.1-beta.1) (2021-06-02)
 
 ## 🐛 Bug Fixes
