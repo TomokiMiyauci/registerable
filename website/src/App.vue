@@ -11,14 +11,15 @@
   </header>
 
   <div class="container mx-auto lg:px-8">
-    <section class="px-4 text-center p-5">
-      <h1 class="text-4xl my-3">Registerable</h1>
+    <section class="px-4 text-center pt-10 py-4 md:(pt-30)">
+      <h1 class="text-4xl my-3 font-bold">Registerable</h1>
       <p>Check if package name can be registered</p>
 
-      <div class="mt-8 m-1">
+      <div class="mt-8 md:my-12 m-1">
         <span
           class="
             flex
+            border
             items-center
             mx-auto
             max-w-2xl
@@ -27,9 +28,12 @@
             rounded-full
             transition
             duration-300
+            transform
             hover:bg-gray-100
             focus-within:(ring-2
-            text-red-400)
+            text-red-400
+            scale-103
+            shadow-md)
             ring-red-400
           "
         >
@@ -38,6 +42,8 @@
             v-model="search"
             placeholder="Check package name"
             spellcheck="false"
+            autofocus
+            ref="input"
             @keydown.enter="onClick"
             class="
               py-2
@@ -73,12 +79,12 @@
               duration-300
               h-full
               p-2
-              outline-none
-              hover:(bg-red-200
-              text-red-400)
               focus:(outline-none
               bg-red-200)
-              disabled:text-gray-300
+              not-disabled:hover:(bg-red-200
+              text-red-400)
+              disabled:(text-gray-300
+              cursor-not-allowed)
             "
             :disabled="!searchable"
             @click="onClick"
@@ -105,8 +111,8 @@
               opacity-70
               border
               p-2
-              w-20
-              h-20
+              w-22
+              h-22
               md:(
               w-30
               h-30)
@@ -280,7 +286,17 @@
 import { ref, reactive, computed, watch } from 'vue'
 import { registerable } from 'registerable'
 import Overlay from './components/Overlay.vue'
-import { has, isEmpty, or, keys, length, isLength0, N, props } from 'fonction'
+import {
+  has,
+  isEmpty,
+  or,
+  keys,
+  length,
+  isLength0,
+  N,
+  props,
+  ifElse
+} from 'fonction'
 import { Loading } from 'xross-vue'
 type Option = {
   mode: 'server' | 'universal'
@@ -295,19 +311,26 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
   'nest.land',
   'npm'
 ])
+const input = ref<HTMLInputElement>()
 
 const isLoading = ref<boolean>(false)
 const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
 watch(search, (now) => {
-  history.pushState(
-    { q: now },
+  const url = new URL(location.href)
+  const urlSearchParams = ifElse(
+    isEmpty(now),
     '',
-    `?${new URLSearchParams({ q: now }).toString()}`
+    () => new URLSearchParams({ q: now })
   )
+  url.search = urlSearchParams.toString()
+  history.replaceState(undefined, '', url.toString())
 })
 
 const clear = () => {
   search.value = ''
+  if (input.value) {
+    input.value.focus()
+  }
 }
 
 const reset = (): void => {
