@@ -26,9 +26,9 @@
   integrity sha512-LFelJDOLZ6JHlmlAkgrvmcu4hpNPB91KYcr4f60D/exzU1eNOb4/KCVHIydGHIQFaOacIOD+Xy+B7P1z812cZg==
 
 "@iconify/json@^1.1.345":
-  version "1.1.351"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.351.tgz#65076d59c277d1f4db5bac75d9330956a467763a"
-  integrity sha512-59DD3VMUnB1wk4XxEEMgjKl0cnsedc9l/U4J6zfZ4t+X716c2cZIapOikx9vWiWjvLKlbk8ZEYdJNYBudnvYZQ==
+  version "1.1.352"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.352.tgz#d4708290f2d8505ecac97ab907d0a834d0bdb623"
+  integrity sha512-9t7brMQ/JbD+b1RObCnZ6jHpmiyUbRlquN3fMLU0oJ5l7rgdljY0HQv4CPfgHYbTlZYSBRIP+jE4VQay1zUnWg==
 
 "@miyauci/is-valid@1.0.0-beta.9":
   version "1.0.0-beta.9"
@@ -829,10 +829,10 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-registerable@^1.2.0-beta.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.2.1.tgz#b0d5af6652bd4d6ee6d9e9cf86390880dc214182"
-  integrity sha512-qMt393GTP4RS/OPzP6hzoayRqDuzTPYYqaHxoQ/WPT3gv5OF0s48JALMWbkY/cTtB1wNOY3496ftYj675M5TzQ==
+registerable@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.2.2.tgz#260dccaeb273d19bc5b894dd4303da50146ffb60"
+  integrity sha512-TNUFjLOVjRmbONAeF3qNQUIZJmjVi9MMPvx+ur2KbpBqEvbURt0efKFBK7ogNo8eRzgWpysiexrrMufZYaUKQA==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     cross-fetch "^3.1.4"
@@ -1043,9 +1043,9 @@ vite-plugin-windicss@^0.15.10:
     windicss "^2.5.14"
 
 vite@^2.3.3:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.3.5.tgz#0f5e750317e6f00e5343dd8272f64c2261f026b3"
-  integrity sha512-Jh3uySLlofx+t+uqznnzJFTNgeqYQLhR6xMx61VYN5KTlVirJXBPkFW2+aigHN6d1mOo6rM7DWnU6gjnudVozw==
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.3.6.tgz#1f7cfde88a51a802d69000c7bac85d481c2e871c"
+  integrity sha512-fsEpNKDHgh3Sn66JH06ZnUBnIgUVUtw6ucDhlOj1CEqxIkymU25yv1/kWDPlIjyYHnalr0cN6V+zzUJ+fmWHYw==
   dependencies:
     esbuild "^0.12.5"
     postcss "^8.2.10"

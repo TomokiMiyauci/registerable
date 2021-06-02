@@ -49,7 +49,21 @@
               ring-fuchsia-300
             "
           />
-          <button class="p-2 text-blue-300" @click="clear" v-show="searchable">
+          <button
+            class="
+              p-2
+              flex
+              transition
+              duration-300
+              focus:outline-none
+              hover:(bg-blue-200
+              text-blue-400
+              )
+              text-blue-300
+            "
+            @click="clear"
+            v-show="searchable"
+          >
             <mdi-close-circle class="w-7 h-7" />
           </button>
           <button
@@ -73,9 +87,69 @@
           </button>
         </span>
       </div>
+
+      <div class="space-x-3 md:space-x-6 mt-9 md:mt-12 flex justify-center">
+        <template v-for="registry in choiseRegistries">
+          <input
+            class="appearance-none"
+            :id="registry"
+            type="checkbox"
+            v-model="registries"
+            :value="registry"
+          />
+          <label
+            :for="registry"
+            class="
+              cursor-pointer
+              inline-flex
+              opacity-70
+              border
+              p-2
+              w-20
+              h-20
+              md:(
+              w-30
+              h-30)
+              hover:(bg-red-100
+              shadow-md)
+              transform
+              active:scale-110
+              transition
+              duration-300
+              items-center
+              flex-col
+              relative
+              justify-center
+              rounded-md
+              shadow
+            "
+          >
+            <logos-deno
+              v-if="registry === 'deno.land'"
+              class="w-12 h-12 md:(w-16 h-16)"
+            />
+            <mdi-egg-easter
+              v-else-if="registry === 'nest.land'"
+              class="w-12 h-12 md:(w-16 h-16) text-green-400"
+            />
+            <logos-npm-icon
+              v-else-if="registry === 'npm'"
+              class="w-12 h-12 md:(w-16 h-16)"
+            />
+            <span class="text-xs md:text-lg mt-1 text-gray-800">{{
+              registry
+            }}</span>
+          </label>
+        </template>
+      </div>
+
+      <h2 class="mt-2 text-lg md:text-2xl max-w-4xl mx-auto">Registry</h2>
+      <p class="text-gray-500 md:mt-2 text-sm md:text-base max-w-4xl mx-auto">
+        Select the registry to query. The smaller the number, the faster.
+      </p>
     </section>
 
-    <div class="p-4">
+    <div v-show="resulted" class="p-4">
       <h2 class="mt-5 my-3 lg:mt-30 max-w-4xl mx-auto">
         <span class="text-2xl">Result</span>
         <code
@@ -84,44 +158,96 @@
         >
       </h2>
 
-      <table class="w-full max-w-4xl mx-auto border">
-        <tr class="border">
-          <th class="p-3">Registry</th>
-          <th>useable</th>
-        </tr>
-        <tr v-for="[registry, is] in registryPair">
-          <td class="p-3">
-            <logos-deno
-              v-if="registry === 'deno.land'"
-              class="align-middle"
-            /><logos-npm-icon
-              v-else-if="registry === 'npm'"
-              class="align-middle"
-            /><mdi-egg-easter
-              v-else-if="registry === 'nest.land'"
-              class="align-middle text-green-400"
-            />
-            <span class="px-3">{{ registry }}</span>
-          </td>
-          <td class="text-left">
-            <template v-if="is">
-              <mdi-check-circle class="text-green-500 align-middle" />
-              The name is available
-            </template>
-            <template v-else>
-              <mdi-close-circle class="text-red-500 align-middle" />
-              The name is not available
-            </template>
+      <div
+        class="
+          border
+          rounded-lg
+          shadow
+          hover:shadow-md
+          overflow-hidden
+          w-full
+          max-w-4xl
+          mx-auto
+        "
+      >
+        <table class="w-full">
+          <tr class="border-b shadow bg-gray-50">
+            <th class="p-3 border-r">Registry</th>
+            <th>Registerable</th>
+          </tr>
+          <tr
+            class="hover:bg-gray-100 transition-colors duration-200"
+            v-for="[registry, is] in registryPair"
+          >
+            <td class="p-3 text-center md:text-left border-r">
+              <logos-deno
+                v-if="registry === 'deno.land'"
+                class="w-7 h-7 align-middle"
+              /><logos-npm-icon
+                v-else-if="registry === 'npm'"
+                class="w-7 h-7 align-middle"
+              /><mdi-egg-easter
+                v-else-if="registry === 'nest.land'"
+                class="w-7 h-7 align-middle text-green-400"
+              />
+              <span
+                class="
+                  px-3
+                  md:text-xl
+                  text-transparent
+                  align-middle
+                  bg-clip-text bg-gradient-to-br
+                  from-blue-800
+                  to-pink-400
+                "
+                >{{ registry }}</span
+              >
+            </td>
+            <td class="text-center md:text-left px-1 md:px-3 py-2">
+              <template v-if="is">
+                <mdi-check-circle class="text-green-500 w-7 h-7 align-middle" />
+                <span
+                  class="
+                    hidden
+                    md:inline
+                    ml-2
+                    text-green-600 text-lg
+                    align-middle
+                  "
+                  >The name is registerable</span
+                >
+              </template>
+              <template v-else>
+                <mdi-close-circle class="text-red-500 w-7 h-7 align-middle" />
+                <span
+                  class="
+                    hidden
+                    md:inline
+                    align-middle
+                    ml-2
+                    text-red-600 text-lg
+                  "
+                  >The name is not registerable</span
+                >
+              </template>
 
-            <template v-if="has(registry, state.error)">
-              <p>
-                <mdi-information class="align-middle" />
-                {{ state.error[registry] }}
-              </p>
-            </template>
-          </td>
-        </tr>
-      </table>
+              <template v-if="has(registry, state.error)">
+                <p class="space-x-1">
+                  <mdi-information class="align-middle text-amber-400" />
+                  <span
+                    class="
+                      text-sm text-gray-500
+                      border-b border-dotted border-amber-400
+                    "
+                  >
+                    {{ state.error[registry] }}
+                  </span>
+                </p>
+              </template>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <Overlay
@@ -154,7 +280,7 @@
 import { ref, reactive, computed, watch } from 'vue'
 import { registerable } from 'registerable'
 import Overlay from './components/Overlay.vue'
-import { has, isEmpty, or, N } from 'fonction'
+import { has, isEmpty, or, keys, length, isLength0, N, props } from 'fonction'
 import { Loading } from 'xross-vue'
 type Option = {
   mode: 'server' | 'universal'
@@ -162,6 +288,13 @@ type Option = {
   registry: []
   languages: ['typescript', 'javascript']
 }
+
+const choiseRegistries = ['deno.land', 'nest.land', 'npm'] as const
+const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
+  'deno.land',
+  'nest.land',
+  'npm'
+])
 
 const isLoading = ref<boolean>(false)
 const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
@@ -176,6 +309,12 @@ watch(search, (now) => {
 const clear = () => {
   search.value = ''
 }
+
+const reset = (): void => {
+  state.name = ''
+  state.result = {}
+  state.error = {}
+}
 const state = reactive<{
   name: string
   result: Record<string, boolean>
@@ -189,8 +328,13 @@ const state = reactive<{
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
   isLoading.value = true
+  if (isLength0(registries.value)) {
+    registries.value = ['deno.land', 'nest.land', 'npm']
+  }
+  reset()
   const { name, result, hasError, error } = await registerable(search.value, {
-    mode: 'universal'
+    mode: 'universal',
+    registry: registries.value
   })
 
   state.name = name
@@ -200,16 +344,19 @@ const onClick = async () => {
   }
 
   isLoading.value = false
-
-  console.log(result)
 }
 
 const searchable = computed(() => !isEmpty(search.value))
 const registryPair = computed(() => Object.entries(state.result))
+const resulted = computed<boolean>(() => N(isEmpty(props('name', state))))
 </script>
 
 <style>
 body {
-  @apply antialiased text-gray-700;
+  @apply antialiased text-gray-600;
+}
+
+input[type='checkbox']:checked + label {
+  @apply bg-red-200 opacity-100 ring-2 ring-red-400;
 }
 </style>

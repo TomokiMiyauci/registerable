@@ -15,7 +15,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "fonction": "^1.8.0-beta.7",
     "prettier": "^2.3.0",
-    "registerable": "^1.2.0-beta.1",
+    "registerable": "^1.2.1",
     "typescript": "^4.1.3",
     "vite": "^2.3.3",
     "vite-plugin-components": "^0.9.1",
