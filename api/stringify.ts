@@ -1,9 +1,7 @@
 import { Registry } from "../types/mod.ts";
-const BASE_URL = "https://registerable-cpqkjhmf3-tomoki-miyauci.vercel.app/";
+import { BASE_URL } from "./_constants.ts";
 
-const stringify = (
-  val: { name: string; registry: Registry[] },
-): string => {
+const stringify = (val: { name: string; registry: Registry[] }): string => {
   const url = new URL("check-name", BASE_URL);
   url.search = constructSearchParams(val).toString();
 
