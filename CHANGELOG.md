@@ -1,3 +1,8 @@
+# [v1.2.0-beta.6](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.5...v1.2.0-beta.6) (2021-06-02)
+
+## 🐛 Bug Fixes
+- [`b1ac9b7`](https://github.com/TomokiMiyauci/registerable/commit/b1ac9b7)   Pinned dependency version
+
 # [v1.2.0-beta.5](https://github.com/TomokiMiyauci/registerable/compare/v1.2.0-beta.4...v1.2.0-beta.5) (2021-05-30)
 
 ## ✨ New Features
