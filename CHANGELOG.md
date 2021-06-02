@@ -1,3 +1,8 @@
+# [v1.2.2](https://github.com/TomokiMiyauci/registerable/compare/v1.2.1...v1.2.2) (2021-06-02)
+
+## 🐛 Bug Fixes
+- [`0939477`](https://github.com/TomokiMiyauci/registerable/commit/0939477)  (api) Pinned endpoint base URL
+
 # [v1.2.2-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.2.1...v1.2.2-beta.1) (2021-06-02)
 
 ## 🐛 Bug Fixes
