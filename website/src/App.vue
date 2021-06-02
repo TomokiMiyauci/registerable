@@ -1,6 +1,6 @@
 <template>
   <header class="shadow items-center justify-between flex text-3xl p-2 px-3">
-    <h1><span class="text-red-600">N</span>ameable</h1>
+    <h1><span class="text-red-600">R</span>egisterable</h1>
 
     <a
       href="https://github.com/TomokiMiyauci/registerable/tree/main"
@@ -13,7 +13,7 @@
   <div class="container mx-auto lg:px-8">
     <section class="px-4 text-center p-5">
       <h1 class="text-4xl my-3">Registerable</h1>
-      <p>Check module name</p>
+      <p>Check if package name can be registered</p>
 
       <div class="mt-8 m-1">
         <span
@@ -36,7 +36,7 @@
           <mdi-magnify class="ml-4 w-8 h-8" />
           <input
             v-model="search"
-            placeholder="Check module name"
+            placeholder="Check package name"
             spellcheck="false"
             @keydown.enter="onClick"
             class="
@@ -49,6 +49,9 @@
               ring-fuchsia-300
             "
           />
+          <button class="p-2 text-blue-300" @click="clear" v-show="searchable">
+            <mdi-close-circle class="w-7 h-7" />
+          </button>
           <button
             class="
               flex
@@ -57,10 +60,13 @@
               h-full
               p-2
               outline-none
-              hover:bg-red-200
+              hover:(bg-red-200
+              text-red-400)
               focus:(outline-none
               bg-red-200)
+              disabled:text-gray-300
             "
+            :disabled="!searchable"
             @click="onClick"
           >
             <mdi-send class="w-7 h-7" />
@@ -117,14 +123,39 @@
         </tr>
       </table>
     </div>
+
+    <Overlay
+      v-model="isLoading"
+      class="flex items-center justify-center bg-gray-300 bg-opacity-50"
+    >
+      <span
+        class="
+          min-h-20 min-w-20
+          md:(h-40
+          w-40)
+          rounded-md
+          p-5
+          bg-white
+          shadow
+          flex flex-col
+          items-center
+          justify-center
+        "
+      >
+        <Loading :radius="20" :stroke="4" color="warning" />
+
+        Searching
+      </span>
+    </Overlay>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
-import { checkName } from 'registerable'
-import { has } from 'fonction'
-
+import { ref, reactive, computed, watch } from 'vue'
+import { registerable } from 'registerable'
+import Overlay from './components/Overlay.vue'
+import { has, isEmpty, or, N } from 'fonction'
+import { Loading } from 'xross-vue'
 type Option = {
   mode: 'server' | 'universal'
   json: boolean
@@ -132,7 +163,19 @@ type Option = {
   languages: ['typescript', 'javascript']
 }
 
-const search = ref<string>('')
+const isLoading = ref<boolean>(false)
+const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
+watch(search, (now) => {
+  history.pushState(
+    { q: now },
+    '',
+    `?${new URLSearchParams({ q: now }).toString()}`
+  )
+})
+
+const clear = () => {
+  search.value = ''
+}
 const state = reactive<{
   name: string
   result: Record<string, boolean>
@@ -144,7 +187,9 @@ const state = reactive<{
 })
 
 const onClick = async () => {
-  const { name, result, hasError, error } = await checkName(search.value, {
+  if (or(isEmpty(search.value), () => isLoading.value)) return
+  isLoading.value = true
+  const { name, result, hasError, error } = await registerable(search.value, {
     mode: 'universal'
   })
 
@@ -154,9 +199,12 @@ const onClick = async () => {
     state.error = error
   }
 
+  isLoading.value = false
+
   console.log(result)
 }
 
+const searchable = computed(() => !isEmpty(search.value))
 const registryPair = computed(() => Object.entries(state.result))
 </script>
 
