@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo image" src="img/logo.png" />
+  <img alt="logo image" src="https://res.cloudinary.com/dz3vsv9pg/image/upload/v1622682435/projects/registerable/logo.png" />
   <h1 align="center">Registerable</h1>
 </p>
 
@@ -92,13 +92,13 @@ The Cli interface is common to `Deno` and `Node.js`.
 `Options`:  
 **All options are optional**
 
-| flag | desc  | type | default | choice |
-| -----| ------| -----| -----| ---- |
-| `-r`, `--registry` | Query to registry | `array` | [`deno.land`, `nest.land`, `npm`] | `deno.land`, `nest.land`, `npm` |
-| `-j`, `--json` | Display to JSON format| `boolean`| `false` |
-| `--verbose` | Verbose mode | `boolean` | `true` |
-| `-h`, `--help` | Show help | `boolean` |  | |
-| `-v`, `--version` | Show version number |  | |
+| flag               | desc                   | type      | default                           | choice                          |
+| ------------------ | ---------------------- | --------- | --------------------------------- | ------------------------------- |
+| `-r`, `--registry` | Query to registry      | `array`   | [`deno.land`, `nest.land`, `npm`] | `deno.land`, `nest.land`, `npm` |
+| `-j`, `--json`     | Display to JSON format | `boolean` | `false`                           |
+| `--verbose`        | Verbose mode           | `boolean` | `true`                            |
+| `-h`, `--help`     | Show help              | `boolean` |                                   |                                 |
+| `-v`, `--version`  | Show version number    |           |                                   |
 
 #### Deno
 
@@ -169,7 +169,10 @@ The JavaScript API is the best way to call it programmatically.
 Type Definition:
 
 ```ts
-declare const registerable: <T extends "nest.land" | "npm" | "deno.land">(name: string, option?: Partial<Option<T>> | undefined) => Promise<RegisterableResult<T>>;
+declare const registerable: <T extends "nest.land" | "npm" | "deno.land">(
+  name: string,
+  option?: Partial<Option<T>> | undefined
+) => Promise<RegisterableResult<T>>;
 ```
 
 ### Parameters
@@ -180,16 +183,16 @@ This function accept 2 arguments.
 
 #### name [`required`]
 
-| name | type | desc |
-| -----| -----| ----|
-| `name`| `string` |Query name |  
+| name   | type     | desc       |
+| ------ | -------- | ---------- |
+| `name` | `string` | Query name |
 
 #### option [`optional`]
 
-| name | type | desc |  default |
-|--|--|--| -- |
-| `registry` | `array` | Pick the package registry to query. choice: `deno.land`, `nest.land` and `npm` | [`deno.land`, `nest.land`, `npm`] |
-| `mode` | `string` | Specifies where this function is called. choice: `server` or `universal`  | `server` |
+| name       | type     | desc                                                                           | default                           |
+| ---------- | -------- | ------------------------------------------------------------------------------ | --------------------------------- |
+| `registry` | `array`  | Pick the package registry to query. choice: `deno.land`, `nest.land` and `npm` | [`deno.land`, `nest.land`, `npm`] |
+| `mode`     | `string` | Specifies where this function is called. choice: `server` or `universal`       | `server`                          |
 
 #### What is mode?
 
@@ -235,13 +238,13 @@ The return value is a JSONObject that indicates whether it can be registered in 
 }
 ```
 
-| name | desc |
-| -----| ---- |
-| `name` | Same as query name |
-| `result` | Map of registry name and result of registerable or not |
-| `error` | Map of registry name and validation error message |
-| `hasError` | Set this flag to `true` if each registry query has more than one name validation error. |
-| `errorRegistry` | List the registry names that had validation errors |
+| name            | desc                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------- |
+| `name`          | Same as query name                                                                      |
+| `result`        | Map of registry name and result of registerable or not                                  |
+| `error`         | Map of registry name and validation error message                                       |
+| `hasError`      | Set this flag to `true` if each registry query has more than one name validation error. |
+| `errorRegistry` | List the registry names that had validation errors                                      |
 
 ### Definition of error
 
@@ -253,7 +256,7 @@ For example, if there is a validation error as the package name for `deno.land` 
 
 ```ts
 const { result, error, errorRegistry } = await registerable('exist-package-name')
-// result 
+// result
 {
   result: {
     "deno.land": false,
@@ -278,7 +281,7 @@ errorRegistry.forEach((registry) => console.warn(registry, error[registry]))
 
 ```ts
 await registerable('not_exist_package')
-// result 
+// result
 {
   result: {
     "deno.land": true,
@@ -294,7 +297,7 @@ await registerable('not_exist_package')
 await registerable('not_exist_package', {
   registry: ['deno.land']
 })
-// result 
+// result
 {
   result: {
     "deno.land": true
@@ -317,16 +320,16 @@ This project provide `ES modules` and `UMD`. The range supported by both is diff
 Limit support to the latest environment to reduce the bundle size.
 
 | <img width="30px" height="30px" alt="Deno" src="https://res.cloudinary.com/dz3vsv9pg/image/upload/v1620998361/logos/deno.svg"></br>Deno | <img width="24px" height="24px" alt="Node.js" src="https://res.cloudinary.com/dz3vsv9pg/image/upload/v1620998361/logos/nodejs.svg"></br>Node.js | <img width="24px" height="24px" alt="IE / Edge" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png"></br>Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" /></br>iOS Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" /></br>Samsung | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" /></br>Opera |
-| - | -- | - | -- | - | - | - | -- | -- |
-| ^1.6.0 | ^14.16.0 | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ^1.6.0                                                                                                                                  | ^14.16.0                                                                                                                                        | last 2 versions                                                                                                                                      | last 2 versions                                                                                                                                               | last 2 versions                                                                                                                                           | last 2 versions                                                                                                                                           | last 2 versions                                                                                                                                                           | last 2 versions                                                                                                                                                                 | last 2 versions                                                                                                                                       |
 
 ### UMD
 
 Browser is supporting since IE11.
 
 | <img width="24px" height="24px" alt="Node.js" src="https://res.cloudinary.com/dz3vsv9pg/image/upload/v1620998361/logos/nodejs.svg"></br>Node.js | <img width="24px" height="24px" alt="IE / Edge" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png"></br>IE / Edge | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" /></br>Firefox | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" /></br>Chrome | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" /></br>Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" /></br>iOS Safari | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" /></br>Samsung | <img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" /></br>Opera |
-| - | - | - | - | - | - | - | - |
-| ^6.17.0 | IE11 / ^16 | ^60 | ^61 | ^10.1 | ^10.3 | ^8.2 | ^48 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ^6.17.0                                                                                                                                         | IE11 / ^16                                                                                                                                                | ^60                                                                                                                                                           | ^61                                                                                                                                                       | ^10.1                                                                                                                                                     | ^10.3                                                                                                                                                                     | ^8.2                                                                                                                                                                            | ^48                                                                                                                                                   |
 
 Compared to `ES modules`, `UMD` has a bundle size increase of about 2.5x. Recommend using `ES modules` as much as possible.
 
