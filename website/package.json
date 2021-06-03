@@ -2,6 +2,7 @@
   "name": "website",
   "license": "MIT",
   "scripts": {
+    "cz": "yarn --cwd .. cz",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
@@ -11,6 +12,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^1.1.345",
+    "@miyauci/is-valid": "^1.0.0-beta.9",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
     "fonction": "^1.8.0-beta.7",

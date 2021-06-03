@@ -55,3 +55,7 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  @apply antialiased text-gray-600;
+}
