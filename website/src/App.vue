@@ -1,6 +1,18 @@
 <template>
   <header class="shadow items-center justify-between flex text-3xl p-2 px-3">
-    <h1><span class="text-red-600">R</span>egisterable</h1>
+    <h1
+      class="
+        text-shadow
+        bg-clip-text
+        text-transparent
+        bg-gradient-to-br
+        from-violet-900
+        via-pink-600
+        to-yellow-300
+      "
+    >
+      Registerable
+    </h1>
 
     <a
       href="https://github.com/TomokiMiyauci/registerable/tree/main"
@@ -19,7 +31,6 @@
         <span
           class="
             flex
-            border
             items-center
             mx-auto
             max-w-2xl
@@ -30,15 +41,15 @@
             duration-300
             transform
             hover:bg-gray-100
-            focus-within:(ring-2
-            text-red-400
+            focus-within:(ring-4
             scale-103
             shadow-md)
-            ring-red-400
+            ring-gray-400 ring-opacity-70 ring-offset-gray-800 ring-offset-1
           "
         >
           <mdi-magnify class="ml-4 w-8 h-8" />
           <input
+            ontouchstart=""
             v-model="search"
             placeholder="Check package name"
             spellcheck="false"
@@ -61,7 +72,10 @@
               flex
               transition
               duration-300
-              focus:outline-none
+              active:text-blue-600
+              focus:(outline-none
+              bg-blue-200
+              text-blue-500)
               hover:(bg-blue-200
               text-blue-400
               )
@@ -80,9 +94,9 @@
               h-full
               p-2
               focus:(outline-none
-              bg-red-200)
-              not-disabled:hover:(bg-red-200
-              text-red-400)
+              bg-gray-200)
+              not-disabled:hover:(bg-gray-300
+              text-gray-800)
               disabled:(text-gray-300
               cursor-not-allowed)
             "
@@ -105,6 +119,7 @@
           />
           <label
             :for="registry"
+            ontouchstart=""
             class="
               cursor-pointer
               inline-flex
@@ -113,10 +128,14 @@
               p-2
               w-22
               h-22
+              bg-gradient-to-br
               md:(
               w-30
               h-30)
-              hover:(bg-red-100
+              hover:(
+              from-purple-100
+              via-pink-100
+              to-yellow-100
               shadow-md)
               transform
               active:scale-110
@@ -156,10 +175,19 @@
     </section>
 
     <div v-show="resulted" class="p-4">
-      <h2 class="mt-5 my-3 lg:mt-30 max-w-4xl mx-auto">
-        <span class="text-2xl">Result</span>
+      <h2 class="mt-5 my-3 lg:mt-30 text-xl max-w-4xl mx-auto">
         <code
-          class="bg-gray-100 ml-2 p-0.5 shadow shadow-warm-gray-100 rounded"
+          class="
+            p-1
+            text-white
+            bg-gradient-to-br
+            from-violet-800
+            via-pink-600
+            to-yellow-400
+            px-3
+            rounded-full
+            shadow
+          "
           >{{ state.name }}</code
         >
       </h2>
@@ -167,7 +195,7 @@
       <div
         class="
           border
-          rounded-lg
+          rounded-2xl
           shadow
           hover:shadow-md
           overflow-hidden
@@ -380,6 +408,6 @@ body {
 }
 
 input[type='checkbox']:checked + label {
-  @apply bg-red-200 opacity-100 ring-2 ring-red-400;
+  @apply from-purple-400 via-pink-500 to-yellow-500 opacity-100 ring-3 md:ring-5 ring-yellow-300 ring-opacity-70 ring-offset-2 ring-offset-purple-500;
 }
 </style>
