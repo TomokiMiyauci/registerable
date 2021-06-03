@@ -19,7 +19,6 @@
         <span
           class="
             flex
-            border
             items-center
             mx-auto
             max-w-2xl
