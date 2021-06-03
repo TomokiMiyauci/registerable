@@ -156,11 +156,51 @@
     >
       <SearchLoader />
     </Overlay>
+
+    <transition name="fade">
+      <div
+        v-show="notice"
+        class="
+          fixed
+          inset-x-0
+          top-0
+          md:(bottom-0
+          left-0
+          top-auto
+          inset-x-auto
+          space-x-20
+          )
+          shadow
+          hover:(shadow-md)
+          p-3
+          text-xl text-white
+          bg-gradient-to-br
+          border
+          from-cyan-400
+          via-teal-500
+          to-yellow-500
+          rounded-xl
+          m-2
+          flex
+          items-center
+          justify-between
+        "
+      >
+        <span class="space-x-3">
+          <mdi-check class="align-middle" />
+          <span class="align-middle">Cheking is done</span>
+        </span>
+
+        <button @click="onClickClose" class="focus:outline-none">
+          <mdi-close class="align-middle" />
+        </button>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch, nextTick } from 'vue'
 import { registerable } from 'registerable'
 import SearchLoader from './components/SearchLoader.vue'
 import TheHeader from './components/TheHeader.vue'
@@ -169,6 +209,7 @@ import Overlay from './components/Overlay.vue'
 import RegistryIcon from './components/RegistryIcon.vue'
 import { isEmpty, or, pipe, isLength0, N, props, ifElse } from 'fonction'
 import { changeSearchQuery, safeFocus } from './_utils'
+import { isNumber } from '@miyauci/is-valid'
 
 const choiseRegistries = ['deno.land', 'nest.land', 'npm'] as const
 const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
@@ -176,6 +217,7 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
   'nest.land',
   'npm'
 ])
+const notice = ref<boolean>(false)
 const input = ref<HTMLInputElement>()
 const isLoading = ref<boolean>(false)
 const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
@@ -183,6 +225,28 @@ const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
 watch(search, (now) =>
   changeSearchQuery(location.href, ifElse(isEmpty(now), '', { q: now }))
 )
+
+const onClickClose = (): void => {
+  notice.value = false
+  clearInter()
+}
+
+const useSetTimeout = (handler: TimerHandler, mili: number) => {
+  let timeoutId: number | undefined = undefined
+
+  const set = () => {
+    clear()
+    timeoutId = setTimeout(handler, mili)
+  }
+
+  const clear = () => {
+    if (isNumber(timeoutId)) {
+      clearTimeout(timeoutId)
+    }
+  }
+
+  return { set, clear }
+}
 
 const clear = pipe(
   () => {
@@ -214,6 +278,10 @@ const chagneState = (
   state.error = error
 }
 
+const { set, clear: clearInter } = useSetTimeout(() => {
+  notice.value = false
+}, 3000)
+
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
 
@@ -226,8 +294,15 @@ const onClick = async () => {
     mode: 'universal',
     registry: registries.value
   })
+  notice.value = true
+  set()
   chagneState(state, { name, result, error })
   isLoading.value = false
+  await nextTick()
+  scroll({
+    top: outerHeight,
+    behavior: 'smooth'
+  })
 }
 
 const searchable = computed(() => !isEmpty(search.value))
@@ -238,5 +313,18 @@ const resulted = computed<boolean>(() => N(isEmpty(props('name', state))))
 <style scoped>
 input[type='checkbox']:checked + label {
   @apply from-purple-400 via-pink-500 to-yellow-500 opacity-100 ring-3 md:ring-5 ring-yellow-300 ring-opacity-70 ring-offset-2 ring-offset-purple-500;
+}
+</style>
+
+<style>
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+  transform: translateY(-100%);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.15s ease-in-out;
 }
 </style>

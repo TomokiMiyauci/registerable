@@ -30,7 +30,7 @@
   resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.352.tgz#d4708290f2d8505ecac97ab907d0a834d0bdb623"
   integrity sha512-9t7brMQ/JbD+b1RObCnZ6jHpmiyUbRlquN3fMLU0oJ5l7rgdljY0HQv4CPfgHYbTlZYSBRIP+jE4VQay1zUnWg==
 
-"@miyauci/is-valid@1.0.0-beta.9":
+"@miyauci/is-valid@1.0.0-beta.9", "@miyauci/is-valid@^1.0.0-beta.9":
   version "1.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@miyauci/is-valid/-/is-valid-1.0.0-beta.9.tgz#81974d56eed8944a61246f2fee7539ed6055d160"
   integrity sha512-J0sNliONAnldZnk1TpX0R6zEv7u5IumItAktaty/XQ3i+fsUcWw7bNAKgtiS54HVB833erRnQ7GmQNfq8Rkd4Q==
