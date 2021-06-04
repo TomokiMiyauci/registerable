@@ -152,7 +152,7 @@
     </section>
 
     <transition name="expand">
-      <div v-show="!isLoading && resulted" class="p-4">
+      <div ref="div" v-show="!isLoading && resulted" class="p-4">
         <Result
           :result="registryPair"
           :error="state.error"
@@ -160,54 +160,55 @@
         />
       </div>
     </transition>
-
-    <Overlay
-      v-model="isLoading"
-      class="flex backdrop-filter backdrop-blur items-center justify-center"
-    >
-      <SearchLoader />
-    </Overlay>
-
-    <transition name="slide-left">
-      <div
-        v-show="notice"
-        class="
-          fixed
-          inset-x-0
-          top-0
-          md:(bottom-0
-          left-0
-          top-auto
-          inset-x-auto
-          space-x-20
-          )
-          shadow
-          hover:(shadow-md)
-          p-3
-          text-xl text-white
-          bg-gradient-to-br
-          border
-          from-cyan-400
-          via-teal-500
-          to-yellow-500
-          rounded-xl
-          m-2
-          flex
-          items-center
-          justify-between
-        "
-      >
-        <span class="space-x-3">
-          <mdi-check class="align-middle" />
-          <span class="align-middle">Cheking is done</span>
-        </span>
-
-        <button @click="onClickClose" class="focus:outline-none">
-          <mdi-close class="align-middle" />
-        </button>
-      </div>
-    </transition>
   </div>
+
+  <the-footer />
+
+  <Overlay
+    v-model="isLoading"
+    class="flex backdrop-filter backdrop-blur items-center justify-center"
+  >
+    <SearchLoader />
+  </Overlay>
+
+  <transition name="slide-left">
+    <div
+      v-show="notice"
+      class="
+        fixed
+        inset-x-0
+        bottom-0
+        md:(
+        left-0
+        inset-x-auto
+        space-x-20
+        )
+        shadow
+        hover:(shadow-md)
+        p-3
+        text-xl text-white
+        bg-gradient-to-br
+        border
+        from-cyan-400
+        via-teal-500
+        to-yellow-500
+        rounded-xl
+        m-2
+        flex
+        items-center
+        justify-between
+      "
+    >
+      <span class="space-x-3">
+        <mdi-check class="align-middle" />
+        <span class="align-middle">Cheking is done</span>
+      </span>
+
+      <button @click="onClickClose" class="focus:outline-none">
+        <mdi-close class="align-middle" />
+      </button>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
@@ -215,6 +216,7 @@ import { ref, reactive, computed, watch, nextTick } from 'vue'
 import { registerable } from 'registerable'
 import SearchLoader from './components/SearchLoader.vue'
 import TheHeader from './components/TheHeader.vue'
+import TheFooter from './components/TheFooter.vue'
 import Result from './components/Result.vue'
 import Overlay from './components/Overlay.vue'
 import RegistryIcon from './components/RegistryIcon.vue'
@@ -230,6 +232,7 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
 ])
 const notice = ref<boolean>(false)
 const input = ref<HTMLInputElement>()
+const div = ref<HTMLDivElement>()
 const isLoading = ref<boolean>(false)
 const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
 
@@ -311,8 +314,7 @@ const onClick = async () => {
   chagneState(state, { name, result, error })
   isLoading.value = false
   await nextTick()
-  scroll({
-    top: outerHeight,
+  div.value?.scrollIntoView({
     behavior: 'smooth'
   })
 }
