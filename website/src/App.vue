@@ -30,7 +30,7 @@
           <mdi-magnify class="ml-4 w-8 h-8" />
           <input
             ontouchstart=""
-            v-model="search"
+            v-model.trim="search"
             placeholder="Check package name"
             spellcheck="false"
             autofocus
@@ -295,6 +295,7 @@ const { set, clear: clearInter } = useSetTimeout(() => {
 
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
+  input.value?.blur()
   isLoading.value = true
   await nextTick()
   if (isLength0(registries.value)) {
