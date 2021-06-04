@@ -152,7 +152,7 @@
     </section>
 
     <transition name="expand">
-      <div v-show="!isLoading & resulted" class="p-4">
+      <div v-show="!isLoading && resulted" class="p-4">
         <Result
           :result="registryPair"
           :error="state.error"
