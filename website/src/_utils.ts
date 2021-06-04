@@ -20,4 +20,24 @@ const safeFocus = (el: HTMLElement | undefined): void => {
     focus(el)
   }
 }
-export { changeSearchQuery, safeFocus }
+
+const getRegistryBaseURL = (registry: string): string => {
+  switch (registry) {
+    case 'deno.land': {
+      return 'https://deno.land/x/'
+    }
+    case 'nest.land': {
+      return 'https://nest.land/package/'
+    }
+    case 'npm': {
+      return 'https://www.npmjs.com/package/'
+    }
+    default: {
+      return ''
+    }
+  }
+}
+const getPackageURL = (registry: string, packageName: string): string =>
+  new URL(packageName, getRegistryBaseURL(registry)).toString()
+
+export { changeSearchQuery, safeFocus, getPackageURL }

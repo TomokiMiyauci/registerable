@@ -66,16 +66,49 @@
             >
           </template>
           <template v-else>
-            <mdi-close-circle class="text-red-500 w-7 h-7 align-middle" />
-            <span
-              class="hidden md:inline align-middle ml-2 text-red-600 text-lg"
-              >The name is not registerable</span
-            >
+            <div class="md:(flex justify-between) relative">
+              <span>
+                <mdi-close-circle class="text-red-500 w-7 h-7 align-middle" />
+                <span
+                  class="
+                    hidden
+                    md:inline
+                    align-middle
+                    ml-2
+                    text-red-600 text-lg
+                  "
+                  >{{
+                    has(registry, error)
+                      ? 'The name is invalid'
+                      : 'The package already exists'
+                  }}</span
+                >
+              </span>
+
+              <a
+                :href="getPackageURL(registry, name)"
+                target="_blank"
+                title="Link to registry"
+              >
+                <akar-icons-link-out
+                  v-if="!has(registry, error)"
+                  class="
+                    align-middle
+                    text-gray-500
+                    w-7
+                    h-7
+                    absolute
+                    md:(static
+                    right-auto) right-1
+                  "
+                />
+              </a>
+            </div>
           </template>
 
           <template v-if="has(registry, error)">
             <p class="space-x-1">
-              <mdi-information class="align-middle text-amber-400" />
+              <mdi-help-circle class="align-middle text-amber-400" />
               <span
                 class="
                   text-sm text-gray-500
@@ -94,6 +127,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { getPackageURL } from '../_utils'
 defineProps<{
   result: [string, boolean][]
   error: Record<string, string>

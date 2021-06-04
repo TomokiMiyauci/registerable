@@ -4,7 +4,7 @@
       min-h-20 min-w-20
       md:(h-40
       w-40)
-      rounded-md
+      rounded-xl
       transition-shadow
       duration-300
       hover:(shadow-xl)
