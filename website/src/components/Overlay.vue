@@ -1,8 +1,10 @@
 <template>
   <Teleport to="#app">
-    <div v-show="modelValue" class="inset-0 fixed" :class="class">
-      <slot />
-    </div>
+    <transition name="fade">
+      <div v-show="modelValue" class="inset-0 fixed" :class="class">
+        <slot />
+      </div>
+    </transition>
   </Teleport>
 </template>
 
