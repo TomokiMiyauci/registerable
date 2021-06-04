@@ -17,6 +17,7 @@
     <a
       href="https://github.com/TomokiMiyauci/registerable/tree/main"
       target="_blank"
+      title="GitHub"
     >
       <logos-github-icon class="align-middle" />
     </a>
