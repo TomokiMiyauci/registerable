@@ -62,7 +62,7 @@
               )
               text-blue-300
             "
-            @click="clear"
+            @click="onClickClear('')"
             v-show="searchable"
           >
             <mdi-close-circle class="w-7 h-7" />
@@ -220,7 +220,7 @@ import TheFooter from './components/TheFooter.vue'
 import Result from './components/Result.vue'
 import Overlay from './components/Overlay.vue'
 import RegistryIcon from './components/RegistryIcon.vue'
-import { isEmpty, or, pipe, isLength0, N, props, ifElse } from 'fonction'
+import { isEmpty, or, pipe, isLength0, N, props, ifElse, tap } from 'fonction'
 import { changeSearchQuery, safeFocus } from './_utils'
 import { isNumber } from '@miyauci/is-valid'
 
@@ -235,6 +235,9 @@ const input = ref<HTMLInputElement>()
 const div = ref<HTMLDivElement>()
 const isLoading = ref<boolean>(false)
 const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
+const changeSearch = (val: string): void => {
+  search.value = val
+}
 
 watch(search, (now) =>
   changeSearchQuery(location.href, ifElse(isEmpty(now), '', { q: now }))
@@ -262,13 +265,11 @@ const useSetTimeout = (handler: TimerHandler, mili: number) => {
   return { set, clear }
 }
 
-const clear = pipe(
-  () => {
-    search.value = ''
-  },
-  () => {
+const onClickClear = pipe(
+  tap(changeSearch),
+  tap(() => {
     safeFocus(input.value)
-  }
+  })
 )
 
 type RegisterableResult = {
