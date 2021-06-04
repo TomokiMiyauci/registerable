@@ -8,6 +8,7 @@
 
       <div class="mt-8 md:my-12 m-1">
         <span
+          title="Search"
           class="
             flex
             items-center
@@ -46,6 +47,7 @@
             "
           />
           <button
+            title="Clear"
             class="
               p-2
               flex
@@ -87,7 +89,7 @@
         </span>
       </div>
 
-      <div class="space-x-3 md:space-x-6 mt-9 md:mt-12 flex justify-center">
+      <div class="mt-9 md:mt-12 flex justify-center">
         <template v-for="registry in choiseRegistries">
           <input
             class="appearance-none"
@@ -99,7 +101,9 @@
           <label
             :for="registry"
             ontouchstart=""
+            :title="registry"
             class="
+              mx-3
               cursor-pointer
               inline-flex
               opacity-70
@@ -109,6 +113,7 @@
               h-22
               bg-gradient-to-br
               md:(
+              mx-4
               w-30
               h-30)
               hover:(
@@ -146,18 +151,24 @@
       </p>
     </section>
 
-    <div v-show="resulted" class="p-4">
-      <Result :result="registryPair" :error="state.error" :name="state.name" />
-    </div>
+    <transition name="expand">
+      <div v-show="!isLoading & resulted" class="p-4">
+        <Result
+          :result="registryPair"
+          :error="state.error"
+          :name="state.name"
+        />
+      </div>
+    </transition>
 
     <Overlay
       v-model="isLoading"
-      class="flex items-center justify-center bg-gray-300 bg-opacity-50"
+      class="flex backdrop-filter backdrop-blur items-center justify-center"
     >
       <SearchLoader />
     </Overlay>
 
-    <transition name="fade">
+    <transition name="slide-left">
       <div
         v-show="notice"
         class="
@@ -262,12 +273,12 @@ type RegisterableResult = {
   result: Record<string, boolean>
   error: Record<string, string>
 }
-const initState: RegisterableResult = {
+
+const state = reactive<RegisterableResult>({
   name: '',
   result: {},
   error: {}
-}
-const state = reactive<RegisterableResult>(initState)
+})
 
 const chagneState = (
   state: RegisterableResult,
@@ -284,12 +295,12 @@ const { set, clear: clearInter } = useSetTimeout(() => {
 
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
-
   isLoading.value = true
+  await nextTick()
   if (isLength0(registries.value)) {
     registries.value = ['deno.land', 'nest.land', 'npm']
   }
-  chagneState(state, initState)
+
   const { name, result, error } = await registerable(search.value, {
     mode: 'universal',
     registry: registries.value
@@ -317,14 +328,23 @@ input[type='checkbox']:checked + label {
 </style>
 
 <style>
-.fade-enter-from,
-.fade-leave-to {
-  @apply opacity-0;
-  transform: translateY(-100%);
+.slide-left-enter-from,
+.slide-left-leave-to {
+  @apply opacity-0 transform -translate-x-full;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.15s ease-in-out;
+.slide-left-enter-active,
+.slide-left-leave-active {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  @apply scale-0 transform origin-top;
+}
+
+.expand-enter-active,
+.expand-leave-active {
+  @apply transition-all duration-300;
 }
 </style>

@@ -19,6 +19,8 @@
     class="
       border
       rounded-2xl
+      transition-shadow
+      duration-300
       shadow
       hover:shadow-md
       overflow-hidden
