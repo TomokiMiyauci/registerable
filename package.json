@@ -1,7 +1,7 @@
 {
   "name": "registerable",
   "description": "Check if it can be registered as a package name or domain name",
-  "version": "1.2.2",
+  "version": "1.2.3-beta.1",
   "bin": {
     "registerable": "dist/cli.js"
   },

@@ -1,3 +1,8 @@
+# [v1.2.3-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.2.2...v1.2.3-beta.1) (2021-06-04)
+
+## 🐛 Bug Fixes
+- [`b7f30f7`](https://github.com/TomokiMiyauci/registerable/commit/b7f30f7)   Fix validation for npm rules
+
 # [v1.2.2-beta.2](https://github.com/TomokiMiyauci/registerable/compare/v1.2.2-beta.1...v1.2.2-beta.2) (2021-06-04)
 
 ## 🐛 Bug Fixes
