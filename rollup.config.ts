@@ -1,10 +1,10 @@
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 import ts from "rollup-plugin-ts";
 import { resolve } from "path";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import shebang from "rollup-plugin-add-shebang";
-import { main, module } from "./package.json";
+import { main, module, dependencies } from "./package.json";
+import { keys } from "fonction";
 import json from "@rollup/plugin-json";
 
 const baseDir = resolve(__dirname);
@@ -14,19 +14,12 @@ const banner =
 
 const replaceOption = {
   ".ts": "",
-  "https://deno.land/x/fonction@v1.8.0-beta.7/mod": "fonction",
+  "https://deno.land/x/fonction@v1.8.1/mod": "fonction",
   "https://deno.land/x/is_valid@v1.0.0-beta.9/mod": "@miyauci/is-valid",
-  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.8/mod":
+  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.9/mod":
     "is-valid-package-name",
-  preventAssignment: true,
+  preventAssignment: true
 };
-
-const external = [
-  "cross-fetch",
-  "@miyauci/is-valid",
-  "fonction",
-  "is_valid_package_name",
-];
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
   name: "preserve-fetch",
@@ -34,7 +27,7 @@ const rollupPluginPreserveFetch = (preserve, target) => ({
     if (mod.includes("node_modules")) return;
     const formattedCode = code.includes(target) ? `${preserve}${code}` : code;
     return { code: formattedCode, map: null };
-  },
+  }
 });
 
 const nodeFetch = `import fetch from 'cross-fetch'\n`;
@@ -42,28 +35,26 @@ const config = [
   {
     input: inputFilePath,
     plugins: [
-      // rollupPluginPreserveFetch(nodeFetch, "fetch"),
+      rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
         transpiler: "babel",
-        browserslist: ["defaults", "node 6", "supports es6-module"],
-        tsconfig: (resolvedConfig) => ({
+        tsconfig: resolvedConfig => ({
           ...resolvedConfig,
-          declaration: false,
-        }),
+          declaration: false
+        })
       }),
-      nodeResolve(),
-      terser(),
+      terser()
     ],
 
-    external,
+    external: keys(dependencies),
 
     output: {
       file: main,
       format: "cjs",
       sourcemap: true,
-      banner,
-    },
+      banner
+    }
   },
   {
     input: inputFilePath,
@@ -71,25 +62,24 @@ const config = [
       rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
-        transpiler: "babel",
+        transpiler: "babel"
       }),
-      nodeResolve(),
-      terser(),
+      terser()
     ],
 
-    external,
+    external: keys(dependencies),
 
     output: {
       file: module,
       format: "es",
       sourcemap: true,
-      banner,
-    },
+      banner
+    }
   },
   {
     input: "tmp/cli/node.ts",
 
-    external: [...external, "yargs"],
+    external: [...keys(dependencies), "yargs/helpers"],
 
     plugins: [
       json(),
@@ -97,24 +87,23 @@ const config = [
       replace(replaceOption),
       ts({
         browserslist: false,
-        tsconfig: (resolvedConfig) => ({
+        tsconfig: resolvedConfig => ({
           ...resolvedConfig,
           declaration: false,
-          declarationMap: false,
-        }),
+          declarationMap: false
+        })
       }),
-      nodeResolve(),
       terser(),
-      shebang(),
+      shebang()
     ],
 
     output: {
       file: "dist/cli.js",
       format: "cjs",
       sourcemap: true,
-      banner,
-    },
-  },
+      banner
+    }
+  }
 ];
 
 export default config;

@@ -32,7 +32,7 @@ export {
   trim,
   tryCatch,
   uniq,
-} from "https://deno.land/x/fonction@v1.8.0-beta.7/mod.ts";
+} from "https://deno.land/x/fonction@v1.8.1/mod.ts";
 export {
   failOnTrue,
   gtLength,
@@ -42,6 +42,6 @@ export {
   validateDenoLand,
   validateNestLand,
   validateNpm,
-} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.8/mod.ts";
+} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.9/mod.ts";
 
-export type { AnyFn } from "https://deno.land/x/fonction@v1.8.0-beta.7/mod.ts";
+export type { AnyFn } from "https://deno.land/x/fonction@v1.8.1/mod.ts";
