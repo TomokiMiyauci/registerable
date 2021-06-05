@@ -42,6 +42,6 @@ export {
   validateDenoLand,
   validateNestLand,
   validateNpm,
-} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.9/mod.ts";
+} from "https://deno.land/x/is_valid_package_name@v1.0.0-beta.10/mod.ts";
 
 export type { AnyFn } from "https://deno.land/x/fonction@v1.8.1/mod.ts";

@@ -16,7 +16,7 @@ const replaceOption = {
   ".ts": "",
   "https://deno.land/x/fonction@v1.8.1/mod": "fonction",
   "https://deno.land/x/is_valid@v1.0.0-beta.9/mod": "@miyauci/is-valid",
-  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.9/mod":
+  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.10/mod":
     "is-valid-package-name",
   preventAssignment: true
 };

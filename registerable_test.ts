@@ -79,7 +79,7 @@ Deno.test("registerable", async () => {
     result: { "deno.land": false, npm: false },
     hasError: true,
     error: {
-      "deno.land": "Name length must be greater equal than 3",
+      "deno.land": "Name length must be greater than 2",
     },
     errorRegistry: ["deno.land"],
     name: "-",

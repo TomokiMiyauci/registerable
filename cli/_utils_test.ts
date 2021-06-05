@@ -15,7 +15,7 @@ Deno.test("uniqFlatten", () => {
     assertEquals(
       uniqFlatten(val),
       expected,
-      `query2Direct(${val}) -> ${expected}`,
+      `uniqFlatten(${val}) -> ${expected}`,
     );
   });
 });
@@ -83,8 +83,8 @@ Deno.test("query2Direct", async () => {
       "@",
       {
         error: {
-          "deno.land": "Name length must be greater equal than 3",
-          "nest.land": "Name length must be greater equal than 2",
+          "deno.land": "Name length must be greater than 2",
+          "nest.land": "Name length must be greater than 1",
         },
         errorRegistry: ["deno.land", "nest.land"],
         hasError: true,
