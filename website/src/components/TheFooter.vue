@@ -6,14 +6,28 @@
       md:p-10
       from-gray-50
       to-white
+      dark:border-gray-500
+      dark:from-gray-800
+      dark:to-gray-900
       h-full
       mt-40
       bg-gradient-to-b
     "
   >
     <span class="space-x-2"
-      ><span class="uppercase font-bold text-black">Deploys by</span>
-      <logos-vercel class="w-20 h-10 md:(w-24 h-14) align-middle"
+      ><span class="uppercase font-bold text-black dark:text-gray-200"
+        >Deploys by</span
+      >
+      <logos-vercel
+        class="
+          w-20
+          h-10
+          stroke-4
+          dark:stroke-gray-200
+          md:(w-24
+          h-14)
+          align-middle
+        "
     /></span>
 
     <p class="text-center space-x-6 p-2 py-6 md:(p-10 space-x-10)">
@@ -29,7 +43,9 @@
         title="GitHub"
         target="_blank"
       >
-        <logos-github-icon class="align-middle w-10 h-10" />
+        <mdi-github
+          class="align-middle text-gray-700 dark:text-gray-200 w-10 h-10"
+        />
       </a>
     </p>
     <p class="text-center text-sm md:text-base text-gray-500">

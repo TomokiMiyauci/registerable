@@ -11,6 +11,7 @@
       p-5
       shadow-md
       bg-white
+      dark:bg-gray-500
       flex flex-col
       gap-2
       items-center
