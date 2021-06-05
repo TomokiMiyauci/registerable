@@ -1,11 +1,7 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
 import yargs from "https://deno.land/x/yargs@v17.0.1-deno/deno.ts";
 import type { Option } from "../types/mod.ts";
-
-type CommandLine = Omit<Option, "mode"> & {
-  verbose: boolean;
-  json: boolean;
-};
+import { CommandLine } from "./constants.ts";
 
 const defaultOption: CommandLine = {
   verbose: false,

@@ -2,13 +2,14 @@
 import { QUERY_MAP } from "./constants/mod.ts";
 import { ifElse, NN } from "./deps.ts";
 import { client } from "./api/client.ts";
-import { mapper, query2Direct, uniqFlatten } from "./cli/_utils.ts";
+import { mapper, server, uniqFlatten } from "./cli/_utils.ts";
 import { Option, Registry } from "./types/mod.ts";
 import { RegisterableResult } from "./types/mod.ts";
 
 const defaultOption: Option = {
   mode: "server",
   registry: ["deno.land", "nest.land", "npm"],
+  signal: undefined,
 };
 
 /**
@@ -65,14 +66,15 @@ const registerable = async <T extends Registry>(
   const {
     mode = defaultOption.mode,
     registry = defaultOption.registry,
+    signal = defaultOption.signal,
   } = option || defaultOption;
 
   const query = uniqFlatten(mapper(QUERY_MAP, registry)).filter((fn) => NN(fn));
 
   return await ifElse(
     mode === "server",
-    async () => await query2Direct(query, name),
-    async () => await client(name, { registry }),
+    async () => await server(query, name),
+    async () => await client(name, { registry, signal }),
   );
 };
 

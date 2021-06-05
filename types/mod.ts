@@ -16,6 +16,7 @@ interface RegisterableResult<T extends Registry = Registry> {
 type Option<T extends Registry = Registry> = {
   registry: T[];
   mode: "server" | "universal";
+  signal?: RequestInit["signal"];
 };
 
 export type { Option, RegisterableResult, Registry };

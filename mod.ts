@@ -9,3 +9,5 @@ if (import.meta.main) {
 }
 
 export { registerable };
+export type { RegisterableResult, Registry } from "./types/mod.ts";
+export { REGISTRIES } from "./constants/registry.ts";

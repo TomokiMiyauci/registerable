@@ -3,7 +3,7 @@ import { loggerFactory, logTableFactory } from "../log/log.ts";
 import { QUERY_MAP } from "../constants/mod.ts";
 import { entries, ifElse, NN } from "../deps.ts";
 import { CommandLine, defaultOption } from "./constants.ts";
-import { mapper, query2Direct, uniqFlatten } from "./_utils.ts";
+import { mapper, server, uniqFlatten } from "./_utils.ts";
 
 const checkNameWithLog = async (
   name: string,
@@ -21,7 +21,7 @@ const checkNameWithLog = async (
 
   const query = uniqFlatten(mapper(QUERY_MAP, registry)).filter((fn) => NN(fn));
 
-  const { result, error, hasError, errorRegistry } = await query2Direct(
+  const { result, error, hasError, errorRegistry } = await server(
     query,
     name,
   );
