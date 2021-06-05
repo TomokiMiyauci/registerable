@@ -1,6 +1,6 @@
 import type { Option } from "../types/mod.ts";
 
-type CommandLine = Omit<Option, "mode"> & {
+type CommandLine = Omit<Option, "mode" | "signal"> & {
   verbose: boolean;
   json: boolean;
 };

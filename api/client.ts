@@ -7,7 +7,9 @@ const client = async <T extends Registry>(
 ) => {
   const url = stringify({ name, ...option });
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    signal: option.signal,
+  });
   return await res.json() as RegisterableResult<T>;
 };
 

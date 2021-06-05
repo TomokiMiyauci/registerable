@@ -3,7 +3,7 @@ import { RegisterableResult, Registry } from "../types/mod.ts";
 import { summarize } from "../format/json.ts";
 import { flattenDeep, pipe, uniq } from "../deps.ts";
 
-const query2Direct = async <T extends Registry>(
+const server = async <T extends Registry>(
   queries: any[],
   name: string,
 ): Promise<RegisterableResult<T>> => {
@@ -16,4 +16,4 @@ const uniqFlatten = pipe(flattenDeep, uniq);
 const mapper = <T, U>(map: Record<PropertyKey, T>, val: U[]): T[] =>
   val.map((key) => map[key as any]);
 
-export { mapper, query2Direct, uniqFlatten };
+export { mapper, server, uniqFlatten };

@@ -1,5 +1,5 @@
 // Copyright 2021-present the Registerable authors. All rights reserved. MIT license.
-import { query2Direct, uniqFlatten } from "./_utils.ts";
+import { server, uniqFlatten } from "./_utils.ts";
 import { assertEquals } from "../dev_deps.ts";
 import { QUERY_MAP } from "../constants/query.ts";
 
@@ -20,7 +20,7 @@ Deno.test("uniqFlatten", () => {
   });
 });
 
-Deno.test("query2Direct", async () => {
+Deno.test("server", async () => {
   const table: [unknown[], string, Record<PropertyKey, unknown>][] = [
     [[], "fonction", {
       error: {},
@@ -99,9 +99,9 @@ Deno.test("query2Direct", async () => {
 
   await Promise.all(table.map(async ([queries, name, expected]) => {
     assertEquals(
-      await query2Direct(queries, name),
+      await server(queries, name),
       expected,
-      `query2Direct(${queries}, ${name}) -> ${expected}`,
+      `server(${queries}, ${name}) -> ${expected}`,
     );
   }));
 });
