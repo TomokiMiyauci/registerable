@@ -16,6 +16,7 @@
     "@types/smoothscroll-polyfill": "^0.3.1",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vueuse/core": "^4.11.2",
     "fonction": "1.9.0-beta.1",
     "prettier": "^2.3.0",
     "registerable": "^1.2.1",

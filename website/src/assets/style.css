@@ -57,7 +57,7 @@
 }
 
 body {
-  @apply antialiased text-gray-600;
+  @apply antialiased text-gray-600 dark:bg-gray-900 dark:text-gray-200;
 }
 
 .fade-enter-from,
@@ -68,4 +68,8 @@ body {
 .fade-enter-active,
 .fade-leave-active {
   @apply transition-opacity duration-500 ease-in;
+}
+
+button {
+  @apply outline focus:outline-none;
 }

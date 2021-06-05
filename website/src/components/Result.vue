@@ -18,6 +18,7 @@
   <div
     class="
       border
+      dark:border-gray-500
       rounded-2xl
       transition-shadow
       duration-300
@@ -30,18 +31,28 @@
     "
   >
     <table class="w-full">
-      <tr class="border-b shadow bg-gray-50">
-        <th class="p-3 border-r">Registry</th>
+      <tr
+        class="border-b dark:border-gray-700 shadow bg-gray-50 dark:bg-gray-600"
+      >
+        <th class="p-3 border-r dark:border-gray-500">Registry</th>
         <th>Registerable</th>
       </tr>
       <tr
-        class="hover:bg-gray-100 transition-colors duration-200"
+        class="
+          hover:(bg-gray-100
+          dark:bg-gray-800 dark:bg-opacity-90)
+          transition-colors
+          duration-200
+        "
         v-for="[registry, is] in result"
       >
-        <td class="p-3 text-center md:text-left border-r">
+        <td class="p-3 text-center md:text-left border-r dark:border-gray-500">
           <RegistryIcon
             :icon="registry"
             class="w-7 h-7 align-middle text-green-400"
+            :class="
+              registry === 'deno.land' ? 'dark:stroke-white dark:stroke-6' : ''
+            "
           />
 
           <span
@@ -128,6 +139,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { getPackageURL } from '../_utils'
+import RegistryIcon from '../components/RegistryIcon.vue'
 defineProps<{
   result: [string, boolean][]
   error: Record<string, string>

@@ -20,10 +20,13 @@
             transition
             duration-300
             transform
-            hover:bg-gray-100
+            dark:bg-gray-600
+            hover:(bg-gray-100
+            dark:opacity-75)
             focus-within:(ring-4
             scale-103
             shadow-md)
+            dark:ring-offset-purple-100
             ring-gray-400 ring-opacity-70 ring-offset-gray-800 ring-offset-1
           "
         >
@@ -40,6 +43,8 @@
               py-2
               w-full
               px-2
+              dark:placeholder-gray-200
+              dark:text-gray-200
               outline-none
               text-gray-800
               bg-transparent
@@ -75,10 +80,13 @@
               h-full
               p-2
               focus:(outline-none
-              bg-gray-200)
-              not-disabled:hover:(bg-gray-300
-              text-gray-800)
-              disabled:(text-gray-300
+              light:bg-gray-200
+              dark:bg-gray-800)
+              not-disabled:hover:(light:bg-gray-300
+              light:text-gray-800
+              dark:bg-gray-500)
+              disabled:(light:text-gray-300
+              dark:text-gray-900
               cursor-not-allowed)
             "
             :disabled="!searchable"
@@ -108,6 +116,7 @@
               inline-flex
               opacity-70
               border
+              dark:border-gray-500
               p-2
               w-22
               h-22
@@ -120,7 +129,12 @@
               from-purple-100
               via-pink-100
               to-yellow-100
+              dark:from-purple-800
+              dark:via-pink-800
+              dark:bg-opacity-30
+              dark:to-yellow-800
               shadow-md)
+              dark:bg-gray-700
               transform
               active:scale-110
               transition
@@ -138,9 +152,10 @@
               class="w-12 h-12 md:(w-16 h-16) text-green-400"
             />
 
-            <span class="text-xs md:text-lg mt-1 text-gray-800">{{
-              registry
-            }}</span>
+            <span
+              class="text-xs md:text-lg mt-1 text-gray-800 dark:text-gray-200"
+              >{{ registry }}</span
+            >
           </label>
         </template>
       </div>
@@ -230,6 +245,7 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
   'nest.land',
   'npm'
 ])
+
 const notice = ref<boolean>(false)
 const input = ref<HTMLInputElement>()
 const div = ref<HTMLDivElement>()
