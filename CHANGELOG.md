@@ -1,3 +1,12 @@
+# [v1.3.0](https://github.com/TomokiMiyauci/registerable/compare/v1.2.3...v1.3.0) (2021-06-05)
+
+## ✨ New Features
+- [`3ae8489`](https://github.com/TomokiMiyauci/registerable/commit/3ae8489)   Add accepting abort controller signal 
+- [`b5d6142`](https://github.com/TomokiMiyauci/registerable/commit/b5d6142)   Export REGISTRIES and tyeps of Registry, RegisterableResult 
+
+## 🐛 Bug Fixes
+- [`cca5496`](https://github.com/TomokiMiyauci/registerable/commit/cca5496)   Fix validator for npm module name
+
 # [v1.3.0-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.2.3...v1.3.0-beta.1) (2021-06-05)
 
 ## ✨ New Features
