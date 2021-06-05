@@ -73,3 +73,7 @@ body {
 button {
   @apply outline focus:outline-none;
 }
+
+svg {
+  @apply inline;
+}

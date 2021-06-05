@@ -21,7 +21,7 @@
             duration-300
             transform
             dark:bg-gray-600
-            hover:(bg-gray-100
+            hover:(light:bg-gray-100
             dark:opacity-75)
             focus-within:(ring-4
             scale-103
@@ -84,7 +84,7 @@
               dark:bg-gray-800)
               not-disabled:hover:(light:bg-gray-300
               light:text-gray-800
-              dark:bg-gray-500)
+              dark:bg-gray-400)
               disabled:(light:text-gray-300
               dark:text-gray-900
               cursor-not-allowed)
@@ -183,7 +183,7 @@
     v-model="isLoading"
     class="flex backdrop-filter backdrop-blur items-center justify-center"
   >
-    <SearchLoader />
+    <SearchLoader @stop="abc" />
   </Overlay>
 
   <transition name="slide-left">
@@ -216,7 +216,7 @@
     >
       <span class="space-x-3">
         <mdi-check class="align-middle" />
-        <span class="align-middle">Cheking is done</span>
+        <span class="align-middle">{{ message }}</span>
       </span>
 
       <button @click="onClickClose" class="focus:outline-none">
@@ -254,6 +254,7 @@ const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
 const changeSearch = (val: string): void => {
   search.value = val
 }
+const message = ref<string>('Cheking is done')
 
 watch(search, (now) =>
   changeSearchQuery(location.href, ifElse(isEmpty(now), '', { q: now }))
@@ -313,6 +314,12 @@ const { set, clear: clearInter } = useSetTimeout(() => {
   notice.value = false
 }, 3000)
 
+let abortController: AbortController | undefined
+
+const abc = () => {
+  abortController?.abort()
+}
+
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
   input.value?.blur()
@@ -321,19 +328,32 @@ const onClick = async () => {
   if (isLength0(registries.value)) {
     registries.value = ['deno.land', 'nest.land', 'npm']
   }
+  abortController = new AbortController()
 
-  const { name, result, error } = await registerable(search.value, {
-    mode: 'universal',
-    registry: registries.value
-  })
-  notice.value = true
-  set()
-  chagneState(state, { name, result, error })
-  isLoading.value = false
-  await nextTick()
-  div.value?.scrollIntoView({
-    behavior: 'smooth'
-  })
+  try {
+    const { name, result, error } = await registerable(search.value, {
+      mode: 'universal',
+      registry: registries.value,
+      signal: abortController.signal
+    })
+    message.value = 'Cheking is done'
+    notice.value = true
+    set()
+    chagneState(state, { name, result, error })
+    isLoading.value = false
+
+    await nextTick()
+    div.value?.scrollIntoView({
+      behavior: 'smooth'
+    })
+  } catch (e) {
+    isLoading.value = false
+    message.value = 'Request has canceled'
+    notice.value = true
+    set()
+
+    console.log(e)
+  }
 }
 
 const searchable = computed(() => !isEmpty(search.value))

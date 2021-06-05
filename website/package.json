@@ -19,7 +19,7 @@
     "@vueuse/core": "^4.11.2",
     "fonction": "1.9.0-beta.1",
     "prettier": "^2.3.0",
-    "registerable": "^1.2.1",
+    "registerable": "^1.3.0-beta.1",
     "smoothscroll-polyfill": "^0.4.4",
     "typescript": "^4.1.3",
     "vite": "^2.3.3",
