@@ -19,4 +19,4 @@ const constructSearchParams = (
   return urlSearchParams;
 };
 
-export { BASE_URL, constructSearchParams, stringify };
+export { constructSearchParams, stringify };
