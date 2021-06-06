@@ -13,7 +13,7 @@
   ],
   "routes": [
     {
-      "src": "/check-name",
+      "src": "/api/v1",
       "dest": "api/check_name.ts"
     },
     {

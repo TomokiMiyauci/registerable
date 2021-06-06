@@ -1,8 +1,8 @@
 import { Registry } from "../types/mod.ts";
-import { BASE_URL } from "./_constants.ts";
+import { BASE_URL, VERSION } from "./_constants.ts";
 
 const stringify = (val: { name: string; registry: Registry[] }): string => {
-  const url = new URL("check-name", BASE_URL);
+  const url = new URL(`api/${VERSION}`, BASE_URL);
   url.search = constructSearchParams(val).toString();
 
   return url.toString();
