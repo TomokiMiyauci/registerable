@@ -3,7 +3,7 @@ import { resolve } from "path";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import shebang from "rollup-plugin-add-shebang";
-import { main, module, dependencies } from "./package.json";
+import { dependencies, main, module } from "./package.json";
 import { keys } from "fonction";
 import json from "@rollup/plugin-json";
 
@@ -16,9 +16,9 @@ const replaceOption = {
   ".ts": "",
   "https://deno.land/x/fonction@v1.8.1/mod": "fonction",
   "https://deno.land/x/is_valid@v1.0.0-beta.9/mod": "@miyauci/is-valid",
-  "https://deno.land/x/is_valid_package_name@v1.0.0-beta.10/mod":
+  "https://deno.land/x/is_valid_package_name@v1.0.0/mod":
     "is-valid-package-name",
-  preventAssignment: true
+  preventAssignment: true,
 };
 
 const rollupPluginPreserveFetch = (preserve, target) => ({
@@ -27,7 +27,7 @@ const rollupPluginPreserveFetch = (preserve, target) => ({
     if (mod.includes("node_modules")) return;
     const formattedCode = code.includes(target) ? `${preserve}${code}` : code;
     return { code: formattedCode, map: null };
-  }
+  },
 });
 
 const nodeFetch = `import fetch from 'cross-fetch'\n`;
@@ -39,12 +39,12 @@ const config = [
       replace(replaceOption),
       ts({
         transpiler: "babel",
-        tsconfig: resolvedConfig => ({
+        tsconfig: (resolvedConfig) => ({
           ...resolvedConfig,
-          declaration: false
-        })
+          declaration: false,
+        }),
       }),
-      terser()
+      terser(),
     ],
 
     external: keys(dependencies),
@@ -53,8 +53,8 @@ const config = [
       file: main,
       format: "cjs",
       sourcemap: true,
-      banner
-    }
+      banner,
+    },
   },
   {
     input: inputFilePath,
@@ -62,9 +62,9 @@ const config = [
       rollupPluginPreserveFetch(nodeFetch, "fetch"),
       replace(replaceOption),
       ts({
-        transpiler: "babel"
+        transpiler: "babel",
       }),
-      terser()
+      terser(),
     ],
 
     external: keys(dependencies),
@@ -73,8 +73,8 @@ const config = [
       file: module,
       format: "es",
       sourcemap: true,
-      banner
-    }
+      banner,
+    },
   },
   {
     input: "tmp/cli/node.ts",
@@ -87,23 +87,23 @@ const config = [
       replace(replaceOption),
       ts({
         browserslist: false,
-        tsconfig: resolvedConfig => ({
+        tsconfig: (resolvedConfig) => ({
           ...resolvedConfig,
           declaration: false,
-          declarationMap: false
-        })
+          declarationMap: false,
+        }),
       }),
       terser(),
-      shebang()
+      shebang(),
     ],
 
     output: {
       file: "dist/cli.js",
       format: "cjs",
       sourcemap: true,
-      banner
-    }
-  }
+      banner,
+    },
+  },
 ];
 
 export default config;

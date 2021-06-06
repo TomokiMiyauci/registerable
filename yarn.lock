@@ -3438,10 +3438,10 @@ is-utf8@^0.2.1:
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
 
-is-valid-package-name@1.0.0-beta.10:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0-beta.10.tgz#9246be283409932bd090424753df244390fff2b0"
-  integrity sha512-JI8+JWrNn0+SQtDu+BGPsaW6WjGy7HY6kdljKwWYYrlQLw8j/tqQDZGisgiVPDaUuuY9/dn2k7pEuhuvQotPKQ==
+is-valid-package-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0.tgz#fdd5a24abad2f61bd9e14d6844cfbc37e02cfe65"
+  integrity sha512-swikZQ5Q0zws/A1wkbpUZLx0undHTNa8UMEhWzAmyVxwwvjXFRa+TnseO7sa/b5CnUlky5/12l6d09ArUI6Aog==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     fonction "^1.8.1"
