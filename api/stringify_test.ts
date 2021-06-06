@@ -1,17 +1,21 @@
-import { BASE_URL, constructSearchParams, stringify } from "./stringify.ts";
+import { constructSearchParams, stringify } from "./stringify.ts";
 import { Registry } from "../types/mod.ts";
+import { BASE_URL, VERSION } from "./_constants.ts";
 
 import { assertEquals } from "../dev_deps.ts";
 Deno.test("stringify", () => {
   const table: [{ name: string; registry: Registry[] }, string][] = [[{
     name: "fonction",
     registry: [],
-  }, `${BASE_URL}check-name?name=fonction`], [
+  }, `${new URL(`api/${VERSION}`, BASE_URL)}?name=fonction`], [
     {
       name: "fonction",
       registry: ["deno.land", "nest.land"],
     },
-    `${BASE_URL}check-name?name=fonction&registry=deno.land&registry=nest.land`,
+    `${new URL(
+      `api/${VERSION}`,
+      BASE_URL,
+    )}?name=fonction&registry=deno.land&registry=nest.land`,
   ]];
 
   table.forEach(([val, expected]) => {
