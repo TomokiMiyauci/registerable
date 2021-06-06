@@ -777,9 +777,9 @@ postcss@^8.2.10:
     source-map-js "^0.6.2"
 
 prettier@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.0.tgz#b6a5bf1284026ae640f17f7ff5658a7567fc0d18"
-  integrity sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.1.tgz#76903c3f8c4449bc9ac597acefa24dc5ad4cbea6"
+  integrity sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -812,9 +812,9 @@ readdirp@~3.5.0:
     picomatch "^2.2.1"
 
 registerable@^1.3.0-beta.1:
-  version "1.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.0-beta.1.tgz#28cc350ff326cc9b5d9b023de5c5de2ce5fff536"
-  integrity sha512-2WhB8WwE10syyRCWIWOxa/0wAS/MtQoyMTSxPcyBkupgW5zE8zzyueIARYRRjo4EU7DwoQwPY3znQwWZoZ0oTA==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.1.tgz#a2aa31c3fab479c8b18d50e1c7335f065d3180d4"
+  integrity sha512-crnTQJ3R1HEPMoLUDOvnbDT6khjH97Xyeqi0cAYqdpjp00fiqQcZaG5zSR08FLaMs0Q4UAtuUiKb7sN+ys8xyw==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     cross-fetch "^3.1.4"
@@ -1036,10 +1036,15 @@ vue@^3.0.11, vue@^3.0.5:
     "@vue/runtime-dom" "3.0.11"
     "@vue/shared" "3.0.11"
 
-windicss@^3.0.12, windicss@^3.0.9:
+windicss@^3.0.12:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.1.0.tgz#bd679d51b7cabeba09077085706b48dbc1515730"
   integrity sha512-z49xITq4X1ltHIZyL4NwFTR2LXPJ0rbOOrhDXfLX+OfG4Au7+GAzqvNlzUfAaIbA8HSpnI04alQHUWH24KfNYA==
+
+windicss@^3.0.9:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.1.1.tgz#f879661df4f3db92cc45c6214779f6c5efa4f95c"
+  integrity sha512-vLtydYOqqLwb3Jg02QYqCnna1jONLt6GuDyAtRokQY81uA8BiOyN2y3ED9QGX28CIL5Zi7bpnkBL1f1g4CHuXQ==
 
 wrap-ansi@^7.0.0:
   version "7.0.0"
