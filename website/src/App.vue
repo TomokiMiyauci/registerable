@@ -6,7 +6,7 @@
       <h1 class="text-4xl my-3 font-bold">Registerable</h1>
       <p>Check if package name can be registered</p>
 
-      <div class="mt-8 md:my-12 m-1">
+      <div class="mt-8 md:my-12 m-1" id="anchor">
         <span
           title="Search"
           class="
@@ -181,6 +181,35 @@
 
   <the-footer />
 
+  <transition name="fade">
+    <button
+      v-show="!isHideTopButton"
+      title="To Top"
+      class="
+        animate-bounce
+        fixed
+        bottom-20
+        md:bottom-6
+        rounded-full
+        p-2
+        right-6
+        w-13
+        h-13
+        md:(w-15
+        h-15)
+        shadow
+        bg-gradient-to-br
+        from-purple-400
+        via-pink-500
+        to-yellow-500
+        text-gray-200
+      "
+      @click="onClick2Top"
+    >
+      <akar-icons-arrow-up width="1.5em" height="1.5em" />
+    </button>
+  </transition>
+
   <Overlay
     v-model="isLoading"
     class="flex backdrop-filter backdrop-blur items-center justify-center"
@@ -228,7 +257,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, nextTick } from 'vue'
+import { ref, reactive, computed, watch, nextTick, onMounted } from 'vue'
 import { registerable } from 'registerable'
 import SearchLoader from './components/SearchLoader.vue'
 import TheHeader from './components/TheHeader.vue'
@@ -236,7 +265,17 @@ import TheFooter from './components/TheFooter.vue'
 import Result from './components/Result.vue'
 import Overlay from './components/Overlay.vue'
 import RegistryIcon from './components/RegistryIcon.vue'
-import { isEmpty, or, pipe, isLength0, N, props, ifElse, tap } from 'fonction'
+import {
+  isEmpty,
+  or,
+  pipe,
+  isLength0,
+  N,
+  props,
+  ifElse,
+  tap,
+  first
+} from 'fonction'
 import { changeSearchQuery, safeFocus } from './_utils'
 import { isNumber } from '@miyauci/is-valid'
 
@@ -261,6 +300,25 @@ const notice = reactive({
   message: 'Cheking is done',
   class: noticeOkClass,
   icon: 'check'
+})
+
+const onClick2Top = () =>
+  scroll({
+    top: 0,
+    behavior: 'smooth'
+  })
+
+const isHideTopButton = ref<boolean>(true)
+
+const observer = new IntersectionObserver((a) => {
+  isHideTopButton.value = first(a).isIntersecting
+})
+
+onMounted(() => {
+  const target = document.querySelector('#anchor')
+  if (target) {
+    observer.observe(target)
+  }
 })
 
 watch(search, (now) =>
