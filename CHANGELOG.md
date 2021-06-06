@@ -1,3 +1,8 @@
+# [v1.3.1](https://github.com/TomokiMiyauci/registerable/compare/v1.3.0...v1.3.1) (2021-06-06)
+
+## 🐛 Bug Fixes
+- [`7a1f357`](https://github.com/TomokiMiyauci/registerable/commit/7a1f357)  (api) Change api base URL
+
 # [v1.3.1-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.3.0...v1.3.1-beta.1) (2021-06-06)
 
 ## 🐛 Bug Fixes
