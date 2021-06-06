@@ -4,9 +4,9 @@
   <div class="container mx-auto lg:px-8">
     <section class="px-4 text-center pt-10 py-4 md:(pt-30)">
       <h1 class="text-4xl my-3 font-bold">Registerable</h1>
-      <p>Check if package name can be registered</p>
+      <p id="anchor">Check if package name can be registered</p>
 
-      <div class="mt-8 md:my-12 m-1" id="anchor">
+      <div class="mt-8 md:my-12 m-1">
         <span
           title="Search"
           class="
@@ -31,7 +31,9 @@
             ring-gray-400 ring-opacity-70 ring-offset-gray-800 ring-offset-1
           "
         >
-          <mdi-magnify class="ml-4 w-8 h-8" />
+          <span class="ml-4">
+            <mdi-magnify class="align-middle w-8 h-8" />
+          </span>
           <input
             ontouchstart=""
             v-model.trim="search"
