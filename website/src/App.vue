@@ -261,6 +261,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, nextTick, onMounted } from 'vue'
 import { registerable } from 'registerable'
+import type { RegisterableResult } from 'registerable'
 import SearchLoader from './components/SearchLoader.vue'
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
@@ -356,22 +357,14 @@ const onClickClear = pipe(
   })
 )
 
-type RegisterableResult = {
-  name: string
-  result: Record<string, boolean>
-  error: Record<string, string>
-}
-
-const state = reactive<RegisterableResult>({
+type State = RegisterableResult | { name: ''; result: {}; error: {} }
+const state = reactive<State>({
   name: '',
   result: {},
   error: {}
 })
 
-const chagneState = (
-  state: RegisterableResult,
-  { name, result, error }: RegisterableResult
-) => {
+const chagneState = (state: State, { name, result, error }: State) => {
   state.name = name
   state.result = result
   state.error = error
@@ -398,34 +391,47 @@ const onClick = async () => {
     registries.value = ['deno.land', 'nest.land', 'npm']
   }
 
-  try {
-    const { name, result, error } = await registerable(search.value, {
-      mode: 'universal',
-      registry: registries.value,
-      signal: abortController.signal
-    })
-    notice.message = 'Cheking is done'
-    notice.class = noticeOkClass
-    notice.icon = 'check'
-    notice.isShow = true
-
-    set()
-    chagneState(state, { name, result, error })
-    isLoading.value = false
-
-    await nextTick()
-    div.value?.scrollIntoView({
-      behavior: 'smooth'
-    })
-  } catch {
-    chagneState(state, { name: '', result: {}, error: {} })
-    isLoading.value = false
-    notice.message = 'Request has canceled'
-    notice.class = 'from-purple-400 via-pink-500 to-yellow-500'
-    notice.icon = 'cancel'
-    notice.isShow = true
-    set()
-  }
+  registerable(search.value, {
+    mode: 'universal',
+    registry: registries.value,
+    signal: abortController.signal
+  })
+    .then(
+      pipe(
+        tap(() => {
+          notice.message = 'Cheking is done'
+          notice.class = noticeOkClass
+          notice.icon = 'check'
+          notice.isShow = true
+        }),
+        tap(set),
+        tap((result) => chagneState(state, result as RegisterableResult)),
+        tap(() => {
+          isLoading.value = false
+        }),
+        async () => {
+          await nextTick()
+          div.value?.scrollIntoView({
+            behavior: 'smooth'
+          })
+        }
+      )
+    )
+    .catch(
+      pipe(
+        () => {
+          chagneState(state, { name: '', result: {}, error: {} })
+          isLoading.value = false
+        },
+        () => {
+          notice.message = 'Request has canceled'
+          notice.class = 'from-purple-400 via-pink-500 to-yellow-500'
+          notice.icon = 'cancel'
+          notice.isShow = true
+        },
+        set
+      )
+    )
 }
 
 const searchable = computed(() => !isEmpty(search.value))
