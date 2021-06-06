@@ -21,7 +21,8 @@
             duration-300
             transform
             dark:bg-gray-600
-            hover:(light:bg-gray-100
+            hover:(bg-gray-100
+            dark:bg-gray-600
             dark:opacity-75)
             focus-within:(ring-4
             scale-103
@@ -80,12 +81,13 @@
               h-full
               p-2
               focus:(outline-none
-              light:bg-gray-200
+              bg-gray-200
               dark:bg-gray-800)
-              not-disabled:hover:(light:bg-gray-300
-              light:text-gray-800
+              not-disabled:hover:(bg-gray-300
+              text-gray-800
+              dark:text-gray-600
               dark:bg-gray-400)
-              disabled:(light:text-gray-300
+              disabled:(text-gray-300
               dark:text-gray-900
               cursor-not-allowed)
             "
@@ -188,7 +190,7 @@
 
   <transition name="slide-left">
     <div
-      v-show="notice"
+      v-show="notice.isShow"
       class="
         fixed
         inset-x-0
@@ -204,19 +206,18 @@
         text-xl text-white
         bg-gradient-to-br
         border
-        from-cyan-400
-        via-teal-500
-        to-yellow-500
         rounded-xl
         m-2
         flex
         items-center
         justify-between
       "
+      :class="notice.class"
     >
       <span class="space-x-3">
-        <mdi-check class="align-middle" />
-        <span class="align-middle">{{ message }}</span>
+        <mdi-check v-if="notice.icon === 'check'" class="align-middle" />
+        <mdi-cancel v-else class="align-middle" />
+        <span class="align-middle">{{ notice.message }}</span>
       </span>
 
       <button @click="onClickClose" class="focus:outline-none">
@@ -246,7 +247,6 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
   'npm'
 ])
 
-const notice = ref<boolean>(false)
 const input = ref<HTMLInputElement>()
 const div = ref<HTMLDivElement>()
 const isLoading = ref<boolean>(false)
@@ -254,14 +254,21 @@ const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
 const changeSearch = (val: string): void => {
   search.value = val
 }
-const message = ref<string>('Cheking is done')
+
+const noticeOkClass = 'from-cyan-400 via-teal-500 to-yellow-500'
+const notice = reactive({
+  isShow: false,
+  message: 'Cheking is done',
+  class: noticeOkClass,
+  icon: 'check'
+})
 
 watch(search, (now) =>
   changeSearchQuery(location.href, ifElse(isEmpty(now), '', { q: now }))
 )
 
 const onClickClose = (): void => {
-  notice.value = false
+  notice.isShow = false
   clearInter()
 }
 
@@ -311,7 +318,7 @@ const chagneState = (
 }
 
 const { set, clear: clearInter } = useSetTimeout(() => {
-  notice.value = false
+  notice.isShow = false
 }, 3000)
 
 let abortController: AbortController | undefined
@@ -322,13 +329,14 @@ const abc = () => {
 
 const onClick = async () => {
   if (or(isEmpty(search.value), () => isLoading.value)) return
-  input.value?.blur()
+  abortController = new AbortController()
   isLoading.value = true
+  input.value?.blur()
+
   await nextTick()
   if (isLength0(registries.value)) {
     registries.value = ['deno.land', 'nest.land', 'npm']
   }
-  abortController = new AbortController()
 
   try {
     const { name, result, error } = await registerable(search.value, {
@@ -336,8 +344,11 @@ const onClick = async () => {
       registry: registries.value,
       signal: abortController.signal
     })
-    message.value = 'Cheking is done'
-    notice.value = true
+    notice.message = 'Cheking is done'
+    notice.class = noticeOkClass
+    notice.icon = 'check'
+    notice.isShow = true
+
     set()
     chagneState(state, { name, result, error })
     isLoading.value = false
@@ -346,13 +357,14 @@ const onClick = async () => {
     div.value?.scrollIntoView({
       behavior: 'smooth'
     })
-  } catch (e) {
+  } catch {
+    chagneState(state, { name: '', result: {}, error: {} })
     isLoading.value = false
-    message.value = 'Request has canceled'
-    notice.value = true
+    notice.message = 'Request has canceled'
+    notice.class = 'from-purple-400 via-pink-500 to-yellow-500'
+    notice.icon = 'cancel'
+    notice.isShow = true
     set()
-
-    console.log(e)
   }
 }
 
