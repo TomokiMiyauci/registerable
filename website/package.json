@@ -3,9 +3,9 @@
   "license": "MIT",
   "scripts": {
     "cz": "yarn --cwd .. cz",
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "serve": "vitepress serve"
   },
   "dependencies": {
     "vue": "^3.0.5"
@@ -26,6 +26,7 @@
     "vite-plugin-components": "^0.9.1",
     "vite-plugin-icons": "^0.5.1",
     "vite-plugin-windicss": "^0.17.0",
+    "vitepress": "^0.14.0",
     "vue-tsc": "^0.0.24",
     "windicss": "^3.0.9",
     "xross-vue": "^1.0.0-beta.5"

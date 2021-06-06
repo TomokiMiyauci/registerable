@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
 import Components from 'vite-plugin-components'
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
@@ -7,7 +6,6 @@ import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 export default defineConfig({
   base: '/website/',
   plugins: [
-    vue(),
     WindiCSS(),
     Components({
       customComponentResolvers: ViteIconsResolver({

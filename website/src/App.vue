@@ -256,6 +256,13 @@
       </button>
     </div>
   </transition>
+
+  <Overlay
+    v-model="isLoading"
+    class="flex backdrop-filter backdrop-blur items-center justify-center"
+  >
+    <SearchLoader @stop="abc" />
+  </Overlay>
 </template>
 
 <script setup lang="ts">
@@ -292,7 +299,7 @@ const registries = ref<('deno.land' | 'nest.land' | 'npm')[]>([
 const input = ref<HTMLInputElement>()
 const div = ref<HTMLDivElement>()
 const isLoading = ref<boolean>(false)
-const search = ref<string>(new URLSearchParams(location.search).get('q') ?? '')
+const search = ref<string>(new URLSearchParams('').get('q') ?? '')
 const changeSearch = (val: string): void => {
   search.value = val
 }
@@ -313,11 +320,10 @@ const onClick2Top = () =>
 
 const isHideTopButton = ref<boolean>(true)
 
-const observer = new IntersectionObserver((a) => {
-  isHideTopButton.value = first(a).isIntersecting
-})
-
 onMounted(() => {
+  const observer = new IntersectionObserver((a) => {
+    isHideTopButton.value = first(a).isIntersecting
+  })
   const target = document.querySelector('#anchor')
   if (target) {
     observer.observe(target)

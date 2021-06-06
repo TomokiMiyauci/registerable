@@ -140,10 +140,11 @@
 import { defineProps } from 'vue'
 import { getPackageURL } from '../_utils'
 import RegistryIcon from '../components/RegistryIcon.vue'
+import { has } from 'fonction'
+
 defineProps<{
   result: [string, boolean][]
   error: Record<string, string>
   name: string
 }>()
-import { has } from 'fonction'
 </script>
