@@ -2,11 +2,16 @@
   <header
     class="
       shadow
+      z-1
+      bg-white
+      dark:bg-gray-900
       dark:(border-b
       border-gray-500)
       items-center
       justify-between
       flex
+      sticky
+      top-0
       text-3xl
       py-2
       px-6
