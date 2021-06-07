@@ -1,3 +1,9 @@
+---
+
+sidebar: false
+
+---
+
 <App />
 
 <script setup>

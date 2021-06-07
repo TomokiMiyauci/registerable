@@ -1,8 +1,9 @@
 <template>
   <header
     class="
+      nav-bar
       shadow
-      z-1
+      z-10
       bg-white
       dark:bg-gray-900
       dark:(border-b

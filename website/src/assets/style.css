@@ -75,5 +75,51 @@ button {
 }
 
 svg {
-  @apply inline;
+  @apply inline align-middle;
+}
+
+.language-bash {
+  @apply overflow-hidden;
+}
+
+h1 {
+  @apply m-0 !important;
+}
+
+ul {
+  @apply pl-0 !important;
+}
+
+a {
+  @apply no-underline  !important;
+}
+
+code {
+  @apply dark:bg-gray-800 opacity-80;
+}
+
+table {
+  @apply rounded-sm;
+}
+
+h2,
+h3 {
+  @apply dark:text-gray-200;
+}
+
+tr:nth-child(2n) {
+  @apply dark:bg-gray-800;
+}
+
+strong {
+  @apply dark:text-red-600;
+}
+
+th,
+td {
+  @apply dark:border-gray-600;
+}
+
+main > div > h1 {
+  @apply text-4xl md:text-6xl my-10 !important;
 }
