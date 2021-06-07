@@ -1,3 +1,8 @@
+# [v1.3.2](https://github.com/TomokiMiyauci/registerable/compare/v1.3.1...v1.3.2) (2021-06-07)
+
+## 🐛 Bug Fixes
+- [`67c3017`](https://github.com/TomokiMiyauci/registerable/commit/67c3017)   Change client endpoint
+
 # [v1.3.2-beta.1](https://github.com/TomokiMiyauci/registerable/compare/v1.3.1...v1.3.2-beta.1) (2021-06-07)
 
 ## 🐛 Bug Fixes
