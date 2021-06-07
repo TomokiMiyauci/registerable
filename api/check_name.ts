@@ -17,7 +17,7 @@ export default async (req: ServerRequest) => {
   if (N(validateResult)) {
     return req.respond({
       headers,
-      status: 403,
+      status: 400,
       body: JSON.stringify({ error }),
     });
   }

@@ -3,7 +3,7 @@ import { assertEquals } from "../dev_deps.ts";
 import { RegisterableResult } from "../types/mod.ts";
 import { REGISTRIES } from "../constants/registry.ts";
 import { BASE_URL, VERSION } from "./_constants.ts";
-const ENTPOINT = new URL(`api/${VERSION}`, BASE_URL).toString();
+const ENTPOINT = new URL(VERSION, BASE_URL).toString();
 
 Deno.test("check-name", async () => {
   const table: [
@@ -14,7 +14,7 @@ Deno.test("check-name", async () => {
   ][] = [
     [
       ENTPOINT,
-      403,
+      400,
       false,
       {
         error: "Name parameter is necessary",
@@ -38,7 +38,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&hoge=huga`,
-      403,
+      400,
       false,
       {
         error: "Invalid query parameter (hoge)",
@@ -46,7 +46,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&hoge=huga&test=test`,
-      403,
+      400,
       false,
       {
         error: "Invalid query parameter (hoge, test)",
@@ -54,7 +54,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?hoge=huga&test=test`,
-      403,
+      400,
       false,
       {
         error: "Invalid query parameter (hoge, test)",
@@ -91,7 +91,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&registry=hoge.land`,
-      403,
+      400,
       false,
       {
         error: `Invalid registry member (hoge.land) [valid: ${
@@ -103,7 +103,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&registry=hoge.land&registry=huga.land`,
-      403,
+      400,
       false,
       {
         error: `Invalid registry member (hoge.land, huga.land) [valid: ${
@@ -115,7 +115,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&registry`,
-      403,
+      400,
       false,
       {
         error: `Invalid registry member () [valid: ${REGISTRIES.join(", ")}]`,
@@ -123,7 +123,7 @@ Deno.test("check-name", async () => {
     ],
     [
       `${ENTPOINT}?name=fonction&registry=`,
-      403,
+      400,
       false,
       {
         error: `Invalid registry member () [valid: ${REGISTRIES.join(", ")}]`,

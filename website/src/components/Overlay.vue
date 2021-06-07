@@ -1,11 +1,9 @@
 <template>
-  <Teleport to="#app">
-    <transition name="fade">
-      <div v-show="modelValue" class="inset-0 fixed" :class="class">
-        <slot />
-      </div>
-    </transition>
-  </Teleport>
+  <transition name="fade">
+    <div v-show="modelValue" class="inset-0 fixed" :class="class">
+      <slot />
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
