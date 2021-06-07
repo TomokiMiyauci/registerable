@@ -1,5 +1,5 @@
 <template>
-  <h2 class="mt-5 my-3 lg:mt-30 text-xl max-w-4xl mx-auto">
+  <h2 class="mt-5 border-b-0 my-3 lg:mt-30 text-xl max-w-4xl mx-auto">
     <code
       class="
         p-1
@@ -30,7 +30,7 @@
       mx-auto
     "
   >
-    <table class="w-full">
+    <table class="w-full table m-0">
       <tr
         class="border-b dark:border-gray-700 shadow bg-gray-50 dark:bg-gray-600"
       >
@@ -148,3 +148,11 @@ defineProps<{
   name: string
 }>()
 </script>
+
+<style scoped>
+td,
+th,
+tr {
+  @apply border-t-0 border-l-0;
+}
+</style>

@@ -173,9 +173,9 @@
   integrity sha512-LFelJDOLZ6JHlmlAkgrvmcu4hpNPB91KYcr4f60D/exzU1eNOb4/KCVHIydGHIQFaOacIOD+Xy+B7P1z812cZg==
 
 "@iconify/json@^1.1.345":
-  version "1.1.353"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.353.tgz#f9fb632da9b13cd79bcbea09b289610c46b87426"
-  integrity sha512-gN+DccJUhO6iB7gBPbZXodDaaxZpZTLORixrXaXNmkSW7N/jqfzMCCogoeRWOydZzSgR7VESc2tMI4llEonkjg==
+  version "1.1.354"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.354.tgz#a2024ba18a48931e46121413ea743cddd3638fa6"
+  integrity sha512-zFW5iV4FQmu/Mhn5fUNDtESLJFuQ8Mr9B0vBM2DmKbWJmTuMoF3sfV1w3tXMCvKFAXSTUcBTdXeEYP2rWnA8jA==
 
 "@miyauci/is-valid@1.0.0-beta.9", "@miyauci/is-valid@^1.0.0-beta.9":
   version "1.0.0-beta.9"
@@ -326,10 +326,10 @@
   dependencies:
     vue-demi "*"
 
-"@windicss/plugin-utils@0.17.1":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-0.17.1.tgz#e8eb7ede2bb69342d6ea0f20e0ae2ad465323a7b"
-  integrity sha512-jyJAWoPKdQCSkyLKI2KPnQfs7iJFlENQdyr9iDqQVOHjInSVK3fVBeJdi35sbtPFPibC/JUFqHNrf9dPnN22Mg==
+"@windicss/plugin-utils@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-1.0.1.tgz#f6281c91a37be5ea48eb4573cb511ccb82cce16a"
+  integrity sha512-EHsGC9LGHC/3rWNiOHzkgkexwgmxfHsqvxBoh0hLJv1MPPhEsKv8dQbt34pVZgRsS/rAjiVe4bRRM5NLTy8cWA==
   dependencies:
     "@antfu/utils" "^0.1.6"
     debug "^4.3.2"
@@ -337,7 +337,7 @@
     jiti "^1.10.1"
     magic-string "^0.25.7"
     micromatch "^4.0.4"
-    windicss "^3.0.12"
+    windicss "^3.1.0"
 
 accepts@~1.3.5:
   version "1.3.7"
@@ -958,10 +958,10 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
-is-valid-package-name@1.0.0-beta.10:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0-beta.10.tgz#9246be283409932bd090424753df244390fff2b0"
-  integrity sha512-JI8+JWrNn0+SQtDu+BGPsaW6WjGy7HY6kdljKwWYYrlQLw8j/tqQDZGisgiVPDaUuuY9/dn2k7pEuhuvQotPKQ==
+is-valid-package-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0.tgz#fdd5a24abad2f61bd9e14d6844cfbc37e02cfe65"
+  integrity sha512-swikZQ5Q0zws/A1wkbpUZLx0undHTNa8UMEhWzAmyVxwwvjXFRa+TnseO7sa/b5CnUlky5/12l6d09ArUI6Aog==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     fonction "^1.8.1"
@@ -1386,14 +1386,14 @@ readdirp@~3.5.0:
     picomatch "^2.2.1"
 
 registerable@^1.3.0-beta.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.1.tgz#a2aa31c3fab479c8b18d50e1c7335f065d3180d4"
-  integrity sha512-crnTQJ3R1HEPMoLUDOvnbDT6khjH97Xyeqi0cAYqdpjp00fiqQcZaG5zSR08FLaMs0Q4UAtuUiKb7sN+ys8xyw==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.2.tgz#b429398be8b9ca377edeb21859762f3db8295ba8"
+  integrity sha512-FJizFcdXLRd9k7ZtKL1rc1dgbpygOA0GxQgwvVUvpP2nPqnkDoLoAhWYepocR7vpjZm4E4j/3yoj+NmiEpq0mA==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     cross-fetch "^3.1.4"
     fonction "^1.8.1"
-    is-valid-package-name "1.0.0-beta.10"
+    is-valid-package-name "^1.0.0"
     yargs "^17.0.1"
 
 require-directory@^2.1.1:
@@ -1656,15 +1656,15 @@ vite-plugin-icons@^0.5.1:
     "@iconify/json-tools" "^1.0.10"
     vue-template-es2015-compiler "^1.9.1"
 
-vite-plugin-windicss@^0.17.0:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.17.1.tgz#f5e1b3e92dbb96e5e1450b22cfa17570b60a1266"
-  integrity sha512-7kK/Zv4uuEsmfOO6D1F7njCJrBKGhS6sz9Vzhn/3q8Vx7dpPr8J+ltEYhlCuaJT+UKLuLbxksSdfCNbX6x/jJw==
+vite-plugin-windicss@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-1.0.1.tgz#6e455228b6c1cb7ad52ed8fb9408b39888d572c0"
+  integrity sha512-+6iFKUC00G9xkR967xqbbAquaWAmgYT1rlBP7Bp6XCd9ire3b7tJTETtwSPAPAIp38OA/Xbp1MSaHhbl2LRxJg==
   dependencies:
-    "@windicss/plugin-utils" "0.17.1"
+    "@windicss/plugin-utils" "1.0.1"
     chalk "^4.1.1"
     debug "^4.3.2"
-    windicss "^3.0.12"
+    windicss "^3.1.0"
 
 vite@^2.3.3, vite@^2.3.4:
   version "2.3.6"
@@ -1743,12 +1743,7 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-windicss@^3.0.12:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.1.0.tgz#bd679d51b7cabeba09077085706b48dbc1515730"
-  integrity sha512-z49xITq4X1ltHIZyL4NwFTR2LXPJ0rbOOrhDXfLX+OfG4Au7+GAzqvNlzUfAaIbA8HSpnI04alQHUWH24KfNYA==
-
-windicss@^3.0.9:
+windicss@^3.1.0, windicss@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.1.1.tgz#f879661df4f3db92cc45c6214779f6c5efa4f95c"
   integrity sha512-vLtydYOqqLwb3Jg02QYqCnna1jONLt6GuDyAtRokQY81uA8BiOyN2y3ED9QGX28CIL5Zi7bpnkBL1f1g4CHuXQ==

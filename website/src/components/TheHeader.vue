@@ -1,8 +1,9 @@
 <template>
   <header
     class="
+      nav-bar
       shadow
-      z-1
+      z-10
       bg-white
       dark:bg-gray-900
       dark:(border-b
@@ -17,19 +18,21 @@
       px-6
     "
   >
-    <h1
-      class="
-        text-shadow
-        bg-clip-text
-        text-transparent
-        bg-gradient-to-br
-        from-violet-900
-        via-pink-600
-        to-yellow-300
-      "
-    >
-      Registerable
-    </h1>
+    <a href="/">
+      <h1
+        class="
+          text-shadow
+          bg-clip-text
+          text-transparent
+          bg-gradient-to-br
+          from-violet-900
+          via-pink-600
+          to-yellow-300
+        "
+      >
+        Registerable
+      </h1>
+    </a>
 
     <span class="space-x-6 flex">
       <button
