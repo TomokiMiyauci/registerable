@@ -161,8 +161,10 @@
       </template>
     </div>
 
-    <h2 class="mt-2 text-lg md:text-2xl max-w-4xl mx-auto">Registry</h2>
-    <p class="text-gray-500 md:mt-2 text-sm md:text-base max-w-4xl mx-auto">
+    <p class="mt-2 text-lg md:text-2xl my-0 max-w-4xl mx-auto">Registry</p>
+    <p
+      class="text-gray-500 my-0 md:mt-2 text-sm md:text-base max-w-4xl mx-auto"
+    >
       Select the registry to query. The smaller the number, the faster.
     </p>
   </section>

@@ -94,8 +94,9 @@ a {
   @apply no-underline  !important;
 }
 
-code {
-  @apply dark:bg-gray-800 opacity-80;
+p > code,
+td > code {
+  @apply text-orange-600 dark:bg-gray-800 opacity-80;
 }
 
 table {

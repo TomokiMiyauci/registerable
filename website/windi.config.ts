@@ -13,10 +13,6 @@ export default {
             h3: {
               color: theme('colors.gray.800')
             },
-            code: {
-              color: theme('colors.orange.600')
-            },
-
             strong: {
               color: theme('colors.gray.800')
             },
@@ -31,8 +27,6 @@ export default {
       })
     }
   },
-  variants: {
-    typography: ['dark']
-  },
+
   plugins: [typo]
 }
