@@ -11,8 +11,10 @@
         h-auto
         py-10
         p-4
-        border
+        border-b border-r
         bg-gray-100
+        dark:bg-gray-900
+        dark:border-gray-600
       "
     >
       <div>
