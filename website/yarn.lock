@@ -958,10 +958,10 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
-is-valid-package-name@1.0.0-beta.10:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0-beta.10.tgz#9246be283409932bd090424753df244390fff2b0"
-  integrity sha512-JI8+JWrNn0+SQtDu+BGPsaW6WjGy7HY6kdljKwWYYrlQLw8j/tqQDZGisgiVPDaUuuY9/dn2k7pEuhuvQotPKQ==
+is-valid-package-name@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-valid-package-name/-/is-valid-package-name-1.0.0.tgz#fdd5a24abad2f61bd9e14d6844cfbc37e02cfe65"
+  integrity sha512-swikZQ5Q0zws/A1wkbpUZLx0undHTNa8UMEhWzAmyVxwwvjXFRa+TnseO7sa/b5CnUlky5/12l6d09ArUI6Aog==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     fonction "^1.8.1"
@@ -1386,14 +1386,14 @@ readdirp@~3.5.0:
     picomatch "^2.2.1"
 
 registerable@^1.3.0-beta.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.1.tgz#a2aa31c3fab479c8b18d50e1c7335f065d3180d4"
-  integrity sha512-crnTQJ3R1HEPMoLUDOvnbDT6khjH97Xyeqi0cAYqdpjp00fiqQcZaG5zSR08FLaMs0Q4UAtuUiKb7sN+ys8xyw==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/registerable/-/registerable-1.3.2.tgz#b429398be8b9ca377edeb21859762f3db8295ba8"
+  integrity sha512-FJizFcdXLRd9k7ZtKL1rc1dgbpygOA0GxQgwvVUvpP2nPqnkDoLoAhWYepocR7vpjZm4E4j/3yoj+NmiEpq0mA==
   dependencies:
     "@miyauci/is-valid" "1.0.0-beta.9"
     cross-fetch "^3.1.4"
     fonction "^1.8.1"
-    is-valid-package-name "1.0.0-beta.10"
+    is-valid-package-name "^1.0.0"
     yargs "^17.0.1"
 
 require-directory@^2.1.1:

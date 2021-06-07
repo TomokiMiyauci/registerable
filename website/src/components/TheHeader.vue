@@ -17,19 +17,21 @@
       px-6
     "
   >
-    <h1
-      class="
-        text-shadow
-        bg-clip-text
-        text-transparent
-        bg-gradient-to-br
-        from-violet-900
-        via-pink-600
-        to-yellow-300
-      "
-    >
-      Registerable
-    </h1>
+    <a href="/">
+      <h1
+        class="
+          text-shadow
+          bg-clip-text
+          text-transparent
+          bg-gradient-to-br
+          from-violet-900
+          via-pink-600
+          to-yellow-300
+        "
+      >
+        Registerable
+      </h1>
+    </a>
 
     <span class="space-x-6 flex">
       <button

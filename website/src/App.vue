@@ -1,6 +1,4 @@
 <template>
-  <the-header />
-
   <div class="container mx-auto lg:px-8">
     <section class="px-4 text-center pt-10 py-4 md:(pt-30)">
       <h1 class="text-4xl my-3 font-bold">Registerable</h1>
@@ -270,7 +268,6 @@ import { ref, reactive, computed, watch, nextTick, onMounted } from 'vue'
 import { registerable } from 'registerable'
 import type { RegisterableResult } from 'registerable'
 import SearchLoader from './components/SearchLoader.vue'
-import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
 import Result from './components/Result.vue'
 import Overlay from './components/Overlay.vue'
