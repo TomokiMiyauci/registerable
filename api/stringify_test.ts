@@ -7,13 +7,13 @@ Deno.test("stringify", () => {
   const table: [{ name: string; registry: Registry[] }, string][] = [[{
     name: "fonction",
     registry: [],
-  }, `${new URL(`api/${VERSION}`, BASE_URL)}?name=fonction`], [
+  }, `${new URL(VERSION, BASE_URL)}?name=fonction`], [
     {
       name: "fonction",
       registry: ["deno.land", "nest.land"],
     },
     `${new URL(
-      `api/${VERSION}`,
+      VERSION,
       BASE_URL,
     )}?name=fonction&registry=deno.land&registry=nest.land`,
   ]];
